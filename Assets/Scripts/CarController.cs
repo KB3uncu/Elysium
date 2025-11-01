@@ -57,7 +57,6 @@ public class CarController : MonoBehaviour
         // Drift & Efekt Kontrolü
         CheckDrift(rearLeftWheel, smokeLeft, trailLeft);
         CheckDrift(rearRightWheel, smokeRight, trailRight);
-
         // Fren Kontrolü
         if (Input.GetKey(KeyCode.Space))
         {
