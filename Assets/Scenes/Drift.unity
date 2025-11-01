@@ -20129,7 +20129,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1529217793079272988}
-  - {fileID: 9087892257331842052}
   m_Father: {fileID: 3303121373339498315}
   m_LocalEulerAnglesHint: {x: -180, y: 0, z: 0}
 --- !u!23 &2222568886340337994
@@ -30076,7 +30075,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4350638011014647257
 Transform:
   m_ObjectHideFlags: 0
@@ -40403,7 +40402,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!199 &7373446309700278294
 ParticleSystemRenderer:
   serializedVersion: 6
@@ -40707,12 +40706,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7139852255933388014}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: 0.6161207, z: -0, w: 0.7876518}
-  m_LocalPosition: {x: -0.07199997, y: -0.289, z: -0.30700004}
+  m_LocalRotation: {x: -0.7876518, y: -0, z: -0.6161207, w: 0}
+  m_LocalPosition: {x: 0.79, y: 0.33, z: -1.64}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 2206904889358793420}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: -180, y: -76.06702, z: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
@@ -40722,3 +40721,4 @@ SceneRoots:
   - {fileID: 1663331835}
   - {fileID: 3347589289945161555}
   - {fileID: 8468723250794746068}
+  - {fileID: 9087892257331842052}
