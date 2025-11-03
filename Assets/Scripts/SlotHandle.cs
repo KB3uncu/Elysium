@@ -22,7 +22,7 @@ public class SlotHandle : MonoBehaviour, IInteractable
         isPulled = true;
 
         Quaternion startRot = transform.localRotation;
-        Quaternion endRot = startRot * Quaternion.Euler(pullAngle, 0f, 0f);
+        Quaternion endRot = startRot * Quaternion.Euler(0f, 0f, pullAngle);
 
         float t = 0f;
         while (t < pullDuration)
