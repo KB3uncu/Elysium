@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class RuletGame : MonoBehaviour
 {
@@ -22,9 +23,19 @@ public class RuletGame : MonoBehaviour
     public int enemyHealth = 3;
 
     [Header("UI ve Objeler")]
-    // Artık zar için buton yok, sadece silah butonu ve yazı var
     public Button gunButton;              // Silah butonu (player)
     public Text infoText;
+
+    [Header("Damage Ekran Efekti")]
+    public Image damageOverlay;           // Canvas altında full screen kırmızı Image
+    public float maxDamageAlpha = 0.6f;   // En fazla ne kadar kırmızılaşsın
+    public float damageFadeDuration = 0.4f;
+
+    [Header("Win / Lose Panelleri")]
+    public GameObject winPanel;           // WIN ekranı (arka plan + kart + WİN yazısı + sağ ok)
+    public GameObject losePanel;          // LOSE ekranı (arka plan + kart + LOSE yazısı + restart ok)
+    public Button winNextButton;          // Win ekranındaki sağ ok butonu
+    public Button loseRestartButton;      // Lose ekranındaki restart ok butonu
 
     [Header("Rus Ruleti Tamburları")]
     private bool[] cylinderPlayer = new bool[6];
@@ -39,13 +50,45 @@ public class RuletGame : MonoBehaviour
     private bool isRolling = false;
     private bool canRoll = true;          // Zara tıklanabilir mi?
 
+    // damage için
+    private int playerMaxHealth;
+    private Coroutine damageRoutine;
+
+    // oyun bitti mi
+    private bool isGameOver = false;
+
     void Start()
     {
-        // Zar için buton yok, ama silah butonu hâlâ UI'dan geliyor
-        gunButton.onClick.AddListener(OnPlayerShoot);
+        playerMaxHealth = playerHealth;
 
-        gunButton.gameObject.SetActive(false);
-        infoText.text = "🎲 Oyuncu, zara tıklayarak oyuna başla!";
+        // Damage overlay başlangıçta görünmez
+        if (damageOverlay != null)
+        {
+            Color c = damageOverlay.color;
+            c.a = 0f;
+            damageOverlay.color = c;
+        }
+
+        // Win/Lose panelleri kapalı
+        if (winPanel != null) winPanel.SetActive(false);
+        if (losePanel != null) losePanel.SetActive(false);
+
+        // Restart / Next butonları
+        if (winNextButton != null)
+            winNextButton.onClick.AddListener(RestartScene);
+
+        if (loseRestartButton != null)
+            loseRestartButton.onClick.AddListener(RestartScene);
+
+        // Silah butonu
+        if (gunButton != null)
+        {
+            gunButton.onClick.AddListener(OnPlayerShoot);
+            gunButton.gameObject.SetActive(false);
+        }
+
+        if (infoText != null)
+            infoText.text = "🎲 Oyuncu, zara tıklayarak oyuna başla!";
 
         InitCylinderPlayer();
         InitCylinderEnemy();
@@ -105,12 +148,13 @@ public class RuletGame : MonoBehaviour
         return isBullet;
     }
 
-    // ARTIK dışarıdan (zara tıklama script'inden) çağrılacak
+    // Zar sprite'ına bağlı script burayı çağıracak
     public void OnDiceClick()
     {
-        if (!canRoll) return;         // Sırası değilse / oyun bittiyse
-        if (isRolling) return;        // Zaten dönüyorsa
-        if (canPlayerShoot) return;   // Şu an ateş etme aşamasındaysa
+        if (isGameOver) return;
+        if (!canRoll) return;
+        if (isRolling) return;
+        if (canPlayerShoot) return;
 
         StartCoroutine(RollDicePhase());
     }
@@ -118,54 +162,59 @@ public class RuletGame : MonoBehaviour
     IEnumerator RollDicePhase()
     {
         isRolling = true;
-        canRoll = false;  // Zar dönüyorken tekrar tıklanmasın
-        infoText.text = "🎲 Zarlar atılıyor...";
+        canRoll = false;
+        if (infoText != null)
+            infoText.text = "🎲 Zarlar atılıyor...";
 
-        // 1) Zar animasyonlarını tetikle
+        // Zar animasyonlarını tetikle
         if (diceAnimatorPlayer != null) diceAnimatorPlayer.SetTrigger("Roll");
         if (diceAnimatorEnemy != null) diceAnimatorEnemy.SetTrigger("Roll");
 
-        // 2) Zar dönme süresi kadar bekle
+        // Zar dönme süresi
         yield return new WaitForSeconds(diceRollDuration);
 
-        // 3) Zar sonuçlarını üret
+        // Zar sonuçları
         playerDice = Random.Range(1, 7);
         enemyDice = Random.Range(1, 7);
 
-        // 4) UI'deki zar yüzlerini güncelle
+        // UI yüzleri
         if (diceFaces != null && diceFaces.Length >= 6)
         {
             if (diceImagePlayer != null)
                 diceImagePlayer.sprite = diceFaces[playerDice - 1];
-
             if (diceImageEnemy != null)
                 diceImageEnemy.sprite = diceFaces[enemyDice - 1];
         }
 
-        // 5) Metin olarak sonucu göster
-        infoText.text = $"Oyuncu: {playerDice}  |  Düşman: {enemyDice}";
+        // Metin
+        if (infoText != null)
+            infoText.text = $"Oyuncu: {playerDice}  |  Düşman: {enemyDice}";
 
-        // Biraz sonuç ekranda kalsın
+        // Sonucu biraz göster
         yield return new WaitForSeconds(1.5f);
 
-        // 6) Kazananı belirle
+        // Karşılaştırma
         if (playerDice > enemyDice)
         {
-            infoText.text = "🎯 Oyuncu kazandı! Silaha tıkla ve ateş et!";
+            if (infoText != null)
+                infoText.text = "🎯 Oyuncu kazandı! Silaha tıkla ve ateş et!";
             canPlayerShoot = true;
-            gunButton.gameObject.SetActive(true);   // Ateş için tıklanacak
+            if (gunButton != null)
+                gunButton.gameObject.SetActive(true);
         }
         else if (enemyDice > playerDice)
         {
-            infoText.text = "💀 Düşman kazandı! Ateş ediyor...";
-            yield return new WaitForSeconds(1f);     // Biraz bekle
+            if (infoText != null)
+                infoText.text = "💀 Düşman kazandı! Ateş ediyor...";
+            yield return new WaitForSeconds(1f);
             yield return StartCoroutine(EnemyShoot());
             StartNewRound();
         }
         else
         {
-            infoText.text = "🤝 Berabere! Tekrar zar at.";
-            canRoll = true;  // Tekrar zara tıklanabilir
+            if (infoText != null)
+                infoText.text = "🤝 Berabere! Tekrar zar at.";
+            canRoll = true;
         }
 
         isRolling = false;
@@ -173,9 +222,13 @@ public class RuletGame : MonoBehaviour
 
     void OnPlayerShoot()
     {
+        if (isGameOver) return;
         if (!canPlayerShoot) return;
+
         canPlayerShoot = false;
-        gunButton.gameObject.SetActive(false);
+        if (gunButton != null)
+            gunButton.gameObject.SetActive(false);
+
         StartCoroutine(PlayerShoot());
     }
 
@@ -185,23 +238,37 @@ public class RuletGame : MonoBehaviour
 
         if (bullet)
         {
+            // OYUNCU ATEŞ
             if (playerAnimator != null)
-                playerAnimator.SetTrigger("Shoot");   // dolu mermi
+                playerAnimator.SetTrigger("Shoot");
+
+            // DÜŞMAN HURT
+            if (enemyAnimator != null)
+                enemyAnimator.SetTrigger("Hurt");
 
             yield return new WaitForSeconds(0.4f);
 
             enemyHealth--;
-            infoText.text = $"🎯 Düşman vuruldu! (Kalan Can: {enemyHealth})";
+            if (infoText != null)
+                infoText.text = $"🎯 Düşman vuruldu! (Kalan Can: {enemyHealth})";
+
             yield return new WaitForSeconds(0.5f);
 
-            CheckGameOver();
+            // CAN 0'A DÜŞTÜYSE
+            if (enemyHealth <= 0)
+            {
+                CheckGameOver();
+                yield break; // oyun bitti, yeni round yok
+            }
         }
         else
         {
+            // BOŞ MERMİ
             if (playerAnimator != null)
-                playerAnimator.SetTrigger("Miss");    // boş mermi
+                playerAnimator.SetTrigger("Miss");
 
-            infoText.text = "🔁 Boş mermi! Iskaladın!";
+            if (infoText != null)
+                infoText.text = "🔁 Boş mermi! Iskaladın!";
             yield return new WaitForSeconds(1f);
         }
 
@@ -214,33 +281,52 @@ public class RuletGame : MonoBehaviour
 
         if (bullet)
         {
+            // DÜŞMAN ATEŞ
             if (enemyAnimator != null)
                 enemyAnimator.SetTrigger("Shoot");
+
+            // OYUNCU HURT
+            if (playerAnimator != null)
+                playerAnimator.SetTrigger("Hurt");
 
             yield return new WaitForSeconds(0.4f);
 
             playerHealth--;
-            infoText.text = $"💥 Oyuncu vuruldu! (Kalan Can: {playerHealth})";
+            if (infoText != null)
+                infoText.text = $"💥 Oyuncu vuruldu! (Kalan Can: {playerHealth})";
+
+            // Ekran kırmızı efekti
+            ApplyPlayerDamageEffect();
+
             yield return new WaitForSeconds(0.5f);
 
-            CheckGameOver();
+            if (playerHealth <= 0)
+            {
+                CheckGameOver();
+                yield break;
+            }
         }
         else
         {
+            // DÜŞMAN BOŞ MERMİ
             if (enemyAnimator != null)
                 enemyAnimator.SetTrigger("Miss");
 
-            infoText.text = "😮 Düşman ıskaladı! Şanslısın!";
+            if (infoText != null)
+                infoText.text = "😮 Düşman ıskaladı! Şanslısın!";
             yield return new WaitForSeconds(1f);
         }
     }
 
     void StartNewRound()
     {
+        if (isGameOver) return;
+
         if (playerHealth > 0 && enemyHealth > 0)
         {
-            infoText.text += "\n🎲 Yeni round! Zara tıkla!";
-            canRoll = true;   // Yeni elde tekrar zara basılabilir
+            if (infoText != null)
+                infoText.text += "\n🎲 Yeni round! Zara tıkla!";
+            canRoll = true;
         }
         else
         {
@@ -250,22 +336,89 @@ public class RuletGame : MonoBehaviour
 
     void CheckGameOver()
     {
+        if (isGameOver) return;
+        isGameOver = true;
+
+        canRoll = false;
+        canPlayerShoot = false;
+
+        if (gunButton != null)
+            gunButton.gameObject.SetActive(false);
+
         if (playerHealth <= 0)
         {
-            if (playerAnimator != null)
-                playerAnimator.SetTrigger("Death");
-
-            infoText.text = "☠️ Oyuncu öldü! Oyun bitti.";
-            canRoll = false;
+            if (infoText != null)
+                infoText.text = "☠️ Oyuncu öldü! Oyun bitti.";
+            ShowLosePanel();
         }
-
-        if (enemyHealth <= 0)
+        else if (enemyHealth <= 0)
         {
-            if (enemyAnimator != null)
-                enemyAnimator.SetTrigger("Death");
-
-            infoText.text = "🏆 Düşman öldü! Kazandın!";
-            canRoll = false;
+            if (infoText != null)
+                infoText.text = "🏆 Düşman öldü! Kazandın!";
+            ShowWinPanel();
         }
+    }
+
+    // ----- WIN / LOSE PANEL FONKSİYONLARI -----
+
+    void ShowWinPanel()
+    {
+        if (winPanel != null) winPanel.SetActive(true);
+        if (losePanel != null) losePanel.SetActive(false);
+    }
+
+    void ShowLosePanel()
+    {
+        if (losePanel != null) losePanel.SetActive(true);
+        if (winPanel != null) winPanel.SetActive(false);
+    }
+
+    void RestartScene()
+    {
+        var scene = SceneManager.GetActiveScene();
+        SceneManager.LoadScene(scene.buildIndex);
+    }
+
+    // ----- DAMAGE OVERLAY FONKSİYONLARI -----
+
+    void ApplyPlayerDamageEffect()
+    {
+        if (damageOverlay == null || playerMaxHealth <= 0)
+            return;
+
+        // can azaldıkça healthRatio 0 → 1 arası büyüyor
+        float healthRatio = Mathf.Clamp01(1f - (float)playerHealth / playerMaxHealth);
+        float targetAlpha = Mathf.Lerp(0f, maxDamageAlpha, healthRatio);
+
+        if (damageRoutine != null)
+            StopCoroutine(damageRoutine);
+
+        damageRoutine = StartCoroutine(DamageFlashRoutine(targetAlpha));
+    }
+
+    IEnumerator DamageFlashRoutine(float targetAlpha)
+    {
+        Color c = damageOverlay.color;
+
+        // önce bir anda koyu kırmızıya geç
+        c.a = targetAlpha;
+        damageOverlay.color = c;
+
+        // sonra yarısına kadar yumuşakça düşsün
+        float t = 0f;
+        float startAlpha = targetAlpha;
+        float endAlpha = targetAlpha * 0.5f;
+
+        while (t < damageFadeDuration)
+        {
+            t += Time.deltaTime;
+            float a = Mathf.Lerp(startAlpha, endAlpha, t / damageFadeDuration);
+            c.a = a;
+            damageOverlay.color = c;
+            yield return null;
+        }
+
+        c.a = endAlpha;
+        damageOverlay.color = c;
     }
 }
