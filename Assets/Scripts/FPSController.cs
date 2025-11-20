@@ -57,7 +57,7 @@ public class FPSController : MonoBehaviour
             if (cam != null) cameraTransform = cam.transform;
         }
 
-        // Ýmleci kilitle
+
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }

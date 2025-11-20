@@ -3,18 +3,18 @@ using UnityEngine;
 
 public class GroundManager : MonoBehaviour
 {
-    public Transform cameraTransform;   // Kamerayý buraya sürükle
-    public GameObject groundPrefab;     // Zemin prefabýný buraya sürükle
-    public float tileLength = 10f;      // Bir zemin parçasýnýn uzunluðu (Z ekseni yönünde)
-    public int tilesOnScreen = 5;       // Ekranda ayný anda kaç parça olsun
-    public float safeZone = 15f;        // Kameranýn ne kadar gerisindekini silelim
+    public Transform cameraTransform;   
+    public GameObject groundPrefab;
+    public float tileLength = 10f;
+    public int tilesOnScreen = 5; 
+    public float safeZone = 15f;       
 
-    private float nextSpawnZ = 0f;      // Bir sonraki zeminin spawnlanacaðý Z pozisyonu
+    private float nextSpawnZ = 0f;    
     private List<GameObject> activeTiles = new List<GameObject>();
 
     void Start()
     {
-        // Baþta ekranda gözükecek kadar zemin spawnla
+
         for (int i = 0; i < tilesOnScreen; i++)
         {
             SpawnTile();
@@ -23,13 +23,13 @@ public class GroundManager : MonoBehaviour
 
     void Update()
     {
-        // Kamera ileri gittikçe yeni zemin spawnla
+
         if (cameraTransform.position.z > nextSpawnZ - tilesOnScreen * tileLength)
         {
             SpawnTile();
         }
 
-        // Kameranýn çok gerisinde kalan ilk zemini sil
+
         if (activeTiles.Count > 0)
         {
             GameObject firstTile = activeTiles[0];

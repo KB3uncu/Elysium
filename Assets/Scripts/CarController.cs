@@ -12,8 +12,8 @@ public class CarController : MonoBehaviour
     public float maxSteerAngle = 30f;
     public float brakeForce = 1500f;
 
-    public float driftSlipLimit = 0.4f; // Drift eþiði
-    public float brakeSlipBoost = 0.3f; // El freni etkisi
+    public float driftSlipLimit = 0.4f;
+    public float brakeSlipBoost = 0.3f; 
 
     private bool isBraking = false;
     private Rigidbody rb;
@@ -23,7 +23,7 @@ public class CarController : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         rb.centerOfMass = new Vector3(0, -0.6f, 0.3f);
 
-        // TrailRenderer baþlangýçta kapalý olsun
+
         if (trailLeft != null) trailLeft.emitting = false;
         if (trailRight != null) trailRight.emitting = false;
     }
@@ -35,11 +35,11 @@ public class CarController : MonoBehaviour
         float motor = Input.GetAxis("Vertical") * maxMotorTorque * speedFactor;
         float steering = Input.GetAxis("Horizontal") * maxSteerAngle;
 
-        // Direksiyon
+
         frontLeftWheel.steerAngle = steering;
         frontRightWheel.steerAngle = steering;
 
-        // Motor Tork Daðýlýmý
+
         rearLeftWheel.motorTorque = motor;
         rearRightWheel.motorTorque = motor;
         frontLeftWheel.motorTorque = motor * 0.3f;
@@ -54,10 +54,10 @@ public class CarController : MonoBehaviour
         rearLeftWheel.sidewaysFriction = sideFriction;
         rearRightWheel.sidewaysFriction = sideFriction;
 
-        // Drift & Efekt Kontrolü
+
         CheckDrift(rearLeftWheel, smokeLeft, trailLeft);
         CheckDrift(rearRightWheel, smokeRight, trailRight);
-        // Fren Kontrolü
+
         if (Input.GetKey(KeyCode.Space))
         {
             isBraking = true;
@@ -82,7 +82,7 @@ public class CarController : MonoBehaviour
             float slip = Mathf.Abs(hit.sidewaysSlip);
             bool shouldEmit = slip > driftSlipLimit || isBraking;
 
-            // --- DUMAN --- //
+
             if (shouldEmit)
             {
                 if (!smoke.isPlaying) smoke.Play();
@@ -92,7 +92,7 @@ public class CarController : MonoBehaviour
                 if (smoke.isPlaying) smoke.Stop();
             }
 
-            // --- TRAIL --- //
+
             if (trail != null)
             {
                 if (shouldEmit && !trail.emitting)

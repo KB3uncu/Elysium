@@ -5,7 +5,7 @@ public class PlayerInteractor : MonoBehaviour
 {
     [Header("Raycast Ayarlarý")]
     public float interactDistance = 3f;
-    public LayerMask interactLayer = ~0; // varsayýlan: her þeyi gör
+    public LayerMask interactLayer = ~0;
 
     [Header("Crosshair")]
     public Image crosshairImage;
@@ -17,7 +17,7 @@ public class PlayerInteractor : MonoBehaviour
 
     void Awake()
     {
-        // Bu obje Camera deðilse bile güvenli tarafta ol
+
         cam = GetComponent<Camera>();
         if (cam == null) cam = Camera.main;
 
@@ -54,7 +54,7 @@ public class PlayerInteractor : MonoBehaviour
         if (crosshairImage != null) crosshairImage.color = normalColor;
     }
 
-    // Editörde debug çizgisi (isteðe baðlý)
+
     void OnDrawGizmosSelected()
     {
         if (cam == null) cam = GetComponent<Camera>() ?? Camera.main;
