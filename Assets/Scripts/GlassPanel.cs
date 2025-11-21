@@ -3,12 +3,11 @@ using UnityEngine;
 public class GlassPanel : MonoBehaviour
 {
     [HideInInspector] public bool isCorrect;
-    private bool stepped = false;
+    bool stepped = false;
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        // Oyuncu deðilse veya zaten tetiklendiyse çýk
-        if (!collision.collider.CompareTag("Player") || stepped)
+        if (!other.CompareTag("Player") || stepped)
             return;
 
         stepped = true;
@@ -20,7 +19,13 @@ public class GlassPanel : MonoBehaviour
         else
         {
             Debug.Log("Yanlýþ cam! Kýrýlýyor...");
-            Destroy(gameObject);
+            gameObject.SetActive(false);
         }
+    }
+
+    public void ResetPanel()
+    {
+        stepped = false;
+        gameObject.SetActive(true);
     }
 }

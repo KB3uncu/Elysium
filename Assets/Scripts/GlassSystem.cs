@@ -2,16 +2,21 @@ using UnityEngine;
 
 public class GlassMinigameController : MonoBehaviour
 {
-    public GlassPanel[] panels;  
-    public int rowCount = 5;    
-    public int panelsPerRow = 3; 
+    [Header("Panelleri sýrayla ekle (satýr satýr, soldan saða)")]
+    public GlassPanel[] panels;   // Toplam 15 panel
+    public int rowCount = 5;
+    public int panelsPerRow = 3;
+
+    [Header("Respawn Ayarlarý")]
+    public Transform player;       
+    public Transform respawnPoint; 
 
     void Start()
     {
         RandomizeCorrectPanels();
     }
 
-    void RandomizeCorrectPanels()
+    public void RandomizeCorrectPanels()
     {
         foreach (var p in panels)
         {
@@ -19,10 +24,10 @@ public class GlassMinigameController : MonoBehaviour
                 p.isCorrect = false;
         }
 
-        
+
         for (int row = 0; row < rowCount; row++)
         {
-            int correctIndexInRow = Random.Range(0, panelsPerRow); 
+            int correctIndexInRow = Random.Range(0, panelsPerRow);
 
             int startIndex = row * panelsPerRow;
 
@@ -41,6 +46,27 @@ public class GlassMinigameController : MonoBehaviour
             }
         }
 
-        Debug.Log("Bütün satýrlarda rastgele doðru camlar seçildi.");
+    }
+
+    
+    public void RespawnPlayerAndReset()
+    {
+        var cc = player.GetComponent<CharacterController>();
+        if (cc != null) cc.enabled = false;
+
+        player.position = respawnPoint.position;
+        player.rotation = respawnPoint.rotation;
+
+        if (cc != null) cc.enabled = true;
+
+        foreach (var p in panels)
+        {
+            if (p != null)
+                p.ResetPanel();
+        }
+
+        RandomizeCorrectPanels();
+
+        Debug.Log("Oyuncu respawn edildi, mini game sýfýrlandý.");
     }
 }
