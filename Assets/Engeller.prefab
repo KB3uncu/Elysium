@@ -119,4 +119,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 5
+  destroyTime: 1.6
   moveDirection: {x: 1, y: 0, z: 0}
