@@ -2,6 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System.Xml;
 
 public class RuletGame3D : MonoBehaviour
 {
@@ -25,65 +26,71 @@ public class RuletGame3D : MonoBehaviour
 
     [Header("UI")]
     public TMP_Text playerRollText;           // Player zar sonucu
-    public TMP_Text enemyRollText;           // Enemy zar sonucu
+    public TMP_Text enemyRollText;            // Enemy zar sonucu
+
+    [Header("Silah Ayarlarý")]
+    public Transform gunObject;           // Player'ýn týklayacaðý silah (masadaki ya da elindeki)
+
+    [Header("Mermi Sistemi")]
+    public int chamberSize = 6;           // Tamburdaki hazne sayýsý
+    public int bulletsInChamber = 2;      // Toplam dolu mermi sayýsý (2)
+
+    private bool[] chambers;              // true = dolu hazne
+    private int currentChamberIndex = 0;  // Þu an ateþlenen hazne indexi
 
     // Zar sonuçlarý
     private int lastPlayerRoll = 0;
     private int lastEnemyRoll = 0;
 
     // Oyun durumlarý
-    private bool canRoll = true;
+    private bool canRoll = true;          // Zara týklanabilir mi?
     private bool playerTurnToShoot = false;
     private bool enemyTurnToShoot = false;
 
-    private enum TurnState { Idle, PlayerRoll, EnemyRoll, Shooting }
-    private TurnState currentState = TurnState.PlayerRoll;
+    private enum TurnState { Idle, Rolling, Shooting }
+    private TurnState currentState = TurnState.Idle;
 
     void Start()
     {
-        // Oyun baþlarken ilk tur: Player zar atacak
-        currentState = TurnState.PlayerRoll;
+        currentState = TurnState.Idle;
         canRoll = true;
 
-        if (playerRollText != null) playerRollText.text = "Player: -";
-        if (enemyRollText != null) enemyRollText.text = "Enemy: -";
+        if (playerRollText != null) playerRollText.gameObject.SetActive(false);
+        if (enemyRollText != null) enemyRollText.gameObject.SetActive(false);
     }
 
     void Update()
     {
-        // 1) ZAR ATMA SIRASI
+        // 1) Zar atma – SADECE zarlara týklayýnca
         if (canRoll && Input.GetMouseButtonDown(0))
         {
             if (ClickedOnDice())
             {
-                if (currentState == TurnState.PlayerRoll)
-                {
-                    StartCoroutine(PlayerRollRoutine());
-                }
-                else if (currentState == TurnState.EnemyRoll)
-                {
-                    StartCoroutine(EnemyRollRoutine());
-                }
+                StartCoroutine(RollBothRoutine());
             }
         }
 
-        // 2) PLAYER ATEÞ (þimdilik sadece sol týk – silah, mermi vs. sonra gelecek)
+        // 2) Player ateþ – SADECE sýra player'dayken ve silaha týklayýnca
         if (currentState == TurnState.Shooting &&
             playerTurnToShoot &&
             Input.GetMouseButtonDown(0))
         {
-            PlayerShoot();
+            if (ClickedOnGun())
+            {
+                PlayerShoot();
+            }
         }
     }
 
-    // -------------------- ZAR TIKLAMA KONTROLÜ --------------------
+    // -------------- TIKLAMA KONTROLLERÝ --------------
 
     bool ClickedOnDice()
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
 
-        if (Physics.Raycast(ray, out hit, 100f))
+        // Trigger collider'larý yok say (rulet box'ý engellemesin)
+        if (Physics.Raycast(ray, out hit, 100f, ~0, QueryTriggerInteraction.Ignore))
         {
             foreach (var d in diceObjects)
             {
@@ -97,7 +104,23 @@ public class RuletGame3D : MonoBehaviour
         return false;
     }
 
-    // -------------------- ZAR ANÝMASYONU --------------------
+    bool ClickedOnGun()
+    {
+        if (gunObject == null) return false;
+
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hit;
+
+        if (Physics.Raycast(ray, out hit, 100f, ~0, QueryTriggerInteraction.Ignore))
+        {
+            if (hit.transform == gunObject || hit.transform.IsChildOf(gunObject))
+                return true;
+        }
+
+        return false;
+    }
+
+    // -------------- ZAR ANÝMASYONU --------------
 
     IEnumerator SpinDiceRoutine()
     {
@@ -118,46 +141,96 @@ public class RuletGame3D : MonoBehaviour
         }
     }
 
-    // -------------------- PLAYER ZAR ATMA --------------------
+    // -------------- TEK TIKLAMADA ÝKÝ TARAFIN ZAR SEANSI --------------
 
-    IEnumerator PlayerRollRoutine()
+    IEnumerator RollBothRoutine()
     {
         canRoll = false;
+        currentState = TurnState.Rolling;
+        playerTurnToShoot = false;
+        enemyTurnToShoot = false;
 
-        // Zar dönsün
+        // UI baþta tamamen kapalý
+        if (playerRollText != null) playerRollText.gameObject.SetActive(false);
+        if (enemyRollText != null) enemyRollText.gameObject.SetActive(false);
+
+        // --- PLAYER ROLL ---
         yield return StartCoroutine(SpinDiceRoutine());
 
-        // Zar sonucu
-        lastPlayerRoll = Random.Range(1, 7); // 1–6
+        lastPlayerRoll = Random.Range(1, 7);
         Debug.Log("PLAYER roll: " + lastPlayerRoll);
 
         if (playerRollText != null)
+        {
+            playerRollText.gameObject.SetActive(true);
             playerRollText.text = "Player: " + lastPlayerRoll;
+        }
 
-        // Þimdi sýra enemy'de
-        currentState = TurnState.EnemyRoll;
-        canRoll = true;
-    }
+        if (enemyRollText != null)
+        {
+            enemyRollText.gameObject.SetActive(false);
+            enemyRollText.text = "Enemy: -";
+        }
 
-    // -------------------- ENEMY ZAR ATMA --------------------
-
-    IEnumerator EnemyRollRoutine()
-    {
-        canRoll = false;
-
+        // --- ENEMY ROLL ---
         yield return StartCoroutine(SpinDiceRoutine());
 
         lastEnemyRoll = Random.Range(1, 7);
         Debug.Log("ENEMY roll: " + lastEnemyRoll);
 
         if (enemyRollText != null)
+        {
+            enemyRollText.gameObject.SetActive(true);
             enemyRollText.text = "Enemy: " + lastEnemyRoll;
+        }
 
-        // Sonuçlarý karþýlaþtýr
+        // Yeni el için tamburu kar
+        InitializeRevolver();
+
+        // Kazananý belirle
         DecideWinnerAfterRolls();
     }
 
-    // -------------------- KAZANANI BELÝRLEME --------------------
+    // -------------- MERMÝ SÝSTEMÝ --------------
+
+    void InitializeRevolver()
+    {
+        chambers = new bool[chamberSize];
+        for (int i = 0; i < chamberSize; i++)
+        {
+            chambers[i] = false;
+        }
+
+        // 2 farklý random index seç
+        int first = Random.Range(0, chamberSize);
+        int second;
+        do
+        {
+            second = Random.Range(0, chamberSize);
+        } while (second == first);
+
+        chambers[first] = true;
+        chambers[second] = true;
+
+        // Tamburun baþlayacaðý yer
+        currentChamberIndex = Random.Range(0, chamberSize);
+
+        Debug.Log($"Tambur karýldý. Dolu hazneler: {first}, {second}. Baþlangýç index: {currentChamberIndex}");
+    }
+
+    bool IsCurrentChamberLoaded()
+    {
+        if (chambers == null || chambers.Length == 0) return false;
+        return chambers[currentChamberIndex];
+    }
+
+    void AdvanceChamber()
+    {
+        if (chambers == null || chambers.Length == 0) return;
+        currentChamberIndex = (currentChamberIndex + 1) % chambers.Length;
+    }
+
+    // -------------- KAZANANI BELÝRLEME --------------
 
     void DecideWinnerAfterRolls()
     {
@@ -169,7 +242,6 @@ public class RuletGame3D : MonoBehaviour
             playerTurnToShoot = true;
             enemyTurnToShoot = false;
             currentState = TurnState.Shooting;
-            // BURAYA: Player silahý alacak (sonraki aþamada ekleyeceðiz)
         }
         else if (lastEnemyRoll > lastPlayerRoll)
         {
@@ -184,25 +256,37 @@ public class RuletGame3D : MonoBehaviour
         else
         {
             Debug.Log("Berabere, moto moto bidaha atýyor...");
-            currentState = TurnState.PlayerRoll;
+            currentState = TurnState.Idle;
             canRoll = true;
         }
     }
 
-    // -------------------- PLAYER SHOOT --------------------
+    // -------------- PLAYER SHOOT --------------
 
     void PlayerShoot()
     {
         playerTurnToShoot = false;
 
-        enemyHP--;
-        Debug.Log("Babaððð pompiþledi! Enemy HP: " + enemyHP);
+        bool loaded = IsCurrentChamberLoaded();
 
-        StartCoroutine(KnockDownAndUp(enemyBody));
+        if (loaded)
+        {
+            enemyHP--;
+            Debug.Log("Babaððð pompiþledi! (DOLU) Enemy HP: " + enemyHP);
+            StartCoroutine(KnockDownAndUp(enemyBody));
+        }
+        else
+        {
+            Debug.Log("Týk... Silah BOÞTU, babaððð boþa çekti.");
+        }
+
+        // Sonraki atýþ için tamburu döndür
+        AdvanceChamber();
+
         CheckEndOrNextRound();
     }
 
-    // -------------------- ENEMY SHOOT --------------------
+    // -------------- ENEMY SHOOT --------------
 
     IEnumerator EnemyShootRoutine()
     {
@@ -210,14 +294,25 @@ public class RuletGame3D : MonoBehaviour
 
         yield return new WaitForSeconds(1f); // ufak bekleme
 
-        playerHP--;
-        Debug.Log($"Ucube ateþ etti. Player HP: {playerHP}");
+        bool loaded = IsCurrentChamberLoaded();
 
-        StartCoroutine(KnockDownAndUp(playerBody));
+        if (loaded)
+        {
+            playerHP--;
+            Debug.Log($"Ucube ateþ etti. (DOLU) Player HP: {playerHP}");
+            StartCoroutine(KnockDownAndUp(playerBody));
+        }
+        else
+        {
+            Debug.Log("Enemy'nin silahý boþ çýktý, klik!");
+        }
+
+        AdvanceChamber();
+
         CheckEndOrNextRound();
     }
 
-    // -------------------- DÜÞME / KALKMA --------------------
+    // -------------- DÜÞME / KALKMA --------------
 
     IEnumerator KnockDownAndUp(Transform target)
     {
@@ -253,7 +348,7 @@ public class RuletGame3D : MonoBehaviour
         }
     }
 
-    // -------------------- TUR / OYUN BÝTÝÞ KONTROLÜ --------------------
+    // -------------- TUR / OYUN BÝTÝÞ KONTROLÜ --------------
 
     void CheckEndOrNextRound()
     {
@@ -262,6 +357,8 @@ public class RuletGame3D : MonoBehaviour
             Debug.Log("Babaðððððð öldü. Kaybettik goddammet");
             currentState = TurnState.Idle;
             canRoll = false;
+            if (playerRollText != null) playerRollText.gameObject.SetActive(false);
+            if (enemyRollText != null) enemyRollText.gameObject.SetActive(false);
             return;
         }
 
@@ -270,15 +367,21 @@ public class RuletGame3D : MonoBehaviour
             Debug.Log("Babaðððððð pompiþlediiii. Kazandýk ihtiyar");
             currentState = TurnState.Idle;
             canRoll = false;
+            if (playerRollText != null) playerRollText.gameObject.SetActive(false);
+            if (enemyRollText != null) enemyRollText.gameObject.SetActive(false);
             return;
         }
 
         // Oyun bitmediyse yeni tur
-        currentState = TurnState.PlayerRoll;
+        currentState = TurnState.Idle;
         canRoll = true;
         playerTurnToShoot = false;
         enemyTurnToShoot = false;
 
-        Debug.Log("Yeni tur: önce Player zarý atacak.");
+        // Yeni tur baþlarken UI kapansýn
+        if (playerRollText != null) playerRollText.gameObject.SetActive(false);
+        if (enemyRollText != null) enemyRollText.gameObject.SetActive(false);
+
+        Debug.Log("Yeni tur: tekrar zara týklayabilirsin.");
     }
 }
