@@ -1,15 +1,23 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class GlassMinigameController : MonoBehaviour
 {
     [Header("Panelleri sýrayla ekle (satýr satýr, soldan saða)")]
-    public GlassPanel[] panels;   // Toplam 15 panel
+    public GlassPanel[] panels;
     public int rowCount = 5;
     public int panelsPerRow = 3;
 
     [Header("Respawn Ayarlarý")]
-    public Transform player;       
-    public Transform respawnPoint; 
+    public Transform player;
+    public Transform respawnPoint;
+
+    [Header("Parlama Ayarlarý")]
+    public float flashDuration = 0.4f;
+    public float flashDelayBetween = 0.15f;
+
+    private List<GlassPanel> correctPanels = new List<GlassPanel>();
 
     void Start()
     {
@@ -18,17 +26,19 @@ public class GlassMinigameController : MonoBehaviour
 
     public void RandomizeCorrectPanels()
     {
+        correctPanels.Clear();
+
         foreach (var p in panels)
         {
             if (p != null)
                 p.isCorrect = false;
         }
 
+        Debug.Log("=== DOÐRU CAMLAR ===");
 
         for (int row = 0; row < rowCount; row++)
         {
             int correctIndexInRow = Random.Range(0, panelsPerRow);
-
             int startIndex = row * panelsPerRow;
 
             for (int i = 0; i < panelsPerRow; i++)
@@ -40,15 +50,34 @@ public class GlassMinigameController : MonoBehaviour
                     if (i == correctIndexInRow)
                     {
                         panels[index].isCorrect = true;
+                        correctPanels.Add(panels[index]);
+
                         Debug.Log("Satýr " + (row + 1) + "  Doðru cam: " + panels[index].name);
                     }
                 }
             }
         }
 
+        Debug.Log("======================");
+
+        StopAllCoroutines();
+        StartCoroutine(FlashCorrectPanelsInOrder());
     }
 
-    
+    private IEnumerator FlashCorrectPanelsInOrder()
+    {
+        yield return new WaitForSeconds(0.2f);
+
+        foreach (var panel in correctPanels)
+        {
+            if (panel != null)
+            {
+                panel.Flash(flashDuration);
+                yield return new WaitForSeconds(flashDuration + flashDelayBetween);
+            }
+        }
+    }
+
     public void RespawnPlayerAndReset()
     {
         var cc = player.GetComponent<CharacterController>();
