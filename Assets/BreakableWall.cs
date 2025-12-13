@@ -34,10 +34,12 @@ public class BreakableWall : MonoBehaviour, IInteractable
         {
             if (rb == null) continue;
 
-            rb.isKinematic = true;
-            rb.useGravity = false;
+
             rb.velocity = Vector3.zero;
             rb.angularVelocity = Vector3.zero;
+
+            rb.useGravity = false;
+            rb.isKinematic = true;
         }
     }
 

@@ -4,7 +4,8 @@ using UnityEngine;
 public class FareMovoment : MonoBehaviour
 {
     public float moveSpeed = 5f;   
-    //public float limitX = 3f; 
+
+
 
     void Update()
     {
@@ -17,8 +18,6 @@ public class FareMovoment : MonoBehaviour
 
         transform.position += movement;
 
-       // Vector3 pos = transform.position;
-        //pos.x = Mathf.Clamp(pos.x, -limitX, limitX);
-        //transform.position = pos;
+
     }
 }
