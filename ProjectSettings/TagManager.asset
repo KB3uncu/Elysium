@@ -8,6 +8,10 @@ TagManager:
   - Engel
   - DestroyZone
   - GroundCheck
+  - AnswerA
+  - AnswerB
+  - AnswerC
+  - AnswerD
   layers:
   - Default
   - TransparentFX
