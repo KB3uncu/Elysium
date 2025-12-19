@@ -9,6 +9,7 @@ public class TriviaGameManager : MonoBehaviour
 
     public TextMeshProUGUI questionText;
     public TextMeshProUGUI[] answerTexts;
+    //public TextMeshProUGUI resultAnswerText;
     void Start()
     {
         currentIndex = 0;
