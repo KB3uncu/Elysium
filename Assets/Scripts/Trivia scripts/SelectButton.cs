@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class SelectButton : MonoBehaviour
 {
+    [SerializeField] private TriviaGameManager triviaGameManager;
     void Update()
     {
         if (Input.GetMouseButtonDown(0))
@@ -15,22 +16,11 @@ public class SelectButton : MonoBehaviour
                 
               GameObject clicked = hit.collider.gameObject;
 
-                if (clicked.CompareTag("AnswerA"))
-                {
-                    Debug.Log("A seçtin dostum");
-                }
-                else if (clicked.CompareTag("AnswerB"))
-                {
-                    Debug.Log("B seçtin dostum");
-                }
-                else if (clicked.CompareTag("AnswerC"))
-                {
-                    Debug.Log("C seçtin dostum");
-                }
-                else if (clicked.CompareTag("AnswerD"))
-                {
-                    Debug.Log("D seçtin dostum");
-                }
+                if (clicked.CompareTag("AnswerA")) triviaGameManager.SelectButton(0);
+                else if (clicked.CompareTag("AnswerB")) triviaGameManager.SelectButton(1);
+                else if (clicked.CompareTag("AnswerC")) triviaGameManager.SelectButton(2);
+                else if (clicked.CompareTag("AnswerD")) triviaGameManager.SelectButton(3);
+
             }
         }
            
