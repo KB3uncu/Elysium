@@ -12,6 +12,7 @@ TagManager:
   - AnswerB
   - AnswerC
   - AnswerD
+  - Fare
   layers:
   - Default
   - TransparentFX

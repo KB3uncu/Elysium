@@ -75,13 +75,12 @@ public class BreakableWall : MonoBehaviour, IInteractable
             rb.isKinematic = false;
             rb.useGravity = true;
 
-            Vector3 randomDir = new Vector3(
-                Random.Range(-1f, 1f),
-                Random.Range(0.5f, 1.5f),
-                Random.Range(-1f, 1f)
-            ).normalized;
+            Vector3 forceDir = (Vector3.back + new Vector3(
+                Random.Range(-0.3f, 0.3f),
+                Random.Range(0.2f, 0.8f),
+                0f)).normalized;
 
-            rb.AddForce(randomDir * Random.Range(minForce, maxForce), ForceMode.Impulse);
+            rb.AddForce(forceDir * Random.Range(minForce, maxForce), ForceMode.Impulse);
             rb.AddTorque(Random.insideUnitSphere * Random.Range(minTorque, maxTorque), ForceMode.Impulse);
         }
 
@@ -90,7 +89,6 @@ public class BreakableWall : MonoBehaviour, IInteractable
             col.enabled = false;
 
         StartCoroutine(FadeOut());
-
     }
 
     IEnumerator FadeOut()
