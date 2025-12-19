@@ -25,7 +25,6 @@ public class MiniGameTriviaLine : MonoBehaviour
         started = true;
 
         SetScriptsActive(true);
-        Debug.Log("çalýþtý");
     }
 
     void SetScriptsActive(bool value)
