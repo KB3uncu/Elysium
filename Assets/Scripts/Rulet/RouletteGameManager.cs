@@ -10,7 +10,11 @@ public class RouletteGameManager : MonoBehaviour
     public GunVisual playerGun;
     public GunVisual enemyGun;
 
-    [Header("Enemy Visual Timing")]
+    [Header("Dice Displays")]
+    public DicePipDisplay playerDiceDisplay;
+    public DicePipDisplay enemyDiceDisplay;
+
+    [Header("Enemy Timing")]
     public float enemyDiceHold = 0.3f;
     public float enemyPickupHold = 0.35f;
     public float enemyAfterShotHold = 0.25f;
@@ -20,9 +24,16 @@ public class RouletteGameManager : MonoBehaviour
     private int playerLives;
     private int enemyLives;
 
-    private enum Turn { Player, Enemy }
-    private Turn turn; // Bu artýk "bu round'da kim ateþ edecek?" anlamýnda
+    [Header("Hit Reactions")]
+    public CharacterHitReaction enemyHit;
+    public CameraShake cameraShake;
 
+
+    // "Bu round'da kim ateþ edecek?"
+    private enum Shooter { Player, Enemy }
+    private Shooter shooter;
+
+    // Player akýþý: Zar -> Silah al -> Ateþ et
     private enum Phase { NeedDiceRoll, NeedGunPickup, NeedShootTarget }
     private Phase phase;
 
@@ -49,14 +60,17 @@ public class RouletteGameManager : MonoBehaviour
         playerGun?.PutDown();
         enemyGun?.PutDown();
 
-        // Round her zaman zar ile baþlar (player týklar)
+        playerDiceDisplay?.SetCount(0);
+        enemyDiceDisplay?.SetCount(0);
+
         phase = Phase.NeedDiceRoll;
+
         Debug.Log($"START | P:{playerLives} E:{enemyLives} | bullets:{config.bulletCount}/{config.chamberCount}");
         Debug.Log("Round start: Click PLAYER DICE to roll.");
     }
 
     // =========================
-    // DICE DUEL (Player clicks, Enemy auto rolls, compare)
+    // DICE DUEL
     // =========================
     public void PlayerRollDice()
     {
@@ -65,21 +79,21 @@ public class RouletteGameManager : MonoBehaviour
 
         LastPlayerRoll = Random.Range(1, 7);
         Debug.Log($"PLAYER DICE: {LastPlayerRoll}");
+        playerDiceDisplay?.SetCount(LastPlayerRoll);
 
-        // Enemy de otomatik atsýn ve karþýlaþtýralým
         StartCoroutine(EnemyRollAndDecideRoutine());
     }
 
     IEnumerator EnemyRollAndDecideRoutine()
     {
-        // Enemy roll
         LastEnemyRoll = Random.Range(1, 7);
         Debug.Log($"ENEMY DICE: {LastEnemyRoll}");
+        enemyDiceDisplay?.SetCount(LastEnemyRoll);
+
         yield return new WaitForSeconds(enemyDiceHold);
 
         if (LastPlayerRoll == LastEnemyRoll)
         {
-            // Tie -> reroll
             Debug.Log("DICE TIE! Roll again.");
             phase = Phase.NeedDiceRoll;
             yield break;
@@ -87,21 +101,17 @@ public class RouletteGameManager : MonoBehaviour
 
         if (LastPlayerRoll > LastEnemyRoll)
         {
-            // Player kazanýr -> player shoot akýþýna izin ver
-            turn = Turn.Player;
+            shooter = Shooter.Player;
             phase = Phase.NeedGunPickup;
             Debug.Log("Player wins dice. Click TABLE GUN to pick up.");
         }
         else
         {
-            // Enemy kazanýr -> player hiçbir þey yapamaz, enemy otomatik shoot
-            turn = Turn.Enemy;
-            phase = Phase.NeedDiceRoll; // player input kilitli kalsýn, round sonunda tekrar zar isteyeceðiz
+            shooter = Shooter.Enemy;
             Debug.Log("Enemy wins dice. Enemy will shoot.");
 
             yield return StartCoroutine(EnemyShootRoutine());
 
-            // Enemy shoot bitti -> yeni round
             StartNextRound();
         }
     }
@@ -112,7 +122,7 @@ public class RouletteGameManager : MonoBehaviour
     public void PlayerPickGun()
     {
         if (gameOver) return;
-        if (turn != Turn.Player) return;              // enemy kazandýysa engel
+        if (shooter != Shooter.Player) return;
         if (phase != Phase.NeedGunPickup) return;
 
         playerGun?.Pickup();
@@ -123,52 +133,55 @@ public class RouletteGameManager : MonoBehaviour
     public void PlayerShoot()
     {
         if (gameOver) return;
-        if (turn != Turn.Player) return;              // enemy kazandýysa engel
+        if (shooter != Shooter.Player) return;
         if (phase != Phase.NeedShootTarget) return;
 
-        ResolveShot();           // player ateþ eder
+        ResolveShot(Shooter.Player);
+
         playerGun?.PutDown();
 
-        // Shot bitti -> yeni round
         StartNextRound();
     }
 
     // =========================
-    // ENEMY SHOOT (called when enemy wins dice)
+    // ENEMY SHOOT (AUTO)
     // =========================
     IEnumerator EnemyShootRoutine()
     {
-        // 1) Silahý al
         enemyGun?.Pickup();
         yield return new WaitForSeconds(enemyPickupHold);
 
-        // 2) Ateþ et
-        ResolveShot();
+        ResolveShot(Shooter.Enemy);
         yield return new WaitForSeconds(enemyAfterShotHold);
 
-        // 3) Silahý býrak
         enemyGun?.PutDown();
     }
 
     // =========================
-    // CORE RESOLVE (uses 'turn' as shooter)
+    // CORE RESOLVE
     // =========================
-    void ResolveShot()
+    void ResolveShot(Shooter who)
     {
         bool cycleCompleted;
         bool bullet = revolver.Fire(out cycleCompleted);
 
         if (bullet)
         {
-            if (turn == Turn.Player) enemyLives--;
-            else playerLives--;
+            cameraShake?.Play();
 
-            Debug.Log($"[{turn}] HIT!  P:{playerLives} E:{enemyLives}  (shot {revolver.ShotsThisCycle}/{revolver.ChamberCount})");
+            if (who == Shooter.Player)
+            {
+                enemyLives--;
+                enemyHit?.PlayFallAndStandUp();   // sadece enemy düþsün
+            }
+            else
+            {
+                playerLives--; // player can azalýr ama animasyon yok
+            }
+
+            Debug.Log($"[{who}] HIT!  P:{playerLives} E:{enemyLives}  (shot {revolver.ShotsThisCycle}/{revolver.ChamberCount})");
         }
-        else
-        {
-            Debug.Log($"[{turn}] MISS. P:{playerLives} E:{enemyLives}  (shot {revolver.ShotsThisCycle}/{revolver.ChamberCount})");
-        }
+
 
         if (playerLives <= 0) { EndGame("PLAYER DEAD"); return; }
         if (enemyLives <= 0) { EndGame("ENEMY DEAD"); return; }
@@ -177,12 +190,18 @@ public class RouletteGameManager : MonoBehaviour
             Debug.Log("=== CYCLE COMPLETED. Revolver shuffled. ===");
     }
 
+
     void StartNextRound()
     {
         if (gameOver) return;
 
-        // Round reset
-        turn = Turn.Player;              // bir sonraki round'u yine player zar ile baþlatýyor
+        playerGun?.PutDown();
+        enemyGun?.PutDown();
+
+        // Ýstersen round baþýnda sýfýrla
+        playerDiceDisplay?.SetCount(0);
+        enemyDiceDisplay?.SetCount(0);
+
         phase = Phase.NeedDiceRoll;
         Debug.Log("Round start: Click PLAYER DICE to roll.");
     }
