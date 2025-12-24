@@ -28,6 +28,10 @@ public class RouletteGameManager : MonoBehaviour
     public CharacterHitReaction enemyHit;
     public CameraShake cameraShake;
 
+    [Header("Dice Roll Anim")]
+    public DiceRollAnim playerDiceAnim;
+    public DiceRollAnim enemyDiceAnim;
+
 
     // "Bu round'da kim ateþ edecek?"
     private enum Shooter { Player, Enemy }
@@ -77,6 +81,14 @@ public class RouletteGameManager : MonoBehaviour
         if (gameOver) return;
         if (phase != Phase.NeedDiceRoll) return;
 
+        playerDiceAnim?.PlayRoll();
+        StartCoroutine(PlayerRollAfterAnim());
+    }
+
+    IEnumerator PlayerRollAfterAnim()
+    {
+        yield return new WaitForSeconds(0.6f); 
+
         LastPlayerRoll = Random.Range(1, 7);
         Debug.Log($"PLAYER DICE: {LastPlayerRoll}");
         playerDiceDisplay?.SetCount(LastPlayerRoll);
@@ -86,6 +98,9 @@ public class RouletteGameManager : MonoBehaviour
 
     IEnumerator EnemyRollAndDecideRoutine()
     {
+        enemyDiceAnim?.PlayRoll();
+        yield return new WaitForSeconds(0.6f);
+
         LastEnemyRoll = Random.Range(1, 7);
         Debug.Log($"ENEMY DICE: {LastEnemyRoll}");
         enemyDiceDisplay?.SetCount(LastEnemyRoll);
@@ -111,10 +126,10 @@ public class RouletteGameManager : MonoBehaviour
             Debug.Log("Enemy wins dice. Enemy will shoot.");
 
             yield return StartCoroutine(EnemyShootRoutine());
-
             StartNextRound();
         }
     }
+
 
     // =========================
     // PLAYER INPUT ACTIONS

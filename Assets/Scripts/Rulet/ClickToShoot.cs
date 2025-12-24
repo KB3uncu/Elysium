@@ -4,30 +4,51 @@ public class ClickToShoot : MonoBehaviour
 {
     public RouletteGameManager gameManager;
 
+    [Header("Distances")]
+    public float interactDistance = 3f;   // E için (zar + silah)
+    public float shootDistance = 30f;     // Mouse için (enemy)
+
     void Update()
     {
-        if (!Input.GetMouseButtonDown(0)) return;
         if (gameManager == null) return;
         if (gameManager.IsGameOver) return;
 
         if (Camera.main == null) return;
 
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        // FPS: ekranýn ortasýndan ray
+        Ray centerRay = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
 
-        if (Physics.Raycast(ray, out RaycastHit hit))
+        // E: Zar + Masadaki Silah
+        if (Input.GetKeyDown(KeyCode.E))
         {
-            // Masadaki silah
-            if (hit.collider.CompareTag("PlayerGunTable"))
+            if (Physics.Raycast(centerRay, out RaycastHit hit, interactDistance))
             {
-                gameManager.PlayerPickGun();
-                return;
-            }
+                // Masadaki silah
+                if (hit.collider.CompareTag("PlayerGunTable"))
+                {
+                    gameManager.PlayerPickGun();
+                    return;
+                }
 
-            // Enemy
-            if (hit.collider.CompareTag("Enemy"))
+                // Player zarý
+                if (hit.collider.CompareTag("PlayerDice"))
+                {
+                    gameManager.PlayerRollDice();
+                    return;
+                }
+            }
+        }
+
+        // Mouse Sol: Ateþ (sadece enemy)
+        if (Input.GetMouseButtonDown(0))
+        {
+            if (Physics.Raycast(centerRay, out RaycastHit hit, shootDistance))
             {
-                gameManager.PlayerShoot();
-                return;
+                if (hit.collider.CompareTag("Enemy"))
+                {
+                    gameManager.PlayerShoot();
+                    return;
+                }
             }
         }
     }

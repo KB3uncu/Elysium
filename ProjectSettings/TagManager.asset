@@ -15,6 +15,7 @@ TagManager:
   - Fare
   - Enemy
   - PlayerGunTable
+  - PlayerDice
   layers:
   - Default
   - TransparentFX
