@@ -185,23 +185,30 @@ public class RouletteGameManager : MonoBehaviour
 
         if (bullet)
         {
+            // HIT
             hitMissPopup?.Show(true);
             cameraShake?.Play();
 
             if (who == Shooter.Player)
             {
                 enemyLives--;
-                enemyHit?.PlayFallAndStandUp();   // sadece enemy düþsün
+                // enemy animasyonu/ragdoll þimdilik kapalýysa bunu kaldýrabilirsin
+                enemyHit?.PlayFallAndStandUp();
             }
             else
             {
-                hitMissPopup?.Show(false);
-                playerLives--; // player can azalýr ama animasyon yok
+                playerLives--;
             }
 
             Debug.Log($"[{who}] HIT!  P:{playerLives} E:{enemyLives}  (shot {revolver.ShotsThisCycle}/{revolver.ChamberCount})");
         }
+        else
+        {
+            // MISS
+            hitMissPopup?.Show(false);
 
+            Debug.Log($"[{who}] MISS. P:{playerLives} E:{enemyLives}  (shot {revolver.ShotsThisCycle}/{revolver.ChamberCount})");
+        }
 
         if (playerLives <= 0) { EndGame("PLAYER DEAD"); return; }
         if (enemyLives <= 0) { EndGame("ENEMY DEAD"); return; }
@@ -209,6 +216,7 @@ public class RouletteGameManager : MonoBehaviour
         if (cycleCompleted)
             Debug.Log("=== CYCLE COMPLETED. Revolver shuffled. ===");
     }
+
 
 
     void StartNextRound()

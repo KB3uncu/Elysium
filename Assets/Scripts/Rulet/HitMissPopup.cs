@@ -1,38 +1,52 @@
+using System.Collections;
 using UnityEngine;
 
 public class HitMissPopup : MonoBehaviour
 {
-    [Header("Prefabs")]
-    public GameObject hitPrefab;
-    public GameObject missPrefab;
-
-    [Header("Spawn Point (tek nokta)")]
-    public Transform spawnPoint;
+    [Header("Scene Objects (prefabsiz)")]
+    public GameObject hitObj;
+    public GameObject missObj;
 
     [Header("Timing")]
-    public float lifeTime = 1.2f;
+    public float showTime = 0.8f;
 
-    public void ShowHit()
-    {
-        Spawn(hitPrefab);
-    }
+    Coroutine routine;
 
-    public void ShowMiss()
+    void Awake()
     {
-        Spawn(missPrefab);
+        // baþlangýçta ikisi de kapalý olsun
+        if (hitObj) hitObj.SetActive(false);
+        if (missObj) missObj.SetActive(false);
     }
 
     public void Show(bool isHit)
     {
-        Spawn(isHit ? hitPrefab : missPrefab);
+        ShowInternal(isHit ? hitObj : missObj);
     }
 
-    void Spawn(GameObject prefab)
-    {
-        if (spawnPoint == null) return;
-        if (prefab == null) return;
+    public void ShowHit() => ShowInternal(hitObj);
+    public void ShowMiss() => ShowInternal(missObj);
 
-        GameObject go = Instantiate(prefab, spawnPoint.position, spawnPoint.rotation);
-        Destroy(go, lifeTime);
+    void ShowInternal(GameObject obj)
+    {
+        if (obj == null) return;
+
+        // diðerini kapat
+        if (hitObj && hitObj != obj) hitObj.SetActive(false);
+        if (missObj && missObj != obj) missObj.SetActive(false);
+
+        // bunu aç
+        obj.SetActive(true);
+
+        // süre dolunca kapat
+        if (routine != null) StopCoroutine(routine);
+        routine = StartCoroutine(HideLater(obj));
+    }
+
+    IEnumerator HideLater(GameObject obj)
+    {
+        yield return new WaitForSeconds(showTime);
+        if (obj != null) obj.SetActive(false);
+        routine = null;
     }
 }
