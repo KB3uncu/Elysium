@@ -10,28 +10,38 @@ public class EngelSpawner : MonoBehaviour
     private BoxCollider spawnArea;
     private float lastZ = 9999f;
 
-    void Start()
+    void Awake()
     {
 
         spawnArea = GetComponent<BoxCollider>();
-     
-        
+    }
+
+    void OnEnable()
+    {
+        CancelInvoke(nameof(SpawnObstacle));
         InvokeRepeating(nameof(SpawnObstacle), 1f, spawnInterval);
+    }
+
+    void OnDisable()
+    {
+        CancelInvoke(nameof(SpawnObstacle));
     }
 
     void SpawnObstacle()
     {
+        if (spawnArea == null) return;
+
         float halfZ = spawnArea.size.z / 2f;
         float randomZ;
 
-        
+
         int safety = 0;
 
         do
         {
             randomZ = Random.Range(-halfZ, halfZ);
             safety++;
-            if (safety > 15)break;
+            if (safety > 15) break;
         }
         while (Mathf.Abs(randomZ - lastZ) < minDistance);
 

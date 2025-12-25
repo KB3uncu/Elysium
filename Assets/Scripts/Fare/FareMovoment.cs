@@ -11,6 +11,11 @@ public class FareMovoment : MonoBehaviour
     [Header("Ýleri Akýþ")]
     public float forwardSpeed = 0.6f;
 
+    [Header("Animasyon")]
+    public Animator animator;
+    public string runningBoolName = "IsRunning";
+    public float runningSpeedThreshold = 0.05f;
+
     private Rigidbody rb;
     private float input;
 
@@ -33,6 +38,15 @@ public class FareMovoment : MonoBehaviour
     void Update()
     {
         input = Input.GetAxis("Horizontal");
+
+        if (animator != null)
+        {
+            bool isRunning =
+                Mathf.Abs(forwardSpeed) > runningSpeedThreshold ||
+                Mathf.Abs(input) > 0.01f;
+
+            animator.SetBool(runningBoolName, isRunning);
+        }
     }
 
     void FixedUpdate()
@@ -47,4 +61,12 @@ public class FareMovoment : MonoBehaviour
 
         rb.MovePosition(new Vector3(newX, pos.y, newZ));
     }
+
+    void OnDisable()
+    {
+        if (animator != null)
+            animator.SetBool(runningBoolName, false);
+    }
+
+
 }
