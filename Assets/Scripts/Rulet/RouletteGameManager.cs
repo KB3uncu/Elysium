@@ -32,6 +32,9 @@ public class RouletteGameManager : MonoBehaviour
     public DiceRollAnim playerDiceAnim;
     public DiceRollAnim enemyDiceAnim;
 
+    [Header("Hit/Miss Display")]
+    public HitMissPopup hitMissPopup;
+
 
     // "Bu round'da kim ateþ edecek?"
     private enum Shooter { Player, Enemy }
@@ -182,6 +185,7 @@ public class RouletteGameManager : MonoBehaviour
 
         if (bullet)
         {
+            hitMissPopup?.Show(true);
             cameraShake?.Play();
 
             if (who == Shooter.Player)
@@ -191,6 +195,7 @@ public class RouletteGameManager : MonoBehaviour
             }
             else
             {
+                hitMissPopup?.Show(false);
                 playerLives--; // player can azalýr ama animasyon yok
             }
 
