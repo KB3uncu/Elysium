@@ -13,9 +13,13 @@ public class SlotCylinder : MonoBehaviour
     public float faceOffset = 0f;
     public Axis spinAxis = Axis.X;
 
+    public int CurrentFaceIndex { get; private set; }
+
     private bool isSpinning = false;
 
     public enum Axis { X, Y, Z }
+
+    public bool IsSpinning => isSpinning;
 
     public void Spin()
     {
@@ -52,9 +56,12 @@ public class SlotCylinder : MonoBehaviour
 
         ApplyRotation(snappedAngle);
 
+        float normalized = (snappedAngle % 360f + 360f) % 360f;
+        CurrentFaceIndex = Mathf.RoundToInt(normalized / step) % faceCount;
+
         isSpinning = false;
 
-        Debug.Log($"Silindir {fullSpins} tur attý, {snappedAngle % 360f:F1}° yüzüne hizalandý");
+        Debug.Log($"[{name}] Yüz Index: {CurrentFaceIndex}");
     }
 
     void ApplyRotation(float angle)

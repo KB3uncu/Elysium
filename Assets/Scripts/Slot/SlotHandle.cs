@@ -11,6 +11,10 @@ public class SlotHandle : MonoBehaviour, IInteractable
     public float pullAngle = 45f;
     public float pullDuration = 0.3f;
 
+    [Header("Kazanma Durumu")]
+    public GameObject WinPanel;
+
+
     public void OnInteract()
     {
         if (!isPulled)
@@ -27,28 +31,52 @@ public class SlotHandle : MonoBehaviour, IInteractable
         float t = 0f;
         while (t < pullDuration)
         {
-            float k = t / pullDuration;
-            transform.localRotation = Quaternion.Slerp(startRot, endRot, k);
+            transform.localRotation = Quaternion.Slerp(startRot, endRot, t / pullDuration);
             t += Time.deltaTime;
             yield return null;
         }
 
         foreach (var cyl in cylinders)
+            cyl?.Spin();
+
+        yield return new WaitUntil(() =>
         {
-            if (cyl != null)
-                cyl.Spin();
-        }
+            foreach (var c in cylinders)
+                if (c.IsSpinning)
+                    return false;
+            return true;
+        });
+
+        CheckWinCondition();
 
         t = 0f;
         while (t < pullDuration)
         {
-            float k = t / pullDuration;
-            transform.localRotation = Quaternion.Slerp(endRot, startRot, k);
+            transform.localRotation = Quaternion.Slerp(endRot, startRot, t / pullDuration);
             t += Time.deltaTime;
             yield return null;
         }
 
         transform.localRotation = startRot;
         isPulled = false;
+    }
+
+    void CheckWinCondition()
+    {
+        if (cylinders.Length < 3) return;
+
+        int face = cylinders[0].CurrentFaceIndex;
+
+        for (int i = 1; i < cylinders.Length; i++)
+        {
+            if (cylinders[i].CurrentFaceIndex != face)
+            {
+                Debug.Log("Kaybettin");
+                return;
+            }
+        }
+
+        Debug.Log(" KAZANDIN ");
+        WinPanel.SetActive(true);
     }
 }

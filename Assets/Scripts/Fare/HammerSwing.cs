@@ -2,6 +2,10 @@ using UnityEngine;
 
 public class HammerSwing : MonoBehaviour
 {
+
+    public MinigameResultManager result;
+
+
     public float minAngle = 0f;      
     public float maxAngle = -80f;     
     public float swingSpeed = 2f;   
@@ -11,6 +15,14 @@ public class HammerSwing : MonoBehaviour
     {
         
     }
+
+    private void Reset()
+    {
+        var col = GetComponent<Collider>();
+        if (col) col.isTrigger = true;
+    }
+
+
     void Update()
     {
 
@@ -23,4 +35,12 @@ public class HammerSwing : MonoBehaviour
 
         transform.localRotation = Quaternion.Euler(currentAngle, 90f, 0f);
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (result == null || result.CurrentResult != MinigameResultManager.ResultType.None) return;
+        if (other.CompareTag("Fare"))
+            result.Lose();
+    }
+
 }
