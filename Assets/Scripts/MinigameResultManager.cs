@@ -10,8 +10,8 @@ public class MinigameResultManager : MonoBehaviour
     public MonoBehaviour[] scriptsToDisable;
 
     [Header("KAZANMA - Sandýk")]
-    public GameObject chestPrefab;
-    public Transform chestSpawnPoint;
+    public GameObject chest;
+
 
     [Header("Parmaklýk (Win'de Kalkar)")]
     public Transform gate;
@@ -55,7 +55,7 @@ public class MinigameResultManager : MonoBehaviour
 
     public ResultType CurrentResult { get; private set; } = ResultType.None;
 
-    GameObject spawnedChest;
+
 
     Vector3 gateUpLocalPos;
     bool waitingForPlayer = true;
@@ -68,6 +68,8 @@ public class MinigameResultManager : MonoBehaviour
 
     void Start()
     {
+        chest.SetActive(false);
+
         if (startInWaitingMode)
         {
             EnterWaitingMode();
@@ -89,11 +91,7 @@ public class MinigameResultManager : MonoBehaviour
         CurrentResult = ResultType.None;
 
 
-        if (spawnedChest != null)
-        {
-            Destroy(spawnedChest);
-            spawnedChest = null;
-        }
+
 
 
         SetScriptsEnabled(true);
@@ -113,7 +111,7 @@ public class MinigameResultManager : MonoBehaviour
         StartCoroutine(LiftGate());
 
         onWin?.Invoke();
-        SpawnChest();
+        chest.SetActive(true);
 
 
     }
@@ -145,18 +143,6 @@ public class MinigameResultManager : MonoBehaviour
             foreach (var s in scriptsToDisable)
                 if (s != null) s.enabled = enabled;
         }
-    }
-
-    void SpawnChest()
-    {
-        if (chestPrefab == null || chestSpawnPoint == null) return;
-        if (spawnedChest != null) return;
-
-        spawnedChest = Instantiate(
-            chestPrefab,
-            chestSpawnPoint.position,
-            chestSpawnPoint.rotation
-        );
     }
 
     IEnumerator LiftGate()
@@ -217,12 +203,6 @@ public class MinigameResultManager : MonoBehaviour
 
     public void ResetRoom()
     {
-
-        if (spawnedChest != null)
-        {
-            Destroy(spawnedChest);
-            spawnedChest = null;
-        }
 
 
         if (mouse != null && mouseStartPoint != null)

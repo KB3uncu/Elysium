@@ -16,8 +16,12 @@ public class TriviaGameManager : MonoBehaviour
     public float nextDelay = 0.8f;
     private bool canAnswer = true;
 
+    [Header("Chest")]
+    public GameObject chest;
+
     void Start()
     {
+        chest.SetActive(false);
         currentIndex = 0;
         SetQuestions(currentIndex);
     }
@@ -69,6 +73,7 @@ public class TriviaGameManager : MonoBehaviour
         {
             resultAnswerText.text = "Kazandýn loooo";
             Debug.Log("Soru bitti laminyo");
+            chest.SetActive(true);
             return;
         }
 

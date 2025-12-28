@@ -35,6 +35,19 @@ public class RouletteGameManager : MonoBehaviour
     [Header("Hit/Miss Display")]
     public HitMissPopup hitMissPopup;
 
+    [Header("ENDGAME - Win Chest")]
+    public GameObject chest;
+
+    [Header("ENDGAME - Lose Respawn")]
+    public Transform player;            // oyuncu root
+    public Transform respawnPoint;      // rulet kaybedince dönüþ noktasý
+
+    [Header("ENDGAME - Reset Room Scripts")]
+    public MonoBehaviour[] scriptsToReset; // rulet odasýndaki tüm scriptler (bu manager dahil deðil)
+
+    [Header("ENDGAME - Timing")]
+    public float endDelay = 0.2f;
+
 
     // "Bu round'da kim ateþ edecek?"
     private enum Shooter { Player, Enemy }
@@ -71,6 +84,8 @@ public class RouletteGameManager : MonoBehaviour
         enemyDiceDisplay?.SetCount(0);
 
         phase = Phase.NeedDiceRoll;
+
+        chest.SetActive(false);
 
         Debug.Log($"START | P:{playerLives} E:{enemyLives} | bullets:{config.bulletCount}/{config.chamberCount}");
         Debug.Log("Round start: Click PLAYER DICE to roll.");
@@ -218,6 +233,56 @@ public class RouletteGameManager : MonoBehaviour
     }
 
 
+    void ResetRoomAndGame()
+    {
+        if (scriptsToReset != null)
+        {
+            foreach (var s in scriptsToReset)
+                if (s != null) s.enabled = false;
+
+            foreach (var s in scriptsToReset)
+                if (s != null) s.enabled = true;
+        }
+
+        revolver = new Revolver(config.chamberCount, config.bulletCount);
+
+        playerLives = config.maxLives;
+        enemyLives = config.maxLives;
+
+        playerGun?.PutDown();
+        enemyGun?.PutDown();
+
+        playerDiceDisplay?.SetCount(0);
+        enemyDiceDisplay?.SetCount(0);
+
+        phase = Phase.NeedDiceRoll;
+
+        gameOver = false;
+
+        Debug.Log("RESET | Round start: Click PLAYER DICE to roll.");
+    }
+
+
+    void RespawnPlayer()
+    {
+        if (player == null || respawnPoint == null) return;
+
+        var cc = player.GetComponent<CharacterController>();
+        if (cc != null) cc.enabled = false;
+
+        var rb = player.GetComponent<Rigidbody>();
+        if (rb != null)
+        {
+            rb.velocity = Vector3.zero;
+            rb.angularVelocity = Vector3.zero;
+        }
+
+        player.position = respawnPoint.position;
+        player.rotation = respawnPoint.rotation;
+
+        if (cc != null) cc.enabled = true;
+    }
+
 
     void StartNextRound()
     {
@@ -239,5 +304,28 @@ public class RouletteGameManager : MonoBehaviour
         gameOver = true;
         StopAllCoroutines();
         Debug.Log("GAME OVER: " + reason);
+
+        bool playerWon = enemyLives <= 0;
+        bool enemyWon = playerLives <= 0;
+
+        if (playerWon)
+        {
+            chest.SetActive(true);
+            return;
+        }
+
+        if (enemyWon)
+        {
+            StartCoroutine(LoseEndRoutine());
+            return;
+        }
+    }
+
+    IEnumerator LoseEndRoutine()
+    {
+        yield return new WaitForSeconds(endDelay);
+
+        RespawnPlayer();
+        ResetRoomAndGame();
     }
 }
