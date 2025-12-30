@@ -10,6 +10,10 @@ public class RouletteGameManager : MonoBehaviour
     public GunVisual playerGun;
     public GunVisual enemyGun;
 
+    [Header("Muzzle VFX")]
+    public GunMuzzleVFX playerMuzzle;
+    public GunMuzzleVFX enemyMuzzle;
+
     [Header("Dice Displays")]
     public DicePipDisplay playerDiceDisplay;
     public DicePipDisplay enemyDiceDisplay;
@@ -206,12 +210,14 @@ public class RouletteGameManager : MonoBehaviour
 
             if (who == Shooter.Player)
             {
+                playerMuzzle?.PlayOnce();
                 enemyLives--;
                 // enemy animasyonu/ragdoll þimdilik kapalýysa bunu kaldýrabilirsin
                 enemyHit?.PlayFallAndStandUp();
             }
             else
             {
+                enemyMuzzle?.PlayOnce();
                 playerLives--;
             }
 

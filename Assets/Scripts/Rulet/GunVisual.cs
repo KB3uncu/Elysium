@@ -5,22 +5,34 @@ public class GunVisual : MonoBehaviour
     public GameObject tableGun; // masadaki
     public GameObject handGun;  // eldeki
 
-    void Start()
+    MeshRenderer[] tableRenderers;
+    MeshRenderer[] handRenderers;
+
+    void Awake()
     {
-        PutDown(); // oyun baþýnda masada olsun
+        if (tableGun) tableRenderers = tableGun.GetComponentsInChildren<MeshRenderer>(true);
+        if (handGun) handRenderers = handGun.GetComponentsInChildren<MeshRenderer>(true);
+
+        SetGunVisible(handRenderers, false); // eldeki baþta görünmesin
+        SetGunVisible(tableRenderers, true); // masadaki görünsün
     }
 
     public void Pickup()
     {
-        tableGun.SetActive(false);
-        handGun.SetActive(true);
+        SetGunVisible(tableRenderers, false);
+        SetGunVisible(handRenderers, true);
     }
 
     public void PutDown()
     {
-        tableGun.SetActive(true);
-        handGun.SetActive(false);
+        SetGunVisible(handRenderers, false);
+        SetGunVisible(tableRenderers, true);
     }
 
-    public bool IsInHand => handGun.activeSelf;
+    void SetGunVisible(MeshRenderer[] rends, bool visible)
+    {
+        if (rends == null) return;
+        for (int i = 0; i < rends.Length; i++)
+            rends[i].enabled = visible;
+    }
 }
