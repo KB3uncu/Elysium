@@ -18,6 +18,10 @@ public class RouletteGameManager : MonoBehaviour
     public DicePipDisplay playerDiceDisplay;
     public DicePipDisplay enemyDiceDisplay;
 
+    [Header("Lives Display")]
+    public LivesDisplay playerLivesDisplay;
+    public LivesDisplay enemyLivesDisplay;
+
     [Header("Enemy Timing")]
     public float enemyDiceHold = 0.3f;
     public float enemyPickupHold = 0.35f;
@@ -80,6 +84,9 @@ public class RouletteGameManager : MonoBehaviour
 
         playerLives = config.maxLives;
         enemyLives = config.maxLives;
+
+        playerLivesDisplay?.SetLives(playerLives);
+        enemyLivesDisplay?.SetLives(enemyLives);
 
         playerGun?.PutDown();
         enemyGun?.PutDown();
@@ -220,6 +227,8 @@ public class RouletteGameManager : MonoBehaviour
                 enemyMuzzle?.PlayOnce();
                 playerLives--;
             }
+            playerLivesDisplay?.SetLives(playerLives);
+            enemyLivesDisplay?.SetLives(enemyLives);
 
             Debug.Log($"[{who}] HIT!  P:{playerLives} E:{enemyLives}  (shot {revolver.ShotsThisCycle}/{revolver.ChamberCount})");
         }
