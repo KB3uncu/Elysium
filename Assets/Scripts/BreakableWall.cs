@@ -3,11 +3,11 @@ using System.Collections;
 
 public class BreakableWall : MonoBehaviour, IInteractable
 {
-    [Header("Parça Rigidbody'leri")]
-    [Tooltip("Boþ býrakýrsan child'lardaki tüm Rigidbody'leri otomatik bulur.")]
+    [Header("Parï¿½a Rigidbody'leri")]
+    [Tooltip("Boï¿½ bï¿½rakï¿½rsan child'lardaki tï¿½m Rigidbody'leri otomatik bulur.")]
     public Rigidbody[] pieces;
 
-    [Header("Patlama Gücü Ayarlarý")]
+    [Header("Patlama Gï¿½cï¿½ Ayarlarï¿½")]
     public float minForce = 3f;
     public float maxForce = 7f;
     public float minTorque = 1f;
@@ -35,7 +35,7 @@ public class BreakableWall : MonoBehaviour, IInteractable
             if (rb == null) continue;
 
 
-            rb.velocity = Vector3.zero;
+            rb.linearVelocity = Vector3.zero;
             rb.angularVelocity = Vector3.zero;
 
             rb.useGravity = false;
@@ -49,13 +49,13 @@ public class BreakableWall : MonoBehaviour, IInteractable
 
         if (playerGlove == null)
         {
-            Debug.LogWarning("BreakableWall: PlayerGlove bulunamadý.");
+            Debug.LogWarning("BreakableWall: PlayerGlove bulunamadï¿½.");
             return;
         }
 
         if (!playerGlove.hasGlove)
         {
-            Debug.Log("BreakableWall: Bu duvarý kýrmak için eldivene ihtiyacýn var!");
+            Debug.Log("BreakableWall: Bu duvarï¿½ kï¿½rmak iï¿½in eldivene ihtiyacï¿½n var!");
             return;
         }
 

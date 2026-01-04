@@ -48,20 +48,20 @@ public class RouletteGameManager : MonoBehaviour
 
     [Header("ENDGAME - Lose Respawn")]
     public Transform player;            // oyuncu root
-    public Transform respawnPoint;      // rulet kaybedince dönüþ noktasý
+    public Transform respawnPoint;      // rulet kaybedince dï¿½nï¿½ï¿½ noktasï¿½
 
     [Header("ENDGAME - Reset Room Scripts")]
-    public MonoBehaviour[] scriptsToReset; // rulet odasýndaki tüm scriptler (bu manager dahil deðil)
+    public MonoBehaviour[] scriptsToReset; // rulet odasï¿½ndaki tï¿½m scriptler (bu manager dahil deï¿½il)
 
     [Header("ENDGAME - Timing")]
     public float endDelay = 0.2f;
 
 
-    // "Bu round'da kim ateþ edecek?"
+    // "Bu round'da kim ateï¿½ edecek?"
     private enum Shooter { Player, Enemy }
     private Shooter shooter;
 
-    // Player akýþý: Zar -> Silah al -> Ateþ et
+    // Player akï¿½ï¿½ï¿½: Zar -> Silah al -> Ateï¿½ et
     private enum Phase { NeedDiceRoll, NeedGunPickup, NeedShootTarget }
     private Phase phase;
 
@@ -219,7 +219,7 @@ public class RouletteGameManager : MonoBehaviour
             {
                 playerMuzzle?.PlayOnce();
                 enemyLives--;
-                // enemy animasyonu/ragdoll þimdilik kapalýysa bunu kaldýrabilirsin
+                // enemy animasyonu/ragdoll ï¿½imdilik kapalï¿½ysa bunu kaldï¿½rabilirsin
                 enemyHit?.PlayFallAndStandUp();
             }
             else
@@ -288,7 +288,7 @@ public class RouletteGameManager : MonoBehaviour
         var rb = player.GetComponent<Rigidbody>();
         if (rb != null)
         {
-            rb.velocity = Vector3.zero;
+            rb.linearVelocity = Vector3.zero;
             rb.angularVelocity = Vector3.zero;
         }
 
@@ -306,7 +306,7 @@ public class RouletteGameManager : MonoBehaviour
         playerGun?.PutDown();
         enemyGun?.PutDown();
 
-        // Ýstersen round baþýnda sýfýrla
+        // ï¿½stersen round baï¿½ï¿½nda sï¿½fï¿½rla
         playerDiceDisplay?.SetCount(0);
         enemyDiceDisplay?.SetCount(0);
 

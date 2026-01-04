@@ -30,7 +30,7 @@ public class CarController : MonoBehaviour
 
     void FixedUpdate()
     {
-        float currentSpeed = rb.velocity.magnitude;
+        float currentSpeed = rb.linearVelocity.magnitude;
         float speedFactor = Mathf.Clamp01(1 - (currentSpeed / 60f));
         float motor = Input.GetAxis("Vertical") * maxMotorTorque * speedFactor;
         float steering = Input.GetAxis("Horizontal") * maxSteerAngle;
@@ -46,7 +46,7 @@ public class CarController : MonoBehaviour
         frontRightWheel.motorTorque = motor * 0.3f;
 
         float horizontal = Input.GetAxis("Horizontal");
-        float speed = rb.velocity.magnitude;
+        float speed = rb.linearVelocity.magnitude;
 
         WheelFrictionCurve sideFriction = rearLeftWheel.sidewaysFriction;
         float driftFactor = Mathf.Lerp(1.2f, 0.8f, Mathf.Abs(horizontal) * (speed / 40f));

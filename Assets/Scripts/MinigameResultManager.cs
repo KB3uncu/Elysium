@@ -6,14 +6,14 @@ public class MinigameResultManager : MonoBehaviour
 {
     public enum ResultType { None, Win, Lose }
 
-    [Header("Minigame Sonunda Kapatýlacak Scriptler")]
+    [Header("Minigame Sonunda Kapatï¿½lacak Scriptler")]
     public MonoBehaviour[] scriptsToDisable;
 
-    [Header("KAZANMA - Sandýk")]
+    [Header("KAZANMA - Sandï¿½k")]
     public GameObject chest;
 
 
-    [Header("Parmaklýk (Win'de Kalkar)")]
+    [Header("Parmaklï¿½k (Win'de Kalkar)")]
     public Transform gate;
     public Vector3 gateUpOffset = new Vector3(0f, 2f, 0f);
     public float gateLiftDuration = 1f;
@@ -25,25 +25,25 @@ public class MinigameResultManager : MonoBehaviour
     public UnityEvent onWin;
 
 
-    [Header("START/RESET - Baþlangýçta Sistem Kapalý Beklesin")]
+    [Header("START/RESET - Baï¿½langï¿½ï¿½ta Sistem Kapalï¿½ Beklesin")]
     public bool startInWaitingMode = true;
 
-    [Tooltip("Oyuncu girince minigame baþlasýn mý? (StartMinigame() çaðýrman yeterli)")]
+    [Tooltip("Oyuncu girince minigame baï¿½lasï¿½n mï¿½? (StartMinigame() ï¿½aï¿½ï¿½rman yeterli)")]
     public bool autoStartOnPlayerEnter = true;
 
-    [Header("RESET - Fare Baþlangýç Noktasý")]
+    [Header("RESET - Fare Baï¿½langï¿½ï¿½ Noktasï¿½")]
     public Transform mouse;
     public Transform mouseStartPoint;
 
-    [Header("RESET - Kapý Ýnerken (Start) kullan")]
+    [Header("RESET - Kapï¿½ ï¿½nerken (Start) kullan")]
     public Vector3 gateDownOffset = new Vector3(0f, -2f, 0f);
     public float gateDropDuration = 0.6f;
 
-    [Header("RESET - Tur bitince kaç sn sonra reset?")]
+    [Header("RESET - Tur bitince kaï¿½ sn sonra reset?")]
     public float resetDelayAfterEnd = 0.8f;
 
 
-    [Header("KAYBETME - Dev Balyoz Vuruþ + Respawn")]
+    [Header("KAYBETME - Dev Balyoz Vuruï¿½ + Respawn")]
     public SideHammerHit leftHammer;
     public SideHammerHit rightHammer;
 
@@ -184,7 +184,7 @@ public class MinigameResultManager : MonoBehaviour
         var rb = player.GetComponent<Rigidbody>();
         if (rb != null)
         {
-            rb.velocity = Vector3.zero;
+            rb.linearVelocity = Vector3.zero;
             rb.angularVelocity = Vector3.zero;
         }
 
@@ -211,7 +211,7 @@ public class MinigameResultManager : MonoBehaviour
             var mrb = mouse.GetComponent<Rigidbody>();
             if (mrb != null)
             {
-                mrb.velocity = Vector3.zero;
+                mrb.linearVelocity = Vector3.zero;
                 mrb.angularVelocity = Vector3.zero;
             }
 
