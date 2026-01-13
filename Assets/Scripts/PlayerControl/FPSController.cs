@@ -3,60 +3,57 @@ using UnityEngine;
 [RequireComponent(typeof(CharacterController))]
 public class FPSController : MonoBehaviour
 {
-    [Header("References")]
-    [Tooltip("Oyuncu kamerasý (FPS). Pitch bu objede döner).")]
-    public Transform cameraTransform;
+    [Header("Base Settings")]
+    public float walkSpeed = 5f;
+    public float crouchSpeed = 2.5f;
+    public float acceleration = 10f;
+    public float friction = 2f;
 
-    private CharacterController controller;
+    [Header("Boost Mechanic")]
+    public float boostAmount = 3f;
+    public float maxBoostSpeed = 15f;
+    private float _currentBoost;
 
-    [Header("Movement")]
-    [Tooltip("Yürüme hýzý (m/sn).")]
-    public float moveSpeed = 4.5f;
-    [Tooltip("Ývme (daha yumuþak baþla/dur).")]
-    public float acceleration = 12f;
-    [Tooltip("Havada yatay kontrol katsayýsý.")]
-    public float airControl = 0.35f;
-
-    [Header("Jump & Gravity")]
-    [Tooltip("Zýplama yüksekliði (metre).")]
-    public float jumpHeight = 1.2f;
-    [Tooltip("Yerçekimi (negatif). Örn: -20 ~ -30 arasý iyidir.")]
+    [Header("Jump")]
+    public float jumpHeight = 1.5f;
     public float gravity = -25f;
-    [Tooltip("Yere yapýþmayý kolaylaþtýrýr (küçük negatif deðer).")]
-    public float groundedStickForce = -2f;
 
-    [Header("Ground Check")]
-    [Tooltip("Ayak hizasýnda yer kontrolü için nokta.")]
-    public Transform groundCheck;
-    [Tooltip("Yer kontrol yarýçapý.")]
-    public float groundRadius = 0.25f;
-    [Tooltip("Zemin Layer(lar)ý.")]
-    public LayerMask groundMask;
+    [Header("Slide Settings")]
+    public float slideDuration = 1.0f;
+    public float slideHeight = 0.5f;
+    public float crouchHeight = 1.0f;
 
-    [Header("Mouse Look")]
-    [Tooltip("Yatay (yaw) hassasiyet.")]
-    public float mouseSensitivityX = 180f;
-    [Tooltip("Dikey (pitch) hassasiyet.")]
-    public float mouseSensitivityY = 180f;
-    [Tooltip("Dikey bakýþ sýnýrý.")]
-    public float minPitch = -85f, maxPitch = 85f;
+    private float _defaultHeight;
+    private bool _isSliding;
+    private bool _isCrouching;
+    private float _slideTimer;
+    private Vector3 _slideDir;
+    private float _slideStartSpeed;
 
+    [Header("Look Settings")]
+    public Transform playerCamera;
+    public float mouseSensitivity = 2f;
+    public float upDownRange = 80f;
 
-    private Vector3 velocity;
-    private Vector3 planarVelocity;
-    private float targetSpeed;
-    private float pitch;
-    private bool isGrounded;
+    [Header("FOV Settings")]
+    public float fovSmoothTime = 10f;
+    public float maxFovIncrease = 15f;
+
+    private CharacterController _controller;
+    private Vector3 _currentMoveVelocity;
+    private Vector3 _moveDampVelocity;
+    private float _verticalVelocity;
+    private float _verticalRotation;
+    private Camera _cam;
+    private float _defaultFOV;
 
     void Awake()
     {
-        controller = GetComponent<CharacterController>();
-        if (cameraTransform == null)
-        {
-            Camera cam = GetComponentInChildren<Camera>();
-            if (cam != null) cameraTransform = cam.transform;
-        }
+        _controller = GetComponent<CharacterController>();
+        _defaultHeight = _controller.height;
 
+        if (playerCamera != null) _cam = playerCamera.GetComponent<Camera>();
+        if (_cam != null) _defaultFOV = _cam.fieldOfView;
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
@@ -64,120 +61,166 @@ public class FPSController : MonoBehaviour
 
     void Update()
     {
-        HandleMouseLook();
-        HandleGroundCheck();
+        HandleLook();
+        HandleBoostInput();
         HandleMovement();
-        HandleJump();
-        ApplyGravity();
-        MoveCharacter();
+        HandleStance();
+        HandleFOV();
     }
 
-    void HandleMouseLook()
+    void HandleLook()
     {
-        float mouseX = Input.GetAxis("Mouse X") * mouseSensitivityX * Time.deltaTime;
-        float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivityY * Time.deltaTime;
-
-        // Yaw: oyuncu gövdesini Y ekseninde döndür
+        float mouseX = Input.GetAxisRaw("Mouse X") * mouseSensitivity;
         transform.Rotate(Vector3.up * mouseX);
 
-        // Pitch: sadece kamerayý dikey eksende döndür
-        pitch -= mouseY;
-        pitch = Mathf.Clamp(pitch, minPitch, maxPitch);
-        if (cameraTransform != null)
-            cameraTransform.localRotation = Quaternion.Euler(pitch, 0f, 0f);
+        _verticalRotation -= Input.GetAxisRaw("Mouse Y") * mouseSensitivity;
+        _verticalRotation = Mathf.Clamp(_verticalRotation, -upDownRange, upDownRange);
+        playerCamera.localRotation = Quaternion.Euler(_verticalRotation, 0f, 0f);
     }
 
-    void HandleGroundCheck()
+    void HandleBoostInput()
     {
-        if (groundCheck == null)
+        if (Input.GetKeyDown(KeyCode.LeftShift) && !_isSliding && !_isCrouching && _controller.isGrounded)
         {
-
-            Vector3 feet = transform.position + Vector3.down * (controller.height * 0.5f - controller.radius + 0.05f);
-            isGrounded = Physics.CheckSphere(feet, groundRadius, groundMask, QueryTriggerInteraction.Ignore);
+            _currentBoost += boostAmount;
+            _currentBoost = Mathf.Clamp(_currentBoost, 0, maxBoostSpeed);
         }
-        else
+
+        if (!_isSliding && _currentBoost > 0)
         {
-            isGrounded = Physics.CheckSphere(groundCheck.position, groundRadius, groundMask, QueryTriggerInteraction.Ignore);
+            _currentBoost -= friction * Time.deltaTime;
+            if (_currentBoost < 0) _currentBoost = 0;
         }
     }
 
     void HandleMovement()
     {
+        bool isGrounded = _controller.isGrounded;
+        if (isGrounded && _verticalVelocity < 0) _verticalVelocity = -2f;
 
-        float inputX = Input.GetAxisRaw("Horizontal");
-        float inputZ = Input.GetAxisRaw("Vertical");
+        if (!_isSliding)
+        {
+            float x = Input.GetAxisRaw("Horizontal");
+            float z = Input.GetAxisRaw("Vertical");
 
+            float baseSpeed = _isCrouching ? crouchSpeed : walkSpeed;
+            float totalTargetSpeed = baseSpeed + _currentBoost;
 
-        Vector3 forward = transform.forward;
-        Vector3 right = transform.right;
-        forward.y = 0f; right.y = 0f;
-        forward.Normalize(); right.Normalize();
+            Vector3 inputDir = (transform.right * x + transform.forward * z).normalized;
+            Vector3 targetMoveVelocity = inputDir * totalTargetSpeed;
 
-        Vector3 wishDir = (forward * inputZ + right * inputX).normalized;
+            _currentMoveVelocity = Vector3.SmoothDamp(_currentMoveVelocity, targetMoveVelocity, ref _moveDampVelocity, 1f / acceleration);
+        }
 
+        if (Input.GetButtonDown("Jump") && isGrounded && !_isCrouching)
+        {
+            _verticalVelocity = Mathf.Sqrt(jumpHeight * -2f * gravity);
+            if (_isSliding) EndSlide();
+        }
 
-        targetSpeed = wishDir.magnitude * moveSpeed;
+        _verticalVelocity += gravity * Time.deltaTime;
 
+        Vector3 finalMove = _currentMoveVelocity * Time.deltaTime;
+        finalMove.y = _verticalVelocity * Time.deltaTime;
 
-        float usedAccel = isGrounded ? acceleration : acceleration * airControl;
-        Vector3 currentPlanar = new Vector3(planarVelocity.x, 0f, planarVelocity.z);
-        Vector3 targetPlanar = wishDir * targetSpeed;
-
-
-        currentPlanar = Vector3.MoveTowards(currentPlanar, targetPlanar, usedAccel * Time.deltaTime);
-        planarVelocity = new Vector3(currentPlanar.x, planarVelocity.y, currentPlanar.z);
+        _controller.Move(finalMove);
     }
 
-    void HandleJump()
+    void HandleStance()
     {
-        if (isGrounded && velocity.y < 0f)
+        if (Input.GetKeyDown(KeyCode.LeftControl) && _controller.isGrounded)
         {
-
-            velocity.y = groundedStickForce;
+            if (_currentMoveVelocity.magnitude > walkSpeed + 1f)
+            {
+                StartSlide();
+            }
+            else
+            {
+                StartCrouch();
+            }
         }
 
-        if (isGrounded && Input.GetButtonDown("Jump"))
+        if (_isSliding)
         {
+            _slideTimer -= Time.deltaTime;
 
-            velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
+            float actualHorizontalSpeed = new Vector3(_controller.velocity.x, 0f, _controller.velocity.z).magnitude;
+            if (_slideTimer < (slideDuration - 0.2f) && actualHorizontalSpeed < 0.5f)
+            {
+                EndSlide();
+                return;
+            }
+
+            if (_slideTimer <= 0)
+            {
+                EndSlide();
+                return;
+            }
+
+            float decayFactor = (_slideTimer / slideDuration);
+            _currentMoveVelocity = _slideDir * (_slideStartSpeed * decayFactor);
+
+            if (_currentMoveVelocity.magnitude < crouchSpeed) EndSlide();
+        }
+
+        if (_isCrouching && Input.GetKeyUp(KeyCode.LeftControl))
+        {
+            StopCrouch();
         }
     }
 
-    void ApplyGravity()
+    void HandleFOV()
     {
-        velocity.y += gravity * Time.deltaTime;
+        if (_cam == null) return;
+
+        float targetFOV = _defaultFOV;
+
+        float horizontalSpeed = new Vector3(_currentMoveVelocity.x, 0f, _currentMoveVelocity.z).magnitude;
+
+        if (_isSliding)
+        {
+            targetFOV += maxFovIncrease * 0.8f;
+        }
+        else if (_currentBoost > 0.1f && horizontalSpeed > walkSpeed)
+        {
+            float boostFactor = _currentBoost / maxBoostSpeed;
+            targetFOV += boostFactor * maxFovIncrease;
+        }
+
+        // Yumuþak geçiþ
+        _cam.fieldOfView = Mathf.Lerp(_cam.fieldOfView, targetFOV, Time.deltaTime * fovSmoothTime);
     }
 
-    void MoveCharacter()
+    void StartCrouch()
     {
-
-        velocity.x = planarVelocity.x;
-        velocity.z = planarVelocity.z;
-
-
-        controller.Move(velocity * Time.deltaTime);
-
-
-        if (isGrounded && new Vector2(planarVelocity.x, planarVelocity.z).sqrMagnitude < 0.0004f)
-        {
-            planarVelocity.x = 0f;
-            planarVelocity.z = 0f;
-        }
+        _isCrouching = true;
+        _controller.height = crouchHeight;
     }
 
-
-    void OnDrawGizmosSelected()
+    void StopCrouch()
     {
-        if (groundCheck != null)
-        {
-            Gizmos.color = Color.green;
-            Gizmos.DrawWireSphere(groundCheck.position, groundRadius);
-        }
-        else if (TryGetComponent(out CharacterController cc))
-        {
-            Vector3 feet = transform.position + Vector3.down * (cc.height * 0.5f - cc.radius + 0.05f);
-            Gizmos.color = Color.green;
-            Gizmos.DrawWireSphere(feet, groundRadius);
-        }
+        _isCrouching = false;
+        _controller.height = _defaultHeight;
+    }
+
+    void StartSlide()
+    {
+        _isSliding = true;
+        _isCrouching = false;
+
+        _slideStartSpeed = _currentMoveVelocity.magnitude;
+        if (_slideStartSpeed < 10f) _slideStartSpeed = 10f;
+
+        _controller.height = slideHeight;
+        _slideTimer = slideDuration;
+        _slideDir = _currentMoveVelocity.normalized;
+
+        _currentBoost = 0;
+    }
+
+    void EndSlide()
+    {
+        _isSliding = false;
+        _controller.height = _defaultHeight;
     }
 }
