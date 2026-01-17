@@ -39,6 +39,10 @@ public class FPSController : MonoBehaviour
     public float fovSmoothTime = 10f;
     public float maxFovIncrease = 15f;
 
+    [Header("Visual Effects")]
+    public GameObject shockwavePrefab;
+    public float shockwaveSpawnDistance = 2f;
+
     private CharacterController _controller;
     private Vector3 _currentMoveVelocity;
     private Vector3 _moveDampVelocity;
@@ -84,6 +88,11 @@ public class FPSController : MonoBehaviour
         {
             _currentBoost += boostAmount;
             _currentBoost = Mathf.Clamp(_currentBoost, 0, maxBoostSpeed);
+
+            if (shockwavePrefab != null && playerCamera != null)
+            {
+                SpawnShockwave();
+            }
         }
 
         if (!_isSliding && _currentBoost > 0)
@@ -191,6 +200,14 @@ public class FPSController : MonoBehaviour
         _cam.fieldOfView = Mathf.Lerp(_cam.fieldOfView, targetFOV, Time.deltaTime * fovSmoothTime);
     }
 
+    void SpawnShockwave()
+    {
+        Vector3 spawnPos = playerCamera.position + (playerCamera.forward * shockwaveSpawnDistance);
+        GameObject wave = Instantiate(shockwavePrefab, spawnPos, Quaternion.identity, playerCamera);
+
+        wave.transform.LookAt(playerCamera);
+        // wave.transform.localRotation = Quaternion.Euler(0, 180, 0);
+    }
     void StartCrouch()
     {
         _isCrouching = true;
