@@ -73,7 +73,7 @@ MonoBehaviour:
     - model: {fileID: 8926484042661615194}
       id: 0
       isStickyNote: 0
-  - title: "PART\u0130CLES "
+  - title: "GLOVE PART\u0130CLES "
     position:
       serializedVersion: 2
       x: 3484
@@ -93,7 +93,7 @@ MonoBehaviour:
     - model: {fileID: 8926484042661615318}
       id: 0
       isStickyNote: 0
-  - title: SMOKE
+  - title: "F\u0130RE PART\u0130CLES"
     position:
       serializedVersion: 2
       x: 4083
@@ -11249,7 +11249,7 @@ MonoBehaviour:
   - {fileID: 8926484042661615325}
   - {fileID: 8926484042661615319}
   m_OutputSlots: []
-  m_Label: Particles
+  m_Label: GloveParticles
   m_Data: {fileID: 8926484042661615263}
   m_InputFlowSlot:
   - link:
@@ -15548,7 +15548,7 @@ MonoBehaviour:
   - {fileID: 8926484042661615492}
   - {fileID: 8926484042661615486}
   m_OutputSlots: []
-  m_Label: Smoke
+  m_Label: FireParticlesSmall
   m_Data: {fileID: 8926484042661615430}
   m_InputFlowSlot:
   - link:
