@@ -3,24 +3,27 @@ using System.Collections;
 
 public class BreakableWall : MonoBehaviour, IInteractable
 {
-    [Header("Parça Rigidbody'leri")]
     public Rigidbody[] pieces;
 
-    [Header("Patlama Gücü Ayarları")]
     public float minForce = 3f;
     public float maxForce = 7f;
     public float minTorque = 1f;
     public float maxTorque = 4f;
 
-    private bool broken = false;
-    private bool breaking = false;
-    private PlayerGlove playerGlove;
+    public Transform hitSource;
+
+    bool broken = false;
+    bool breaking = false;
+    PlayerGlove playerGlove;
 
     void Awake()
     {
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         if (player != null)
+        {
             playerGlove = player.GetComponent<PlayerGlove>();
+            if (hitSource == null) hitSource = player.transform;
+        }
 
         if (pieces == null || pieces.Length == 0)
             pieces = GetComponentsInChildren<Rigidbody>();
@@ -43,28 +46,12 @@ public class BreakableWall : MonoBehaviour, IInteractable
     public void OnInteract()
     {
         if (broken || breaking) return;
-
-        if (playerGlove == null)
-        {
-            Debug.LogWarning("BreakableWall: PlayerGlove bulunamadı.");
-            return;
-        }
-
-        if (!playerGlove.hasGlove)
-        {
-            Debug.Log("BreakableWall: Bu duvarı kırmak için eldivene ihtiyacın var!");
-            return;
-        }
-
-        if (VFXManager.Instance == null)
-        {
-            Debug.LogWarning("BreakableWall: VFXManager.Instance yok!");
-            return;
-        }
+        if (playerGlove == null) return;
+        if (!playerGlove.hasGlove) return;
+        if (VFXManager.Instance == null) return;
 
         breaking = true;
-
-        VFXManager.Instance.StartWallBreakSequence(this, playerGlove);
+        VFXManager.Instance.PunchWall(this, playerGlove);
     }
 
     public void FinishBreak(PlayerGlove glove)
@@ -77,7 +64,19 @@ public class BreakableWall : MonoBehaviour, IInteractable
         Shatter();
     }
 
-    private void Shatter()
+    public Vector3 GetShatterPoint()
+    {
+        var col = GetComponent<Collider>();
+        if (col == null) return transform.position;
+
+        Transform src = hitSource;
+        if (src == null && Camera.main != null) src = Camera.main.transform;
+
+        if (src != null) return col.ClosestPoint(src.position);
+        return col.bounds.center;
+    }
+
+    void Shatter()
     {
         broken = true;
 

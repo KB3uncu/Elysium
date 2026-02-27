@@ -33,6 +33,7 @@ public class GlovePickup : MonoBehaviour, IInteractable
         }
 
         playerGlove.EquipGlove();
+        VFXManager.Instance.OnGloveEquipped();
 
         if (pickupVisual != null)
             pickupVisual.SetActive(false);

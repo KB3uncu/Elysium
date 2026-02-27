@@ -6,21 +6,27 @@ public class VFXManager : MonoBehaviour
 {
     public static VFXManager Instance { get; private set; }
 
-    public VisualEffect[] effects;
-    public float[] durations;
+    public VisualEffect gatherVfx;
+    public float gatherDuration = 8f;
+
+    public VisualEffect readyVfx;
+
+    public GameObject shatterVfxPrefab;
+    public float shatterLifetime = 2f;
 
     public MonoBehaviour playerMovementScript;
     public Transform playerRoot;
 
-    public float overlapSeconds = 0.1f;
-    public float postShatterHold = 2f;
+    public Animator playerAnimator;
+    public string punchTrigger = "Punch";
+    public float punchLockDuration = 1.0f;
 
-    public GameObject shatterVfxPrefab;
-
-    bool isRunning = false;
+    enum State { None, Gathering, Ready, Punching }
+    State state = State.None;
 
     Rigidbody playerRb;
     bool rbWasKinematic;
+    Coroutine gatherRoutine;
 
     void Awake()
     {
@@ -35,77 +41,78 @@ public class VFXManager : MonoBehaviour
     void Start()
     {
         if (playerRoot) playerRb = playerRoot.GetComponent<Rigidbody>();
-        StopAllEffectsHard();
+        StopAll();
     }
 
-    void StopAllEffectsHard()
+    void StopAll()
     {
-        if (effects == null) return;
+        if (gatherVfx) { gatherVfx.Reinit(); gatherVfx.Stop(); }
+        if (readyVfx) { readyVfx.Reinit(); readyVfx.Stop(); }
+        state = State.None;
+    }
 
-        foreach (var vfx in effects)
+    public void OnGloveEquipped()
+    {
+        if (state == State.Punching) return;
+
+        if (gatherRoutine != null) StopCoroutine(gatherRoutine);
+        gatherRoutine = StartCoroutine(GatherThenReady());
+    }
+
+    IEnumerator GatherThenReady()
+    {
+        state = State.Gathering;
+
+        if (readyVfx) readyVfx.Stop();
+        if (gatherVfx)
         {
-            if (!vfx) continue;
-            vfx.Reinit();
-            vfx.Stop();
+            gatherVfx.Reinit();
+            gatherVfx.Play();
         }
+
+        yield return new WaitForSecondsRealtime(gatherDuration);
+
+        if (gatherVfx) gatherVfx.Stop();
+
+        state = State.Ready;
+
+        if (readyVfx)
+        {
+            readyVfx.Reinit();
+            readyVfx.Play();
+        }
+
+        gatherRoutine = null;
     }
 
-    public void StartWallBreakSequence(BreakableWall wall, PlayerGlove glove)
+    public void PunchWall(BreakableWall wall, PlayerGlove glove)
     {
-        if (isRunning || wall == null) return;
-        StartCoroutine(RunSequence(wall, glove));
+        if (wall == null) return;
+        if (state != State.Ready) return;
+
+        StartCoroutine(PunchSequence(wall, glove));
     }
 
-    IEnumerator RunSequence(BreakableWall wall, PlayerGlove glove)
+    IEnumerator PunchSequence(BreakableWall wall, PlayerGlove glove)
     {
-        isRunning = true;
+        state = State.Punching;
 
         LockPlayer();
-        StopAllEffectsHard();
 
-        int n = effects != null ? effects.Length : 0;
+        if (playerAnimator != null && !string.IsNullOrEmpty(punchTrigger))
+            playerAnimator.SetTrigger(punchTrigger);
 
-        if (durations == null || durations.Length != n)
-        {
-            durations = new float[n];
-            for (int i = 0; i < n; i++) durations[i] = 8f;
-        }
-
-        if (n > 0 && effects[0]) effects[0].Play();
-
-        for (int i = 0; i < n; i++)
-        {
-            float d = Mathf.Max(0f, durations[i]);
-
-            if (i < n - 1)
-            {
-                float waitBeforeNext = Mathf.Max(0f, d - overlapSeconds);
-                yield return new WaitForSecondsRealtime(waitBeforeNext);
-
-                if (effects[i + 1]) effects[i + 1].Play();
-
-                float remaining = Mathf.Max(0f, d - waitBeforeNext);
-                yield return new WaitForSecondsRealtime(remaining);
-
-                if (effects[i]) effects[i].Stop();
-            }
-            else
-            {
-                yield return new WaitForSecondsRealtime(d);
-            }
-        }
+        PlayShatterAt(wall.GetShatterPoint());
 
         wall.FinishBreak(glove);
 
-        PlayShatterAt(wall.transform.position);
+        yield return new WaitForSecondsRealtime(punchLockDuration);
 
-        yield return new WaitForSecondsRealtime(postShatterHold);
-
-        for (int i = 0; i < n; i++)
-            if (effects[i]) effects[i].Stop();
+        if (readyVfx) readyVfx.Stop();
 
         UnlockPlayer();
-        isRunning = false;
+
+        state = State.None;
     }
 
     void PlayShatterAt(Vector3 pos)
@@ -113,13 +120,16 @@ public class VFXManager : MonoBehaviour
         if (!shatterVfxPrefab) return;
 
         GameObject go = Instantiate(shatterVfxPrefab, pos, Quaternion.identity);
-        var vfx = go.GetComponent<VisualEffect>();
+
+        var vfx = go.GetComponentInChildren<VisualEffect>(true);
         if (vfx)
         {
+            vfx.gameObject.SetActive(true);
             vfx.Reinit();
             vfx.Play();
         }
-        Destroy(go, postShatterHold + 0.2f);
+
+        Destroy(go, Mathf.Max(0.1f, shatterLifetime));
     }
 
     void LockPlayer()
