@@ -3,17 +3,17 @@ using System.Collections;
 
 public class BreakableWall : MonoBehaviour, IInteractable
 {
-    [Header("Par�a Rigidbody'leri")]
-    [Tooltip("Bo� b�rak�rsan child'lardaki t�m Rigidbody'leri otomatik bulur.")]
+    [Header("Parça Rigidbody'leri")]
     public Rigidbody[] pieces;
 
-    [Header("Patlama G�c� Ayarlar�")]
+    [Header("Patlama Gücü Ayarları")]
     public float minForce = 3f;
     public float maxForce = 7f;
     public float minTorque = 1f;
     public float maxTorque = 4f;
 
     private bool broken = false;
+    private bool breaking = false;
     private PlayerGlove playerGlove;
 
     void Awake()
@@ -23,9 +23,7 @@ public class BreakableWall : MonoBehaviour, IInteractable
             playerGlove = player.GetComponent<PlayerGlove>();
 
         if (pieces == null || pieces.Length == 0)
-        {
             pieces = GetComponentsInChildren<Rigidbody>();
-        }
     }
 
     void Start()
@@ -33,7 +31,6 @@ public class BreakableWall : MonoBehaviour, IInteractable
         foreach (var rb in pieces)
         {
             if (rb == null) continue;
-
 
             rb.linearVelocity = Vector3.zero;
             rb.angularVelocity = Vector3.zero;
@@ -45,21 +42,37 @@ public class BreakableWall : MonoBehaviour, IInteractable
 
     public void OnInteract()
     {
-        if (broken) return;
+        if (broken || breaking) return;
 
         if (playerGlove == null)
         {
-            Debug.LogWarning("BreakableWall: PlayerGlove bulunamad�.");
+            Debug.LogWarning("BreakableWall: PlayerGlove bulunamadı.");
             return;
         }
 
         if (!playerGlove.hasGlove)
         {
-            Debug.Log("BreakableWall: Bu duvar� k�rmak i�in eldivene ihtiyac�n var!");
+            Debug.Log("BreakableWall: Bu duvarı kırmak için eldivene ihtiyacın var!");
             return;
         }
 
-        playerGlove.ConsumeGlove();
+        if (VFXManager.Instance == null)
+        {
+            Debug.LogWarning("BreakableWall: VFXManager.Instance yok!");
+            return;
+        }
+
+        breaking = true;
+
+        VFXManager.Instance.StartWallBreakSequence(this, playerGlove);
+    }
+
+    public void FinishBreak(PlayerGlove glove)
+    {
+        if (broken) return;
+
+        if (glove != null && glove.hasGlove)
+            glove.ConsumeGlove();
 
         Shatter();
     }
@@ -85,8 +98,7 @@ public class BreakableWall : MonoBehaviour, IInteractable
         }
 
         Collider col = GetComponent<Collider>();
-        if (col != null)
-            col.enabled = false;
+        if (col != null) col.enabled = false;
 
         StartCoroutine(FadeOut());
     }
@@ -116,5 +128,4 @@ public class BreakableWall : MonoBehaviour, IInteractable
 
         Destroy(gameObject);
     }
-
 }
