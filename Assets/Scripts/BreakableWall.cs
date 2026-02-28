@@ -64,16 +64,40 @@ public class BreakableWall : MonoBehaviour, IInteractable
         Shatter();
     }
 
-    public Vector3 GetShatterPoint()
+    public void GetShatterHit(out Vector3 point, out Vector3 normal)
     {
         var col = GetComponent<Collider>();
-        if (col == null) return transform.position;
+        if (col == null)
+        {
+            point = transform.position;
+            normal = transform.forward;
+            return;
+        }
 
         Transform src = hitSource;
         if (src == null && Camera.main != null) src = Camera.main.transform;
 
-        if (src != null) return col.ClosestPoint(src.position);
-        return col.bounds.center;
+        if (src == null)
+        {
+            point = col.bounds.center;
+            normal = transform.forward;
+            return;
+        }
+
+        Vector3 dir = (col.bounds.center - src.position).normalized;
+        Ray ray = new Ray(src.position, dir);
+
+        if (col.Raycast(ray, out RaycastHit hit, 50f))
+        {
+            point = hit.point;
+            normal = hit.normal;
+            return;
+        }
+
+        point = col.ClosestPoint(src.position);
+        normal = (point - col.bounds.center).sqrMagnitude > 0.0001f
+            ? (point - col.bounds.center).normalized
+            : transform.forward;
     }
 
     void Shatter()

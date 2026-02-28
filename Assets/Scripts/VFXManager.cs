@@ -102,7 +102,8 @@ public class VFXManager : MonoBehaviour
         if (playerAnimator != null && !string.IsNullOrEmpty(punchTrigger))
             playerAnimator.SetTrigger(punchTrigger);
 
-        PlayShatterAt(wall.GetShatterPoint());
+        wall.GetShatterHit(out Vector3 p, out Vector3 n);
+        PlayShatterAt(p, n);
 
         wall.FinishBreak(glove);
 
@@ -111,15 +112,16 @@ public class VFXManager : MonoBehaviour
         if (readyVfx) readyVfx.Stop();
 
         UnlockPlayer();
-
         state = State.None;
     }
 
-    void PlayShatterAt(Vector3 pos)
+    void PlayShatterAt(Vector3 pos, Vector3 normal)
     {
         if (!shatterVfxPrefab) return;
 
-        GameObject go = Instantiate(shatterVfxPrefab, pos, Quaternion.identity);
+        Quaternion rot = Quaternion.LookRotation(normal) * Quaternion.Euler(0f, -90f, 0f);
+
+        GameObject go = Instantiate(shatterVfxPrefab, pos, rot);
 
         var vfx = go.GetComponentInChildren<VisualEffect>(true);
         if (vfx)
