@@ -20,6 +20,10 @@ public class VFXManager : MonoBehaviour
     public Animator playerAnimator;
     public string punchTrigger = "Punch";
     public float punchLockDuration = 1.0f;
+    public string pickupTrigger = "Pickup";
+    public float pickupLockDuration = 0.8f;
+
+    public float punchImpactDelay = 0.35f;
 
     enum State { None, Gathering, Ready, Punching }
     State state = State.None;
@@ -57,6 +61,26 @@ public class VFXManager : MonoBehaviour
 
         if (gatherRoutine != null) StopCoroutine(gatherRoutine);
         gatherRoutine = StartCoroutine(GatherThenReady());
+    }
+
+    public void PlayPickupAnim()
+    {
+        if (playerAnimator == null) return;
+
+        StartCoroutine(PickupSequence());
+    }
+
+    IEnumerator PickupSequence()
+    {
+        LockPlayer();
+
+        playerAnimator.SetFloat("Speed", 0f);
+        if (!string.IsNullOrEmpty(pickupTrigger))
+            playerAnimator.SetTrigger(pickupTrigger);
+
+        yield return new WaitForSecondsRealtime(pickupLockDuration);
+
+        UnlockPlayer();
     }
 
     IEnumerator GatherThenReady()
@@ -99,15 +123,23 @@ public class VFXManager : MonoBehaviour
 
         LockPlayer();
 
-        if (playerAnimator != null && !string.IsNullOrEmpty(punchTrigger))
-            playerAnimator.SetTrigger(punchTrigger);
+        if (playerAnimator != null)
+        {
+            playerAnimator.SetFloat("Speed", 0f);
+            if (!string.IsNullOrEmpty(punchTrigger))
+                playerAnimator.SetTrigger(punchTrigger);
+        }
+
+        yield return new WaitForSecondsRealtime(punchImpactDelay);
 
         wall.GetShatterHit(out Vector3 p, out Vector3 n);
         PlayShatterAt(p, n);
 
         wall.FinishBreak(glove);
 
-        yield return new WaitForSecondsRealtime(punchLockDuration);
+        float remaining = Mathf.Max(0f, punchLockDuration - punchImpactDelay);
+        if (remaining > 0f)
+            yield return new WaitForSecondsRealtime(remaining);
 
         if (readyVfx) readyVfx.Stop();
 
@@ -119,7 +151,9 @@ public class VFXManager : MonoBehaviour
     {
         if (!shatterVfxPrefab) return;
 
-        Quaternion rot = Quaternion.LookRotation(normal) * Quaternion.Euler(0f, -90f, 0f);
+        pos += normal * 0.03f;
+
+        Quaternion rot = Quaternion.LookRotation(-normal) * Quaternion.Euler(0f, 90f, 0f);
 
         GameObject go = Instantiate(shatterVfxPrefab, pos, rot);
 

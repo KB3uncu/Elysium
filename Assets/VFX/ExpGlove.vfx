@@ -56,10 +56,10 @@ MonoBehaviour:
   - title: Heads & Trails
     position:
       serializedVersion: 2
-      x: 1367
+      x: 1559
       y: 293
-      width: 2341
-      height: 3561
+      width: 1993
+      height: 3347
     contents:
     - model: {fileID: 8926484042661615162}
       id: 0
@@ -124,10 +124,10 @@ MonoBehaviour:
   - title: "GLOVE PART\u0130CLES "
     position:
       serializedVersion: 2
-      x: 3813.3335
-      y: 362.66672
+      x: 3814
+      y: 363
       width: 484
-      height: 2653
+      height: 2541
     contents:
     - model: {fileID: 8926484042661615737}
       id: 0
@@ -147,8 +147,8 @@ MonoBehaviour:
     serializedVersion: 2
     x: 63
     y: 293
-    width: 4235
-    height: 3561
+    width: 4234
+    height: 3347
 --- !u!114 &114350483966674976
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1488,7 +1488,7 @@ MonoBehaviour:
   - {fileID: 8926484042661614958}
   - {fileID: 8926484042661614973}
   m_UIPosition: {x: 0, y: 0}
-  m_UICollapsed: 1
+  m_UICollapsed: 0
   m_UISuperCollapsed: 0
   m_MasterSlot: {fileID: 8926484042661614957}
   m_MasterData:
@@ -1497,7 +1497,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: UnityEditor.VFX.TArcSphere, Unity.VisualEffectGraph.Editor,
           Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-      m_SerializableObject: '{"sphere":{"transform":{"position":{"x":0.0,"y":-2.1562976837158205,"z":0.0},"angles":{"x":0.0,"y":0.0,"z":0.0},"scale":{"x":1.0,"y":1.0,"z":1.0}},"radius":0.15000000596046449},"arc":6.28000020980835}'
+      m_SerializableObject: '{"sphere":{"transform":{"position":{"x":0.0,"y":0.0,"z":0.0},"angles":{"x":0.0,"y":0.0,"z":0.0},"scale":{"x":1.0,"y":1.0,"z":1.0}},"radius":0.15000000596046449},"arc":6.28000020980835}'
     m_Space: 0
   m_Property:
     name: arcSphere
@@ -1524,7 +1524,7 @@ MonoBehaviour:
   - {fileID: 8926484042661614959}
   - {fileID: 8926484042661614972}
   m_UIPosition: {x: 0, y: 0}
-  m_UICollapsed: 1
+  m_UICollapsed: 0
   m_UISuperCollapsed: 0
   m_MasterSlot: {fileID: 8926484042661614957}
   m_MasterData:
@@ -1560,7 +1560,7 @@ MonoBehaviour:
   - {fileID: 8926484042661614964}
   - {fileID: 8926484042661614968}
   m_UIPosition: {x: 0, y: 0}
-  m_UICollapsed: 1
+  m_UICollapsed: 0
   m_UISuperCollapsed: 0
   m_MasterSlot: {fileID: 8926484042661614957}
   m_MasterData:
@@ -3398,7 +3398,7 @@ MonoBehaviour:
   - {fileID: 8926484042661615053}
   - {fileID: 8926484042661615068}
   m_UIPosition: {x: 0, y: 0}
-  m_UICollapsed: 1
+  m_UICollapsed: 0
   m_UISuperCollapsed: 0
   m_MasterSlot: {fileID: 8926484042661615052}
   m_MasterData:
@@ -3407,7 +3407,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: UnityEditor.VFX.TArcSphere, Unity.VisualEffectGraph.Editor,
           Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-      m_SerializableObject: '{"sphere":{"transform":{"position":{"x":0.0,"y":-2.1562976837158205,"z":0.0},"angles":{"x":0.0,"y":0.0,"z":0.0},"scale":{"x":1.0,"y":1.0,"z":1.0}},"radius":0.15000000596046449},"arc":6.28000020980835}'
+      m_SerializableObject: '{"sphere":{"transform":{"position":{"x":0.0,"y":0.0,"z":0.0},"angles":{"x":0.0,"y":0.0,"z":270.0},"scale":{"x":1.0,"y":1.0,"z":1.0}},"radius":0.15000000596046449},"arc":6.28000020980835}'
     m_Space: 0
   m_Property:
     name: arcSphere
@@ -3434,7 +3434,7 @@ MonoBehaviour:
   - {fileID: 8926484042661615054}
   - {fileID: 8926484042661615067}
   m_UIPosition: {x: 0, y: 0}
-  m_UICollapsed: 1
+  m_UICollapsed: 0
   m_UISuperCollapsed: 0
   m_MasterSlot: {fileID: 8926484042661615052}
   m_MasterData:
@@ -3470,7 +3470,7 @@ MonoBehaviour:
   - {fileID: 8926484042661615059}
   - {fileID: 8926484042661615063}
   m_UIPosition: {x: 0, y: 0}
-  m_UICollapsed: 1
+  m_UICollapsed: 0
   m_UISuperCollapsed: 0
   m_MasterSlot: {fileID: 8926484042661615052}
   m_MasterData:
@@ -6607,7 +6607,7 @@ MonoBehaviour:
   m_Children:
   - {fileID: 8926484042661615222}
   - {fileID: 8926484042661615734}
-  m_UIPosition: {x: 2642, y: 2575}
+  m_UIPosition: {x: 2642, y: 2065}
   m_UICollapsed: 0
   m_UISuperCollapsed: 0
   m_InputSlots:
@@ -6787,7 +6787,7 @@ MonoBehaviour:
   - {fileID: 8926484042661615227}
   - {fileID: 8926484042661615230}
   - {fileID: 8926484042661615233}
-  m_UIPosition: {x: 2642, y: 1719}
+  m_UIPosition: {x: 2642, y: 1604}
   m_UICollapsed: 0
   m_UISuperCollapsed: 0
   m_InputSlots: []
@@ -7141,7 +7141,7 @@ MonoBehaviour:
   m_UIIgnoredErrors: []
   m_Parent: {fileID: 114350483966674976}
   m_Children: []
-  m_UIPosition: {x: 3258, y: 2973}
+  m_UIPosition: {x: 3102, y: 2759}
   m_UICollapsed: 0
   m_UISuperCollapsed: 0
   m_InputSlots: []
@@ -7180,7 +7180,7 @@ MonoBehaviour:
   - {fileID: 8926484042661615246}
   - {fileID: 8926484042661615250}
   - {fileID: 8926484042661615253}
-  m_UIPosition: {x: 3258, y: 3127}
+  m_UIPosition: {x: 3102, y: 2913}
   m_UICollapsed: 0
   m_UISuperCollapsed: 0
   m_InputSlots:
@@ -7281,7 +7281,7 @@ MonoBehaviour:
   m_UIIgnoredErrors: []
   m_Parent: {fileID: 8926484042661615239}
   m_Children: []
-  m_UIPosition: {x: 875.74194, y: 2341.2314}
+  m_UIPosition: {x: 0, y: 2}
   m_UICollapsed: 0
   m_UISuperCollapsed: 0
   m_InputSlots: []
@@ -7358,7 +7358,7 @@ MonoBehaviour:
   m_UIIgnoredErrors: []
   m_Parent: {fileID: 8926484042661615239}
   m_Children: []
-  m_UIPosition: {x: 875.74194, y: 2431.2314}
+  m_UIPosition: {x: 0, y: 79}
   m_UICollapsed: 0
   m_UISuperCollapsed: 0
   m_InputSlots:
@@ -7492,7 +7492,7 @@ MonoBehaviour:
   m_UIIgnoredErrors: []
   m_Parent: {fileID: 8926484042661615239}
   m_Children: []
-  m_UIPosition: {x: 875.74194, y: 2564.2314}
+  m_UIPosition: {x: 0, y: 211}
   m_UICollapsed: 0
   m_UISuperCollapsed: 0
   m_InputSlots:
@@ -7590,7 +7590,7 @@ MonoBehaviour:
   m_UIIgnoredErrors: []
   m_Parent: {fileID: 8926484042661615239}
   m_Children: []
-  m_UIPosition: {x: 875.74194, y: 2694.2314}
+  m_UIPosition: {x: 0, y: 340}
   m_UICollapsed: 0
   m_UISuperCollapsed: 0
   m_InputSlots: []
@@ -7652,7 +7652,7 @@ MonoBehaviour:
   - {fileID: 8926484042661615276}
   - {fileID: 8926484042661615278}
   - {fileID: 8926484042661615280}
-  m_UIPosition: {x: 3258, y: 2349}
+  m_UIPosition: {x: 3102, y: 2135}
   m_UICollapsed: 0
   m_UISuperCollapsed: 0
   m_InputSlots:
@@ -8156,7 +8156,7 @@ MonoBehaviour:
   m_UIIgnoredErrors: []
   m_Parent: {fileID: 8926484042661615255}
   m_Children: []
-  m_UIPosition: {x: 875.74194, y: 2341.2314}
+  m_UIPosition: {x: 0, y: 2}
   m_UICollapsed: 0
   m_UISuperCollapsed: 0
   m_InputSlots: []
@@ -8217,7 +8217,7 @@ MonoBehaviour:
   m_UIIgnoredErrors: []
   m_Parent: {fileID: 8926484042661615255}
   m_Children: []
-  m_UIPosition: {x: 875.74194, y: 2396.2314}
+  m_UIPosition: {x: 0, y: 43}
   m_UICollapsed: 0
   m_UISuperCollapsed: 0
   m_InputSlots: []
@@ -8278,7 +8278,7 @@ MonoBehaviour:
   m_UIIgnoredErrors: []
   m_Parent: {fileID: 8926484042661615255}
   m_Children: []
-  m_UIPosition: {x: 875.74194, y: 2453.2314}
+  m_UIPosition: {x: 0, y: 86}
   m_UICollapsed: 0
   m_UISuperCollapsed: 0
   m_InputSlots: []
@@ -8339,7 +8339,7 @@ MonoBehaviour:
   m_UIIgnoredErrors: []
   m_Parent: {fileID: 8926484042661615255}
   m_Children: []
-  m_UIPosition: {x: 875.74194, y: 2510.2314}
+  m_UIPosition: {x: 0, y: 129}
   m_UICollapsed: 0
   m_UISuperCollapsed: 0
   m_InputSlots: []
@@ -8400,7 +8400,7 @@ MonoBehaviour:
   m_UIIgnoredErrors: []
   m_Parent: {fileID: 8926484042661615255}
   m_Children: []
-  m_UIPosition: {x: 875.74194, y: 2568.2314}
+  m_UIPosition: {x: 0, y: 171}
   m_UICollapsed: 0
   m_UISuperCollapsed: 0
   m_InputSlots: []
@@ -8461,7 +8461,7 @@ MonoBehaviour:
   m_UIIgnoredErrors: []
   m_Parent: {fileID: 8926484042661615255}
   m_Children: []
-  m_UIPosition: {x: 875.74194, y: 2625.2314}
+  m_UIPosition: {x: 0, y: 214}
   m_UICollapsed: 0
   m_UISuperCollapsed: 0
   m_InputSlots: []
@@ -8522,7 +8522,7 @@ MonoBehaviour:
   m_UIIgnoredErrors: []
   m_Parent: {fileID: 114350483966674976}
   m_Children: []
-  m_UIPosition: {x: 3258, y: 2099}
+  m_UIPosition: {x: 3102, y: 1885}
   m_UICollapsed: 0
   m_UISuperCollapsed: 0
   m_InputSlots:
@@ -8607,7 +8607,7 @@ MonoBehaviour:
   m_UIIgnoredErrors: []
   m_Parent: {fileID: 114350483966674976}
   m_Children: []
-  m_UIPosition: {x: 2918, y: 3651}
+  m_UIPosition: {x: 2737, y: 3439}
   m_UICollapsed: 0
   m_UISuperCollapsed: 1
   m_InputSlots:
@@ -8743,7 +8743,7 @@ MonoBehaviour:
   m_UIIgnoredErrors: []
   m_Parent: {fileID: 114350483966674976}
   m_Children: []
-  m_UIPosition: {x: 2520, y: 3595}
+  m_UIPosition: {x: 2339, y: 3383}
   m_UICollapsed: 0
   m_UISuperCollapsed: 1
   m_InputSlots: []
@@ -8802,7 +8802,7 @@ MonoBehaviour:
   m_UIIgnoredErrors: []
   m_Parent: {fileID: 114350483966674976}
   m_Children: []
-  m_UIPosition: {x: 2412, y: 3651}
+  m_UIPosition: {x: 2231, y: 3439}
   m_UICollapsed: 0
   m_UISuperCollapsed: 1
   m_InputSlots: []
@@ -8861,7 +8861,7 @@ MonoBehaviour:
   m_UIIgnoredErrors: []
   m_Parent: {fileID: 114350483966674976}
   m_Children: []
-  m_UIPosition: {x: 2740, y: 3651}
+  m_UIPosition: {x: 2559, y: 3439}
   m_UICollapsed: 0
   m_UISuperCollapsed: 1
   m_InputSlots:
@@ -8997,7 +8997,7 @@ MonoBehaviour:
   m_UIIgnoredErrors: []
   m_Parent: {fileID: 114350483966674976}
   m_Children: []
-  m_UIPosition: {x: 3102, y: 3595}
+  m_UIPosition: {x: 2921, y: 3383}
   m_UICollapsed: 0
   m_UISuperCollapsed: 1
   m_InputSlots:
@@ -9266,7 +9266,7 @@ MonoBehaviour:
   - {fileID: 8926484042661615438}
   - {fileID: 8926484042661615455}
   m_UIPosition: {x: 0, y: 0}
-  m_UICollapsed: 1
+  m_UICollapsed: 0
   m_UISuperCollapsed: 0
   m_MasterSlot: {fileID: 8926484042661615437}
   m_MasterData:
@@ -9275,7 +9275,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: UnityEditor.VFX.TArcCone, Unity.VisualEffectGraph.Editor,
           Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-      m_SerializableObject: '{"cone":{"transform":{"position":{"x":-0.03920173645019531,"y":-2.1660914421081545,"z":-0.19760513305664063},"angles":{"x":0.0,"y":326.01177978515627,"z":268.9825439453125},"scale":{"x":1.0,"y":1.0,"z":1.0}},"baseRadius":1.0,"topRadius":1.804086685180664,"height":1.0},"arc":6.2831854820251469}'
+      m_SerializableObject: '{"cone":{"transform":{"position":{"x":0.0,"y":0.0,"z":0.0},"angles":{"x":0.0,"y":0.0,"z":270.0},"scale":{"x":1.0,"y":1.0,"z":1.0}},"baseRadius":1.0,"topRadius":1.804086685180664,"height":1.0},"arc":6.2831854820251469}'
     m_Space: 0
   m_Property:
     name: arcCone
@@ -9304,7 +9304,7 @@ MonoBehaviour:
   - {fileID: 8926484042661615453}
   - {fileID: 8926484042661615454}
   m_UIPosition: {x: 0, y: 0}
-  m_UICollapsed: 1
+  m_UICollapsed: 0
   m_UISuperCollapsed: 0
   m_MasterSlot: {fileID: 8926484042661615437}
   m_MasterData:
@@ -9340,7 +9340,7 @@ MonoBehaviour:
   - {fileID: 8926484042661615444}
   - {fileID: 8926484042661615448}
   m_UIPosition: {x: 0, y: 0}
-  m_UICollapsed: 1
+  m_UICollapsed: 0
   m_UISuperCollapsed: 0
   m_MasterSlot: {fileID: 8926484042661615437}
   m_MasterData:
@@ -10243,7 +10243,7 @@ MonoBehaviour:
   m_UIIgnoredErrors: []
   m_Parent: {fileID: 114350483966674976}
   m_Children: []
-  m_UIPosition: {x: 2033, y: 1889}
+  m_UIPosition: {x: 2033, y: 1773}
   m_UICollapsed: 0
   m_UISuperCollapsed: 0
   m_InputSlots: []
@@ -10309,7 +10309,7 @@ MonoBehaviour:
   - {fileID: 8926484042661615542}
   - {fileID: 8926484042661615545}
   - {fileID: 8926484042661615686}
-  m_UIPosition: {x: 2047, y: 2146}
+  m_UIPosition: {x: 2033, y: 1926}
   m_UICollapsed: 0
   m_UISuperCollapsed: 0
   m_InputSlots:
@@ -11060,7 +11060,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: UnityEditor.VFX.TArcCone, Unity.VisualEffectGraph.Editor,
           Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-      m_SerializableObject: '{"cone":{"transform":{"position":{"x":0.0,"y":-2.544013500213623,"z":-0.3238239288330078},"angles":{"x":19.805740356445314,"y":340.4544372558594,"z":271.2249755859375},"scale":{"x":1.0,"y":1.0,"z":1.0}},"baseRadius":1.1291372776031495,"topRadius":1.550816535949707,"height":0.44879966974258425},"arc":6.28000020980835}'
+      m_SerializableObject: '{"cone":{"transform":{"position":{"x":0.0,"y":0.0,"z":0.0},"angles":{"x":0.0,"y":0.0,"z":270.0},"scale":{"x":1.0,"y":1.0,"z":1.0}},"baseRadius":1.1291372776031495,"topRadius":1.550816535949707,"height":0.44879966974258425},"arc":6.28000020980835}'
     m_Space: 0
   m_Property:
     name: arcCone
@@ -11089,7 +11089,7 @@ MonoBehaviour:
   - {fileID: 8926484042661615661}
   - {fileID: 8926484042661615662}
   m_UIPosition: {x: 0, y: 0}
-  m_UICollapsed: 1
+  m_UICollapsed: 0
   m_UISuperCollapsed: 0
   m_MasterSlot: {fileID: 8926484042661615645}
   m_MasterData:
@@ -11125,7 +11125,7 @@ MonoBehaviour:
   - {fileID: 8926484042661615652}
   - {fileID: 8926484042661615656}
   m_UIPosition: {x: 0, y: 0}
-  m_UICollapsed: 1
+  m_UICollapsed: 0
   m_UISuperCollapsed: 0
   m_MasterSlot: {fileID: 8926484042661615645}
   m_MasterData:
@@ -11728,7 +11728,7 @@ MonoBehaviour:
   m_UIIgnoredErrors: []
   m_Parent: {fileID: 114350483966674976}
   m_Children: []
-  m_UIPosition: {x: 1673, y: 2391}
+  m_UIPosition: {x: 1820, y: 2109}
   m_UICollapsed: 0
   m_UISuperCollapsed: 0
   m_InputSlots:
@@ -11855,7 +11855,7 @@ MonoBehaviour:
   m_UIIgnoredErrors: []
   m_Parent: {fileID: 114350483966674976}
   m_Children: []
-  m_UIPosition: {x: 1393, y: 2415}
+  m_UIPosition: {x: 1585, y: 2065}
   m_UICollapsed: 0
   m_UISuperCollapsed: 0
   m_InputSlots: []
@@ -12077,7 +12077,7 @@ MonoBehaviour:
   m_UIIgnoredErrors: []
   m_Parent: {fileID: 114350483966674976}
   m_Children: []
-  m_UIPosition: {x: 1701, y: 2224}
+  m_UIPosition: {x: 1812, y: 2013}
   m_UICollapsed: 0
   m_UISuperCollapsed: 0
   m_InputSlots:
@@ -12958,7 +12958,7 @@ MonoBehaviour:
   m_Parent: {fileID: 114350483966674976}
   m_Children:
   - {fileID: 8926484042661615739}
-  m_UIPosition: {x: 3847.3335, y: 422.66672}
+  m_UIPosition: {x: 3847, y: 423}
   m_UICollapsed: 0
   m_UISuperCollapsed: 0
   m_InputSlots: []
@@ -13144,7 +13144,7 @@ MonoBehaviour:
   - {fileID: 8926484042661615758}
   - {fileID: 8926484042661615762}
   - {fileID: 8926484042661615785}
-  m_UIPosition: {x: 3847.3335, y: 885.66675}
+  m_UIPosition: {x: 3839, y: 883}
   m_UICollapsed: 0
   m_UISuperCollapsed: 0
   m_InputSlots:
@@ -13826,7 +13826,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: UnityEditor.VFX.TArcCone, Unity.VisualEffectGraph.Editor,
           Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-      m_SerializableObject: '{"cone":{"transform":{"position":{"x":6.075842380523682,"y":-2.355708122253418,"z":2.3804244995117189},"angles":{"x":288.44879150390627,"y":198.7238006591797,"z":226.44467163085938},"scale":{"x":1.0,"y":1.0,"z":1.0}},"baseRadius":0.08565384894609451,"topRadius":0.4706547260284424,"height":1.9189574718475342},"arc":6.28000020980835}'
+      m_SerializableObject: '{"cone":{"transform":{"position":{"x":6.075841903686523,"y":0.0,"z":0.4457641839981079},"angles":{"x":286.2705078125,"y":211.80712890625,"z":233.06793212890626},"scale":{"x":1.0,"y":1.0,"z":1.0}},"baseRadius":0.08565384894609451,"topRadius":0.4706547260284424,"height":1.9189574718475342},"arc":6.28000020980835}'
     m_Space: 0
   m_Property:
     name: arcCone
@@ -13855,7 +13855,7 @@ MonoBehaviour:
   - {fileID: 8926484042661615779}
   - {fileID: 8926484042661615780}
   m_UIPosition: {x: 0, y: 0}
-  m_UICollapsed: 1
+  m_UICollapsed: 0
   m_UISuperCollapsed: 0
   m_MasterSlot: {fileID: 8926484042661615763}
   m_MasterData:
@@ -13891,7 +13891,7 @@ MonoBehaviour:
   - {fileID: 8926484042661615770}
   - {fileID: 8926484042661615774}
   m_UIPosition: {x: 0, y: 0}
-  m_UICollapsed: 1
+  m_UICollapsed: 0
   m_UISuperCollapsed: 0
   m_MasterSlot: {fileID: 8926484042661615763}
   m_MasterData:
@@ -14896,7 +14896,7 @@ MonoBehaviour:
   m_UIIgnoredErrors: []
   m_Parent: {fileID: 114350483966674976}
   m_Children: []
-  m_UIPosition: {x: 3839.3335, y: 1986.6667}
+  m_UIPosition: {x: 3839, y: 1987}
   m_UICollapsed: 0
   m_UISuperCollapsed: 0
   m_InputSlots: []
@@ -14935,7 +14935,7 @@ MonoBehaviour:
   - {fileID: 8926484042661615816}
   - {fileID: 8926484042661615819}
   - {fileID: 8926484042661615822}
-  m_UIPosition: {x: 3839.3335, y: 2144.6667}
+  m_UIPosition: {x: 3839, y: 2145}
   m_UICollapsed: 0
   m_UISuperCollapsed: 0
   m_InputSlots:
@@ -15421,7 +15421,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: UnityEngine.Vector3, UnityEngine.CoreModule, Version=0.0.0.0,
           Culture=neutral, PublicKeyToken=null
-      m_SerializableObject: '{"x":0.0,"y":-20.700000762939454,"z":59.599998474121097}'
+      m_SerializableObject: '{"x":0.0,"y":-17.0,"z":59.599998474121097}'
     m_Space: -1
   m_Property:
     name: _Angle

@@ -16,6 +16,10 @@ public class BreakableWall : MonoBehaviour, IInteractable
     bool breaking = false;
     PlayerGlove playerGlove;
 
+    public Vector3 lastHitPoint;
+    public Vector3 lastHitNormal;
+    public bool hasLastHit;
+
     void Awake()
     {
         GameObject player = GameObject.FindGameObjectWithTag("Player");
@@ -43,6 +47,13 @@ public class BreakableWall : MonoBehaviour, IInteractable
         }
     }
 
+    public void SetLastHit(Vector3 point, Vector3 normal)
+    {
+        lastHitPoint = point;
+        lastHitNormal = normal;
+        hasLastHit = true;
+    }
+
     public void OnInteract()
     {
         if (broken || breaking) return;
@@ -66,6 +77,13 @@ public class BreakableWall : MonoBehaviour, IInteractable
 
     public void GetShatterHit(out Vector3 point, out Vector3 normal)
     {
+        if (hasLastHit)
+        {
+            point = lastHitPoint;
+            normal = lastHitNormal;
+            return;
+        }
+
         var col = GetComponent<Collider>();
         if (col == null)
         {
@@ -74,30 +92,8 @@ public class BreakableWall : MonoBehaviour, IInteractable
             return;
         }
 
-        Transform src = hitSource;
-        if (src == null && Camera.main != null) src = Camera.main.transform;
-
-        if (src == null)
-        {
-            point = col.bounds.center;
-            normal = transform.forward;
-            return;
-        }
-
-        Vector3 dir = (col.bounds.center - src.position).normalized;
-        Ray ray = new Ray(src.position, dir);
-
-        if (col.Raycast(ray, out RaycastHit hit, 50f))
-        {
-            point = hit.point;
-            normal = hit.normal;
-            return;
-        }
-
-        point = col.ClosestPoint(src.position);
-        normal = (point - col.bounds.center).sqrMagnitude > 0.0001f
-            ? (point - col.bounds.center).normalized
-            : transform.forward;
+        point = col.bounds.center;
+        normal = transform.forward;
     }
 
     void Shatter()

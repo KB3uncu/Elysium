@@ -3,21 +3,21 @@ using UnityEngine.UI;
 
 public class PlayerInteractor : MonoBehaviour
 {
-    [Header("Raycast Ayarlarý")]
     public float interactDistance = 3f;
     public LayerMask interactLayer = ~0;
 
-    [Header("Crosshair")]
     public Image crosshairImage;
     public Color normalColor = Color.white;
     public Color highlightColor = Color.green;
 
-    private Camera cam;
-    private IInteractable currentTarget;
+    Camera cam;
+    IInteractable currentTarget;
+
+    RaycastHit currentHit;
+    bool hasHit;
 
     void Awake()
     {
-
         cam = GetComponent<Camera>();
         if (cam == null) cam = Camera.main;
 
@@ -30,21 +30,35 @@ public class PlayerInteractor : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.E) && currentTarget != null)
         {
+            if (hasHit)
+            {
+                var wall = currentHit.collider.GetComponentInParent<BreakableWall>();
+                if (wall != null)
+                {
+                    wall.SetLastHit(currentHit.point, currentHit.normal);
+                }
+            }
+
             currentTarget.OnInteract();
         }
     }
 
     void CheckForInteractable()
     {
+        hasHit = false;
         if (cam == null) return;
 
         Ray ray = cam.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
+
         if (Physics.Raycast(ray, out RaycastHit hit, interactDistance, interactLayer, QueryTriggerInteraction.Collide))
         {
             var interactable = hit.collider.GetComponent<IInteractable>();
             if (interactable != null)
             {
                 currentTarget = interactable;
+                currentHit = hit;
+                hasHit = true;
+
                 if (crosshairImage != null) crosshairImage.color = highlightColor;
                 return;
             }
@@ -53,7 +67,6 @@ public class PlayerInteractor : MonoBehaviour
         currentTarget = null;
         if (crosshairImage != null) crosshairImage.color = normalColor;
     }
-
 
     void OnDrawGizmosSelected()
     {

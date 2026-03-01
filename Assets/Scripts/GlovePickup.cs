@@ -34,6 +34,11 @@ public class GlovePickup : MonoBehaviour, IInteractable
 
         playerGlove.EquipGlove();
         VFXManager.Instance.OnGloveEquipped();
+        if (VFXManager.Instance != null)
+        {
+            VFXManager.Instance.OnGloveEquipped();
+            VFXManager.Instance.PlayPickupAnim();
+        }
 
         if (pickupVisual != null)
             pickupVisual.SetActive(false);
