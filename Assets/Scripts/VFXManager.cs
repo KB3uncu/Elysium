@@ -152,6 +152,7 @@ public class VFXManager : MonoBehaviour
         if (!shatterVfxPrefab) return;
 
         pos += normal * 0.03f;
+        pos.y -= 0.8f;
 
         Quaternion rot = Quaternion.LookRotation(-normal) * Quaternion.Euler(0f, 90f, 0f);
 
