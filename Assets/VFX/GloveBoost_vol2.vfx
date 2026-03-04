@@ -56,10 +56,10 @@ MonoBehaviour:
   - title: SMOKE
     position:
       serializedVersion: 2
-      x: 2979
+      x: 2783
       y: -1469
-      width: 476
-      height: 2447
+      width: 671
+      height: 2563
     contents:
     - model: {fileID: 8926484042661615120}
       id: 0
@@ -2561,7 +2561,7 @@ MonoBehaviour:
     linkedSlots:
     - outputSlot: {fileID: 8926484042661614881}
       inputSlot: {fileID: 8926484042661614682}
-    position: {x: 1304, y: 399.3333}
+    position: {x: 1394.6666, y: 234.66667}
     expandedSlots: []
     expanded: 1
     supecollapsed: 0
@@ -3071,7 +3071,7 @@ MonoBehaviour:
     linkedSlots:
     - outputSlot: {fileID: 8926484042661615007}
       inputSlot: {fileID: 8926484042661615005}
-    position: {x: 1304, y: 317.3333}
+    position: {x: 1394.6666, y: 152.66667}
     expandedSlots: []
     expanded: 1
     supecollapsed: 0
@@ -3225,10 +3225,8 @@ MonoBehaviour:
     expanded: 1
     supecollapsed: 0
   - m_Id: 1
-    linkedSlots:
-    - outputSlot: {fileID: 8926484042661615011}
-      inputSlot: {fileID: 8926484042661615088}
-    position: {x: 2148.6667, y: 528}
+    linkedSlots: []
+    position: {x: 2095.3335, y: 531.3334}
     expandedSlots: []
     expanded: 1
     supecollapsed: 0
@@ -3267,7 +3265,6 @@ MonoBehaviour:
   m_Direction: 1
   m_LinkedSlots:
   - {fileID: 8926484042661614723}
-  - {fileID: 8926484042661615088}
 --- !u!114 &8926484042661615012
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5749,8 +5746,7 @@ MonoBehaviour:
       m_SerializableType: UnityEngine.Gradient, UnityEngine.CoreModule, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
   m_Direction: 0
-  m_LinkedSlots:
-  - {fileID: 8926484042661615011}
+  m_LinkedSlots: []
 --- !u!114 &8926484042661615089
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5839,7 +5835,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
           PublicKeyToken=b77a5c561934e089
-      m_SerializableObject: 0.4
+      m_SerializableObject: 0.2
     m_Space: -1
   m_Property:
     name: A
@@ -5873,7 +5869,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
           PublicKeyToken=b77a5c561934e089
-      m_SerializableObject: 0.8
+      m_SerializableObject: 0.4
     m_Space: -1
   m_Property:
     name: B
@@ -8955,7 +8951,7 @@ MonoBehaviour:
     linkedSlots:
     - outputSlot: {fileID: 8926484042661615219}
       inputSlot: {fileID: 8926484042661615225}
-    position: {x: 2831.3335, y: 852}
+    position: {x: 2808.6667, y: 968.6667}
     expandedSlots: []
     expanded: 1
     supecollapsed: 0
@@ -15283,7 +15279,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
           PublicKeyToken=b77a5c561934e089
-      m_SerializableObject: 0.4
+      m_SerializableObject: 0.2
     m_Space: -1
   m_Property:
     name: A
@@ -15317,7 +15313,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
           PublicKeyToken=b77a5c561934e089
-      m_SerializableObject: 0.8
+      m_SerializableObject: 0.4
     m_Space: -1
   m_Property:
     name: B

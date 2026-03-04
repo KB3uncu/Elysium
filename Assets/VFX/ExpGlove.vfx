@@ -15421,7 +15421,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: UnityEngine.Vector3, UnityEngine.CoreModule, Version=0.0.0.0,
           Culture=neutral, PublicKeyToken=null
-      m_SerializableObject: '{"x":-50.0,"y":-17.0,"z":59.599998474121097}'
+      m_SerializableObject: '{"x":0.0,"y":-17.0,"z":59.599998474121097}'
     m_Space: -1
   m_Property:
     name: _Angle

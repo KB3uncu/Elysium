@@ -47,19 +47,19 @@ public class TriviaGameManager : MonoBehaviour
     {
         if(index == currentQuestion.correctAnswerIndex)
         {
-            resultAnswerText.text = "HELAL OLSUN";
+            resultAnswerText.text = "DOÐRU";
             resultAnswerText.color = Color.green;
         }
         else
         {
-            resultAnswerText.text = "NEÐÐÐÐ DÝYON OLUM";
+            resultAnswerText.text = "YANLIÞ";
             resultAnswerText.color = Color.red;
 
             healthManager.LoseHealth();
 
             if (healthManager.IsDead())
             {
-                resultAnswerText.text = "Kaybettinke";
+                resultAnswerText.text = "KAYBETTÝN!";
                 canAnswer = false;
                 return;
             }
@@ -71,8 +71,8 @@ public class TriviaGameManager : MonoBehaviour
         currentIndex++;
         if(currentIndex >= questions.Length)
         {
-            resultAnswerText.text = "Kazandýn loooo";
-            Debug.Log("Soru bitti laminyo");
+            resultAnswerText.text = "KAZANDIN";
+            Debug.Log("SORU BÝTTÝ");
             chest.SetActive(true);
             return;
         }
