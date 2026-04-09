@@ -1,0 +1,154 @@
+using UnityEngine;
+using System.Collections;
+
+public class BreakableWall : MonoBehaviour, IInteractable
+{
+    public Rigidbody[] pieces;
+
+    public float minForce = 3f;
+    public float maxForce = 7f;
+    public float minTorque = 1f;
+    public float maxTorque = 4f;
+
+    public Transform hitSource;
+
+    bool broken = false;
+    bool breaking = false;
+    PlayerGlove playerGlove;
+
+    public Vector3 lastHitPoint;
+    public Vector3 lastHitNormal;
+    public bool hasLastHit;
+
+    void Awake()
+    {
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        if (player != null)
+        {
+            playerGlove = player.GetComponent<PlayerGlove>();
+            if (hitSource == null) hitSource = player.transform;
+        }
+
+        if (pieces == null || pieces.Length == 0)
+            pieces = GetComponentsInChildren<Rigidbody>();
+    }
+
+    void Start()
+    {
+        foreach (var rb in pieces)
+        {
+            if (rb == null) continue;
+
+            rb.linearVelocity = Vector3.zero;
+            rb.angularVelocity = Vector3.zero;
+
+            rb.useGravity = false;
+            rb.isKinematic = true;
+        }
+    }
+
+    public void SetLastHit(Vector3 point, Vector3 normal)
+    {
+        lastHitPoint = point;
+        lastHitNormal = normal;
+        hasLastHit = true;
+    }
+
+    public void OnInteract()
+    {
+        if (broken || breaking) return;
+        if (playerGlove == null) return;
+        if (!playerGlove.hasGlove) return;
+        if (VFXManager.Instance == null) return;
+        if (!VFXManager.Instance.IsPunchReady())
+            return;
+
+        bool started = VFXManager.Instance.PunchWall(this, playerGlove);
+
+        if (started)
+            breaking = true;
+    }
+
+    public void FinishBreak(PlayerGlove glove)
+    {
+        if (broken) return;
+
+        if (glove != null && glove.hasGlove)
+            glove.ConsumeGlove();
+
+        Shatter();
+    }
+
+    public void GetShatterHit(out Vector3 point, out Vector3 normal)
+    {
+        if (hasLastHit)
+        {
+            point = lastHitPoint;
+            normal = lastHitNormal;
+            return;
+        }
+
+        var col = GetComponent<Collider>();
+        if (col == null)
+        {
+            point = transform.position;
+            normal = transform.forward;
+            return;
+        }
+
+        point = col.bounds.center;
+        normal = transform.forward;
+    }
+
+    void Shatter()
+    {
+        broken = true;
+
+        foreach (var rb in pieces)
+        {
+            if (rb == null) continue;
+
+            rb.isKinematic = false;
+            rb.useGravity = true;
+
+            Vector3 forceDir = (Vector3.back + new Vector3(
+                Random.Range(-0.3f, 0.3f),
+                Random.Range(0.2f, 0.8f),
+                0f)).normalized;
+
+            rb.AddForce(forceDir * Random.Range(minForce, maxForce), ForceMode.Impulse);
+            rb.AddTorque(Random.insideUnitSphere * Random.Range(minTorque, maxTorque), ForceMode.Impulse);
+        }
+
+        Collider col = GetComponent<Collider>();
+        if (col != null) col.enabled = false;
+
+        StartCoroutine(FadeOut());
+    }
+
+    IEnumerator FadeOut()
+    {
+        yield return new WaitForSeconds(5f);
+
+        Renderer[] rends = GetComponentsInChildren<Renderer>();
+        float t = 0f;
+        float duration = 1.5f;
+
+        while (t < duration)
+        {
+            t += Time.deltaTime;
+            float alpha = 1f - (t / duration);
+
+            foreach (var r in rends)
+            {
+                var c = r.material.color;
+                c.a = alpha;
+                r.material.color = c;
+            }
+
+            yield return null;
+        }
+
+        Destroy(gameObject);
+    }
+}
