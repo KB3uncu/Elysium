@@ -65,6 +65,9 @@ public class FPSController : MonoBehaviour
     public GameObject shockwavePrefab;
     public float shockwaveSpawnDistance = 2f;
 
+    [Header("Balance Debug")]
+    public bool drawBalanceDebug = true;
+
     private CharacterController controller;
     private Vector3 velocity;
     private Vector3 moveVelocity;
@@ -83,6 +86,18 @@ public class FPSController : MonoBehaviour
     private Vector3 slideDir;
     private float slideSpeed;
     private float slideJumpTimer;
+
+    // BALANCE
+    private bool isInBalanceMode;
+    private BalanceBeam currentBalanceBeam;
+    private Vector3 activeBeamMoveForward;
+    private float currentCameraRoll;
+    private float targetCameraRoll;
+    private float swayTimer;
+
+    // step-based balance: negative = left, positive = right
+    private int balanceStep;
+    private bool lastBalanceInputConsumed;
 
     void Awake()
     {
@@ -109,6 +124,7 @@ public class FPSController : MonoBehaviour
         BoostLogic();
         HandleHeadBob();
         HandleFOV();
+        UpdateBalanceVisuals();
 
         if (slideJumpTimer > 0f)
             slideJumpTimer -= Time.deltaTime;
@@ -124,7 +140,7 @@ public class FPSController : MonoBehaviour
         verticalRotation = Mathf.Clamp(verticalRotation, -upDownRange, upDownRange);
 
         if (playerCamera != null)
-            playerCamera.localRotation = Quaternion.Euler(verticalRotation, 0f, 0f);
+            playerCamera.localRotation = Quaternion.Euler(verticalRotation, 0f, currentCameraRoll);
     }
 
     void Movement()
@@ -134,6 +150,24 @@ public class FPSController : MonoBehaviour
         if (grounded && velocity.y < 0)
             velocity.y = -2f;
 
+        if (isInBalanceMode && currentBalanceBeam != null)
+            HandleBalanceMovement();
+        else
+            HandleNormalMovement();
+
+        if (!isInBalanceMode && Input.GetButtonDown("Jump") && grounded)
+            TryJump();
+
+        velocity.y += gravity * Time.deltaTime;
+
+        Vector3 finalMove = moveVelocity;
+        finalMove.y = velocity.y;
+
+        controller.Move(finalMove * Time.deltaTime);
+    }
+
+    void HandleNormalMovement()
+    {
         if (!isSliding)
         {
             float x = Input.GetAxisRaw("Horizontal");
@@ -147,16 +181,127 @@ public class FPSController : MonoBehaviour
 
             moveVelocity = Vector3.SmoothDamp(moveVelocity, target, ref dampVelocity, 1f / acceleration);
         }
+    }
 
-        if (Input.GetButtonDown("Jump") && grounded)
-            TryJump();
+    void HandleBalanceMovement()
+    {
+        if (currentBalanceBeam == null)
+        {
+            ForceExitBalanceMode();
+            return;
+        }
 
-        velocity.y += gravity * Time.deltaTime;
+        float zInput = Input.GetAxisRaw("Vertical");
 
-        Vector3 finalMove = moveVelocity;
-        finalMove.y = velocity.y;
+        if (!currentBalanceBeam.allowBackwardMovement && zInput < 0f)
+            zInput = 0f;
 
-        controller.Move(finalMove * Time.deltaTime);
+        Vector3 target = activeBeamMoveForward * (zInput * currentBalanceBeam.balanceWalkSpeed);
+        moveVelocity = Vector3.SmoothDamp(moveVelocity, target, ref dampVelocity, 1f / acceleration);
+
+        UpdateBalanceState();
+    }
+
+    void UpdateBalanceState()
+    {
+        if (!isInBalanceMode || currentBalanceBeam == null)
+        {
+            ForceExitBalanceMode();
+            return;
+        }
+
+        swayTimer -= Time.deltaTime;
+        if (swayTimer <= 0f)
+        {
+            ApplyRandomSway();
+            ResetSwayTimer();
+        }
+
+        HandleBalanceInput();
+
+        int maxStep = Mathf.Max(1, currentBalanceBeam.maxBalanceStep);
+
+        if (balanceStep > maxStep || balanceStep < -maxStep)
+        {
+            FailBalance();
+            return;
+        }
+
+        float normalized = (float)balanceStep / maxStep;
+        targetCameraRoll = -normalized * currentBalanceBeam.maxCameraRoll;
+    }
+
+    void HandleBalanceInput()
+    {
+        bool pressLeft = Input.GetKeyDown(KeyCode.A);
+        bool pressRight = Input.GetKeyDown(KeyCode.D);
+
+        if (pressLeft && !pressRight)
+        {
+            balanceStep -= 1;
+        }
+        else if (pressRight && !pressLeft)
+        {
+            balanceStep += 1;
+        }
+    }
+
+    void ApplyRandomSway()
+    {
+        if (currentBalanceBeam == null)
+            return;
+
+        bool sudden = Random.value < currentBalanceBeam.suddenSwayChance;
+
+        int stepAmount;
+        if (sudden)
+        {
+            stepAmount = Random.Range(
+                currentBalanceBeam.suddenSwayMinStep,
+                currentBalanceBeam.suddenSwayMaxStep + 1
+            );
+        }
+        else
+        {
+            stepAmount = Random.Range(
+                currentBalanceBeam.minSwayStep,
+                currentBalanceBeam.maxSwayStep + 1
+            );
+        }
+
+        int direction = Random.value < 0.5f ? -1 : 1;
+        balanceStep += direction * stepAmount;
+    }
+
+    void ResetSwayTimer()
+    {
+        if (currentBalanceBeam == null)
+            return;
+
+        swayTimer = Random.Range(
+            currentBalanceBeam.swayIntervalMin,
+            currentBalanceBeam.swayIntervalMax
+        );
+    }
+
+    void FailBalance()
+    {
+        if (!isInBalanceMode || currentBalanceBeam == null)
+        {
+            ForceExitBalanceMode();
+            return;
+        }
+
+        Vector3 beamRight = currentBalanceBeam.GetBeamRightFromMoveDirection(activeBeamMoveForward);
+        Vector3 sideDir = balanceStep > 0 ? beamRight : -beamRight;
+
+        moveVelocity *= 0.2f;
+
+        moveVelocity += sideDir * currentBalanceBeam.failPushForce;
+
+        velocity.y = Mathf.Sqrt(currentBalanceBeam.failUpForce * -2f * gravity);
+
+        ForceExitBalanceMode();
     }
 
     void TryJump()
@@ -198,6 +343,9 @@ public class FPSController : MonoBehaviour
             }
         }
 
+        if (isInBalanceMode)
+            return;
+
         if (Input.GetKeyDown(KeyCode.LeftShift) && controller.isGrounded && !isSliding && !isCrouching)
         {
             if (currentStaminaSegments > 0)
@@ -209,10 +357,9 @@ public class FPSController : MonoBehaviour
                 UpdateStaminaUI();
                 staminaRegenTimer = 0f;
                 Debug.Log("Boost Kullanýldý! Kalan Stamina: " + currentStaminaSegments);
+
                 if (shockwavePrefab != null && playerCamera != null)
-                {
                     SpawnShockwave();
-                }
             }
             else
             {
@@ -229,6 +376,17 @@ public class FPSController : MonoBehaviour
 
     void Stance()
     {
+        if (isInBalanceMode)
+        {
+            if (isSliding)
+                EndSlide();
+
+            if (isCrouching)
+                StopCrouch();
+
+            return;
+        }
+
         if (Input.GetKeyDown(KeyCode.LeftControl) && controller.isGrounded && !isSliding)
         {
             float speed = new Vector3(moveVelocity.x, 0f, moveVelocity.z).magnitude;
@@ -253,6 +411,7 @@ public class FPSController : MonoBehaviour
             if (CanStandUp()) StopCrouch();
         }
     }
+
     void StartCrouch()
     {
         isCrouching = true;
@@ -297,7 +456,7 @@ public class FPSController : MonoBehaviour
 
         return !Physics.SphereCast(start, radius, Vector3.up, out _, distance, ceilingMask);
     }
-    
+
     void HandleHeadBob()
     {
         if (!enableHeadBob || playerCamera == null) return;
@@ -309,6 +468,10 @@ public class FPSController : MonoBehaviour
         {
             bobTimer += Time.deltaTime * bobSpeed * (isCrouching ? 0.7f : 1f);
             float currentBobAmount = isCrouching ? crouchBobAmount : bobAmount;
+
+            if (isInBalanceMode)
+                currentBobAmount *= 0.45f;
+
             float bobOffsetY = Mathf.Sin(bobTimer) * currentBobAmount;
 
             Vector3 targetPos = defaultCamLocalPos + new Vector3(0f, bobOffsetY, 0f);
@@ -332,13 +495,21 @@ public class FPSController : MonoBehaviour
         {
             targetFOV += maxFovIncrease * 0.8f;
         }
-        else if (boost > 0.1f && horizontalSpeed > walkSpeed)
+        else if (!isInBalanceMode && boost > 0.1f && horizontalSpeed > walkSpeed)
         {
             float boostFactor = boost / maxBoost;
             targetFOV += boostFactor * maxFovIncrease;
         }
 
         _cam.fieldOfView = Mathf.Lerp(_cam.fieldOfView, targetFOV, Time.deltaTime * fovSmoothTime);
+    }
+
+    void UpdateBalanceVisuals()
+    {
+        if (!isInBalanceMode)
+            targetCameraRoll = 0f;
+
+        currentCameraRoll = Mathf.Lerp(currentCameraRoll, targetCameraRoll, Time.deltaTime * 10f);
     }
 
     void UpdateStaminaUI()
@@ -352,8 +523,7 @@ public class FPSController : MonoBehaviour
             }
             else
             {
-                staminaBars[i].color = emptyColor;   // staminaBars[i].enabled = false;
-
+                staminaBars[i].color = emptyColor;
             }
         }
     }
@@ -362,7 +532,68 @@ public class FPSController : MonoBehaviour
     {
         Vector3 spawnPos = playerCamera.position + (playerCamera.forward * shockwaveSpawnDistance);
         GameObject wave = Instantiate(shockwavePrefab, spawnPos, Quaternion.identity, playerCamera);
-
         wave.transform.LookAt(playerCamera);
+    }
+
+    public void EnterBalanceMode(BalanceBeam beam)
+    {
+        if (beam == null)
+            return;
+
+        currentBalanceBeam = beam;
+        isInBalanceMode = true;
+
+        Vector3 lookSource = playerCamera != null ? playerCamera.forward : transform.forward;
+        activeBeamMoveForward = beam.GetBeamForwardFromLook(lookSource);
+
+        boost = 0f;
+        slideJumpTimer = 0f;
+
+        if (isSliding)
+            EndSlide();
+
+        if (isCrouching)
+            StopCrouch();
+
+        balanceStep = 0;
+        currentCameraRoll = 0f;
+        targetCameraRoll = 0f;
+        lastBalanceInputConsumed = false;
+        ResetSwayTimer();
+    }
+
+    public void ExitBalanceMode(BalanceBeam beam)
+    {
+        if (beam != null && beam != currentBalanceBeam)
+            return;
+
+        ForceExitBalanceMode();
+    }
+
+    void ForceExitBalanceMode()
+    {
+        isInBalanceMode = false;
+        currentBalanceBeam = null;
+        balanceStep = 0;
+        targetCameraRoll = 0f;
+        lastBalanceInputConsumed = false;
+    }
+
+    public bool IsInBalanceMode()
+    {
+        return isInBalanceMode;
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        if (!drawBalanceDebug || !isInBalanceMode || currentBalanceBeam == null)
+            return;
+
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawLine(transform.position, transform.position + activeBeamMoveForward * 2f);
+
+        Vector3 beamRight = currentBalanceBeam.GetBeamRightFromMoveDirection(activeBeamMoveForward);
+        Gizmos.color = Color.cyan;
+        Gizmos.DrawLine(transform.position, transform.position + beamRight * Mathf.Sign(balanceStep));
     }
 }
