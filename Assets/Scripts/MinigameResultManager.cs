@@ -112,6 +112,9 @@ public class MinigameResultManager : MonoBehaviour
 
         if (chest != null)
             chest.SetActive(true);
+
+        if (mouse != null)
+            Destroy(mouse.gameObject);
     }
 
     public void Lose()
