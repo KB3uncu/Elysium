@@ -30908,8 +30908,8 @@ MonoBehaviour:
   balanceWalkSpeed: 1.5
   allowBackwardMovement: 1
   maxBalanceStep: 5
-  swayIntervalMin: 0.2
-  swayIntervalMax: 0.5
+  swayIntervalMin: 0.3
+  swayIntervalMax: 0.8
   minSwayStep: 2
   maxSwayStep: 3
   suddenSwayChance: 1
