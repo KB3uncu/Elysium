@@ -95,9 +95,15 @@ public class FPSController : MonoBehaviour
     private float targetCameraRoll;
     private float swayTimer;
 
-    // step-based balance: negative = left, positive = right
     private int balanceStep;
     private bool lastBalanceInputConsumed;
+
+    // NARROW PASSAGE
+    private bool isInNarrowPassageMode;
+    private NarrowPassageZone currentNarrowPassageZone;
+    private Vector3 activePassageMoveForward;
+    private float normalControllerRadius;
+
 
     void Awake()
     {
@@ -114,6 +120,8 @@ public class FPSController : MonoBehaviour
         if (_cam != null) _defaultFOV = _cam.fieldOfView;
 
         currentStaminaSegments = maxStaminaSegments;
+
+        normalControllerRadius = controller.radius;
     }
 
     void Update()
@@ -151,11 +159,19 @@ public class FPSController : MonoBehaviour
             velocity.y = -2f;
 
         if (isInBalanceMode && currentBalanceBeam != null)
+        {
             HandleBalanceMovement();
+        }
+        else if (isInNarrowPassageMode && currentNarrowPassageZone != null)
+        {
+            HandleNarrowPassageMovement();
+        }
         else
+        {
             HandleNormalMovement();
+        }
 
-        if (!isInBalanceMode && Input.GetButtonDown("Jump") && grounded)
+        if (!isInBalanceMode && !isInNarrowPassageMode && Input.GetButtonDown("Jump") && grounded)
             TryJump();
 
         velocity.y += gravity * Time.deltaTime;
@@ -165,6 +181,23 @@ public class FPSController : MonoBehaviour
 
         controller.Move(finalMove * Time.deltaTime);
     }
+
+    void HandleNarrowPassageMovement()
+{
+    if (currentNarrowPassageZone == null)
+    {
+        ForceExitNarrowPassageMode();
+        return;
+    }
+
+    float zInput = Input.GetAxisRaw("Vertical");
+
+    if (!currentNarrowPassageZone.allowBackwardMovement && zInput < 0f)
+        zInput = 0f;
+
+    Vector3 target = activePassageMoveForward * (zInput * currentNarrowPassageZone.narrowMoveSpeed);
+    moveVelocity = Vector3.SmoothDamp(moveVelocity, target, ref dampVelocity, 1f / acceleration);
+}
 
     void HandleNormalMovement()
     {
@@ -327,6 +360,8 @@ public class FPSController : MonoBehaviour
         velocity.y = Mathf.Sqrt(currentJumpHeight * -2f * gravity);
 
         if (isSliding) EndSlide();
+
+        if (isInNarrowPassageMode) return;
     }
 
     void BoostLogic()
@@ -343,7 +378,7 @@ public class FPSController : MonoBehaviour
             }
         }
 
-        if (isInBalanceMode)
+        if (isInBalanceMode || isInNarrowPassageMode)
             return;
 
         if (Input.GetKeyDown(KeyCode.LeftShift) && controller.isGrounded && !isSliding && !isCrouching)
@@ -376,7 +411,7 @@ public class FPSController : MonoBehaviour
 
     void Stance()
     {
-        if (isInBalanceMode)
+        if (isInBalanceMode || isInNarrowPassageMode)
         {
             if (isSliding)
                 EndSlide();
@@ -506,8 +541,20 @@ public class FPSController : MonoBehaviour
 
     void UpdateBalanceVisuals()
     {
-        if (!isInBalanceMode)
+        if (isInBalanceMode && currentBalanceBeam != null)
+        {
+
+        }
+
+
+        else if (isInNarrowPassageMode && currentNarrowPassageZone != null)
+        {
+            targetCameraRoll = currentNarrowPassageZone.cameraRoll;
+        }
+        else
+        {
             targetCameraRoll = 0f;
+        }
 
         currentCameraRoll = Mathf.Lerp(currentCameraRoll, targetCameraRoll, Time.deltaTime * 10f);
     }
@@ -535,6 +582,47 @@ public class FPSController : MonoBehaviour
         wave.transform.LookAt(playerCamera);
     }
 
+    public void EnterNarrowPassageMode(NarrowPassageZone zone)
+    {
+        if (zone == null)
+            return;
+
+        if (isInBalanceMode)
+            return;
+
+        currentNarrowPassageZone = zone;
+        isInNarrowPassageMode = true;
+
+        Vector3 lookSource = playerCamera != null ? playerCamera.forward : transform.forward;
+        activePassageMoveForward = zone.GetPassageForwardFromLook(lookSource);
+
+        boost = 0f;
+        slideJumpTimer = 0f;
+
+        if (isSliding)
+            EndSlide();
+
+        if (isCrouching)
+            StopCrouch();
+
+        controller.radius = zone.narrowControllerRadius;
+    }
+
+    public void ExitNarrowPassageMode(NarrowPassageZone zone)
+    {
+        if (zone != null && zone != currentNarrowPassageZone)
+            return;
+
+        ForceExitNarrowPassageMode();
+    }
+
+    void ForceExitNarrowPassageMode()
+    {
+        isInNarrowPassageMode = false;
+        currentNarrowPassageZone = null;
+        controller.radius = normalControllerRadius;
+    }
+
     public void EnterBalanceMode(BalanceBeam beam)
     {
         if (beam == null)
@@ -554,6 +642,9 @@ public class FPSController : MonoBehaviour
 
         if (isCrouching)
             StopCrouch();
+
+        if (isInNarrowPassageMode)
+            ForceExitNarrowPassageMode();
 
         balanceStep = 0;
         currentCameraRoll = 0f;
@@ -582,6 +673,11 @@ public class FPSController : MonoBehaviour
     public bool IsInBalanceMode()
     {
         return isInBalanceMode;
+    }
+
+    public bool IsInNarrowPassageMode()
+    {
+        return isInNarrowPassageMode;
     }
 
     private void OnDrawGizmosSelected()
