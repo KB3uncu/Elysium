@@ -16,6 +16,7 @@ TagManager:
   - Enemy
   - PlayerGunTable
   - PlayerDice
+  - Monster
   layers:
   - Default
   - TransparentFX
