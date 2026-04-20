@@ -104,6 +104,11 @@ public class FPSController : MonoBehaviour
     private Vector3 activePassageMoveForward;
     private float normalControllerRadius;
 
+    // LADDER
+    private bool isOnLadder;
+    private LadderZone currentLadderZone;
+    private float ladderBobTimer;
+
 
     void Awake()
     {
@@ -158,7 +163,11 @@ public class FPSController : MonoBehaviour
         if (grounded && velocity.y < 0)
             velocity.y = -2f;
 
-        if (isInBalanceMode && currentBalanceBeam != null)
+        if (isOnLadder && currentLadderZone != null)
+        {
+            HandleLadderMovement();
+        }
+        else if (isInBalanceMode && currentBalanceBeam != null)
         {
             HandleBalanceMovement();
         }
@@ -171,8 +180,14 @@ public class FPSController : MonoBehaviour
             HandleNormalMovement();
         }
 
-        if (!isInBalanceMode && !isInNarrowPassageMode && Input.GetButtonDown("Jump") && grounded)
+        if (isOnLadder && Input.GetButtonDown("Jump"))
+        {
+            LadderReleaseJump();
+        }
+        else if (!isInBalanceMode && !isInNarrowPassageMode && !isOnLadder && Input.GetButtonDown("Jump") && grounded)
+        {
             TryJump();
+        }
 
         velocity.y += gravity * Time.deltaTime;
 
@@ -180,6 +195,77 @@ public class FPSController : MonoBehaviour
         finalMove.y = velocity.y;
 
         controller.Move(finalMove * Time.deltaTime);
+    }
+
+    void LadderReleaseJump()
+    {
+        ForceExitLadderMode();
+
+        moveVelocity = Vector3.zero;
+        dampVelocity = Vector3.zero;
+
+        velocity.y = Mathf.Sqrt((jumpHeight * 0.7f) * -2f * gravity);
+    }
+
+
+    void HandleLadderMovement()
+    {
+        if (currentLadderZone == null)
+        {
+            ForceExitLadderMode();
+            return;
+        }
+
+        float verticalInput = Input.GetAxisRaw("Vertical");
+
+        Vector3 climb = currentLadderZone.GetLadderUp() * (verticalInput * currentLadderZone.climbSpeed);
+
+        moveVelocity = Vector3.zero;
+        velocity = Vector3.zero;
+
+        controller.Move(climb * Time.deltaTime);
+    }
+
+    public void EnterLadderMode(LadderZone zone)
+    {
+        if (zone == null)
+            return;
+
+        if (isInBalanceMode)
+            return;
+
+        currentLadderZone = zone;
+        isOnLadder = true;
+
+        moveVelocity = Vector3.zero;
+        velocity = Vector3.zero;
+        boost = 0f;
+
+        if (isSliding)
+            EndSlide();
+
+        if (isCrouching)
+            StopCrouch();
+
+        if (isInNarrowPassageMode)
+            ForceExitNarrowPassageMode();
+
+        ladderBobTimer = 0f;
+    }
+
+    public void ExitLadderMode(LadderZone zone)
+    {
+        if (zone != null && zone != currentLadderZone)
+            return;
+
+        ForceExitLadderMode();
+    }
+
+    void ForceExitLadderMode()
+    {
+        isOnLadder = false;
+        currentLadderZone = null;
+        ladderBobTimer = 0f;
     }
 
     void HandleNarrowPassageMovement()
@@ -378,7 +464,7 @@ public class FPSController : MonoBehaviour
             }
         }
 
-        if (isInBalanceMode || isInNarrowPassageMode)
+        if (isInBalanceMode || isInNarrowPassageMode || isOnLadder)
             return;
 
         if (Input.GetKeyDown(KeyCode.LeftShift) && controller.isGrounded && !isSliding && !isCrouching)
@@ -411,7 +497,7 @@ public class FPSController : MonoBehaviour
 
     void Stance()
     {
-        if (isInBalanceMode || isInNarrowPassageMode)
+        if (isInBalanceMode || isInNarrowPassageMode || isOnLadder)
         {
             if (isSliding)
                 EndSlide();
@@ -494,7 +580,25 @@ public class FPSController : MonoBehaviour
 
     void HandleHeadBob()
     {
-        if (!enableHeadBob || playerCamera == null) return;
+        if (isOnLadder && playerCamera != null && currentLadderZone != null)
+        {
+            float input = Mathf.Abs(Input.GetAxisRaw("Vertical"));
+
+            if (input > 0.01f)
+            {
+                ladderBobTimer += Time.deltaTime * currentLadderZone.ladderCameraBobSpeed;
+                float bob = Mathf.Sin(ladderBobTimer) * currentLadderZone.ladderCameraBobAmount;
+
+                Vector3 target = defaultCamLocalPos + new Vector3(0f, bob, 0f);
+                playerCamera.localPosition = Vector3.Lerp(playerCamera.localPosition, target, Time.deltaTime * 10f);
+            }
+            else
+            {
+                playerCamera.localPosition = Vector3.Lerp(playerCamera.localPosition, defaultCamLocalPos, Time.deltaTime * 8f);
+            }
+
+            return;
+        }
 
         Vector3 horizontalVel = new Vector3(controller.velocity.x, 0f, controller.velocity.z);
         bool moving = horizontalVel.magnitude > 0.1f && controller.isGrounded;
