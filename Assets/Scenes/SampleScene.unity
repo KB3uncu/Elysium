@@ -23023,7 +23023,8 @@ GameObject:
   - component: {fileID: 173640526}
   - component: {fileID: 173640529}
   - component: {fileID: 173640530}
-  m_Layer: 0
+  - component: {fileID: 173640531}
+  m_Layer: 10
   m_Name: rullet_enemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -23160,6 +23161,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 173640529}
   standUpDelay: 1.5
+--- !u!114 &173640531
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 173640524}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b82e0542ded4ba74ba6204c952c46793, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RouletteEnemyTarget
+  gameManager: {fileID: 353040269}
 --- !u!1 &174732695
 GameObject:
   m_ObjectHideFlags: 0
@@ -24284,7 +24298,8 @@ GameObject:
   - component: {fileID: 190403026}
   - component: {fileID: 190403025}
   - component: {fileID: 190403024}
-  m_Layer: 0
+  - component: {fileID: 190403027}
+  m_Layer: 10
   m_Name: tableHealthy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24299,13 +24314,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 190403022}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.92, y: -0.671, z: 42.777}
+  m_LocalRotation: {x: -0, y: -0.30304435, z: -0, w: 0.95297647}
+  m_LocalPosition: {x: -2.769, y: -0.671, z: 42.176}
   m_LocalScale: {x: 0.087595, y: 1.317801, z: 0.84863}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1439935417}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -35.281, z: 0}
 --- !u!65 &190403024
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -24325,8 +24340,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 4.595372, y: 1, z: 1.357765}
+  m_Center: {x: 0.13072944, y: 0, z: 0.17888048}
 --- !u!23 &190403025
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -24383,6 +24398,19 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 190403022}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &190403027
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 190403022}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 672a826ce62fc494790d761e59007ae3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ShieldInteractable
+  gameManager: {fileID: 353040269}
 --- !u!1 &191466136
 GameObject:
   m_ObjectHideFlags: 0
@@ -36743,6 +36771,10 @@ PrefabInstance:
       value: player_gun_table
       objectReference: {fileID: 0}
     - target: {fileID: 2233993975387570560, guid: b6faae3498d4e2e43a9419834f49bf6f, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2233993975387570560, guid: b6faae3498d4e2e43a9419834f49bf6f, type: 3}
       propertyPath: m_TagString
       value: PlayerGunTable
       objectReference: {fileID: 0}
@@ -36753,6 +36785,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2233993975387570560, guid: b6faae3498d4e2e43a9419834f49bf6f, type: 3}
       insertIndex: -1
       addedObject: {fileID: 340082241}
+    - targetCorrespondingSourceObject: {fileID: 2233993975387570560, guid: b6faae3498d4e2e43a9419834f49bf6f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 340082244}
   m_SourcePrefab: {fileID: 100100000, guid: b6faae3498d4e2e43a9419834f49bf6f, type: 3}
 --- !u!1 &340082239 stripped
 GameObject:
@@ -36785,6 +36820,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 12.420706, y: 5.7479277, z: 2.4482472}
   m_Center: {x: -2.4434924, y: 2.7309291, z: -0.0021988503}
+--- !u!114 &340082244
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 340082239}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3270929b37eb10c48a18742b273c3a90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RouletteGun
+  gameManager: {fileID: 353040269}
 --- !u!1 &342805315
 GameObject:
   m_ObjectHideFlags: 0
@@ -132991,6 +133039,10 @@ PrefabInstance:
       value: player_dice
       objectReference: {fileID: 0}
     - target: {fileID: 5521805847836307284, guid: b784424673175b343a3b87e6713f778d, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5521805847836307284, guid: b784424673175b343a3b87e6713f778d, type: 3}
       propertyPath: m_TagString
       value: PlayerDice
       objectReference: {fileID: 0}
@@ -133011,6 +133063,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5521805847836307284, guid: b784424673175b343a3b87e6713f778d, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1057506390}
+    - targetCorrespondingSourceObject: {fileID: 5521805847836307284, guid: b784424673175b343a3b87e6713f778d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1057506398}
   m_SourcePrefab: {fileID: 100100000, guid: b784424673175b343a3b87e6713f778d, type: 3}
 --- !u!1 &1057506389 stripped
 GameObject:
@@ -133024,7 +133079,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1057506389}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4088fd5199fcff54888bb48032c58d4f, type: 3}
   m_Name: 
@@ -133071,6 +133126,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   duration: 0.6
   spinSpeed: 900
+--- !u!114 &1057506398
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1057506389}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 676c3d5b01ba12145b1e80922df117cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RouletteDice
+  gameManager: {fileID: 353040269}
+  isPlayerDice: 1
 --- !u!1 &1061552135
 GameObject:
   m_ObjectHideFlags: 0
@@ -156554,7 +156623,7 @@ Transform:
   m_GameObject: {fileID: 1317182400}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.224, y: -0.35097837, z: 44.25476}
+  m_LocalPosition: {x: -0.03, y: -0.35097837, z: 44.25476}
   m_LocalScale: {x: 0.50912, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -156592,8 +156661,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 2.6242144, y: 2.4931707, z: 6.9684067}
-  m_Center: {x: -0.61056876, y: -0.7465856, z: 0.18245316}
+  m_Size: {x: 2.8294768, y: 2.4931707, z: 6.9684067}
+  m_Center: {x: -0.5079442, y: -0.7465856, z: 0.18245316}
 --- !u!1 &1318697481
 GameObject:
   m_ObjectHideFlags: 0
@@ -216841,6 +216910,7 @@ GameObject:
   - component: {fileID: 2041582645}
   - component: {fileID: 2041582644}
   - component: {fileID: 2041582643}
+  - component: {fileID: 2041582646}
   m_Layer: 0
   m_Name: tableDamaged
   m_TagString: Untagged
@@ -216940,6 +217010,19 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2041582641}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &2041582646
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2041582641}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 672a826ce62fc494790d761e59007ae3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ShieldInteractable
+  gameManager: {fileID: 353040269}
 --- !u!1 &2043379390
 GameObject:
   m_ObjectHideFlags: 0
@@ -240599,7 +240682,7 @@ Transform:
   m_GameObject: {fileID: 8619861290467517297}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 3.04, z: -76.88}
+  m_LocalPosition: {x: -0, y: 3.04, z: -4.4}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 1
   m_Children:

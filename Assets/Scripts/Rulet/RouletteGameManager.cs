@@ -12,6 +12,8 @@ public class RouletteGameManager : MonoBehaviour
 
     [Header("Shield System")]
     public PlayerShield playerShield;
+    float shieldDecisionTime = 3f;
+    bool waitingForShieldInput = false;
 
     [Header("Muzzle VFX")]
     public GunMuzzleVFX playerMuzzle;
@@ -161,7 +163,7 @@ public class RouletteGameManager : MonoBehaviour
 
             if (playerShield != null && playerShield.CanOfferShield())
             {
-                phase = Phase.NeedShieldDecision;
+                StartCoroutine(ShieldDecisionRoutine());
                 Debug.Log("Player has shield. Ask player: Use shield?  q = use / r = dont use");
             }
             else
@@ -171,6 +173,53 @@ public class RouletteGameManager : MonoBehaviour
                 StartNextRound();
             }
         }
+    }
+    IEnumerator ShieldDecisionRoutine()
+    {
+        waitingForShieldInput = true;
+        phase = Phase.NeedShieldDecision;
+
+        Debug.Log("3 saniye içinde kalkan kullanmak için E bas!");
+
+        float timer = 0f;
+
+        while (timer < shieldDecisionTime)
+        {
+            if (!waitingForShieldInput)
+                yield break;
+
+            timer += Time.deltaTime;
+            yield return null;
+        }
+
+        // süre doldu → shield kullanılmadı
+        waitingForShieldInput = false;
+
+        if (playerShield != null)
+            playerShield.ChooseToUseShield(false);
+
+        Debug.Log("Süre bitti → enemy ateş ediyor");
+
+        yield return StartCoroutine(EnemyShootRoutine());
+
+        if (!gameOver)
+            StartNextRound();
+    }
+    public void PlayerPressedShield()
+    {
+        if (gameOver) return;
+        if (phase != Phase.NeedShieldDecision) return;
+        if (!waitingForShieldInput) return;
+
+        waitingForShieldInput = false;
+
+        if (playerShield != null)
+        {
+            playerShield.PickUpShield();
+            playerShield.ChooseToUseShield(true);
+        }
+
+        StartCoroutine(EnemyShootAfterShieldDecision());
     }
 
 
