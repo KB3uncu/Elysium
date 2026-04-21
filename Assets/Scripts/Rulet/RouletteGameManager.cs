@@ -52,11 +52,11 @@ public class RouletteGameManager : MonoBehaviour
     public GameObject chest;
 
     [Header("ENDGAME - Lose Respawn")]
-    public Transform player;            // oyuncu root
-    public Transform respawnPoint;      // rulet kaybedince d�n�� noktas�
+    public Transform player;          
+    public Transform respawnPoint;      
 
     [Header("ENDGAME - Reset Room Scripts")]
-    public MonoBehaviour[] scriptsToReset; // rulet odas�ndaki t�m scriptler (bu manager dahil de�il)
+    public MonoBehaviour[] scriptsToReset; 
 
     [Header("ENDGAME - Timing")]
     public float endDelay = 0.2f;
@@ -72,6 +72,9 @@ public class RouletteGameManager : MonoBehaviour
 
     private bool gameOver;
     public bool IsGameOver => gameOver;
+
+    bool enemyIsShooting = false;
+    bool enemyShotThisRound = false;
 
     public int LastPlayerRoll { get; private set; }
     public int LastEnemyRoll { get; private set; }
@@ -116,6 +119,10 @@ public class RouletteGameManager : MonoBehaviour
     {
         if (gameOver) return;
         if (phase != Phase.NeedDiceRoll) return;
+
+        StopAllCoroutines();
+
+        phase = Phase.NeedGunPickup;
 
         playerDiceAnim?.PlayRoll();
         StartCoroutine(PlayerRollAfterAnim());
@@ -295,10 +302,15 @@ public class RouletteGameManager : MonoBehaviour
     // =========================
     IEnumerator EnemyShootRoutine()
     {
+        if (enemyShotThisRound) yield break;
+
+        enemyShotThisRound = true;
+
         enemyGun?.Pickup();
         yield return new WaitForSeconds(enemyPickupHold);
 
         ResolveShot(Shooter.Enemy);
+
         yield return new WaitForSeconds(enemyAfterShotHold);
 
         enemyGun?.PutDown();
@@ -383,6 +395,9 @@ public class RouletteGameManager : MonoBehaviour
         playerLives = config.maxLives;
         enemyLives = config.maxLives;
 
+        playerLivesDisplay?.SetLives(playerLives);
+        enemyLivesDisplay?.SetLives(enemyLives);
+
         playerGun?.PutDown();
         enemyGun?.PutDown();
 
@@ -391,19 +406,13 @@ public class RouletteGameManager : MonoBehaviour
 
         if (playerShield != null)
         {
-            playerShield.hasShield = false;
-            playerShield.usesLeft = 0;
-            playerShield.isDamaged = false;
-            playerShield.willUseThisShot = false;
-            playerShield.isInHand = false;
-            playerShield.UpdateVisuals();
+            playerShield.GiveShield(); 
         }
 
         phase = Phase.NeedDiceRoll;
-
         gameOver = false;
 
-        Debug.Log("RESET | Round start: Click PLAYER DICE to roll.");
+        Debug.Log("RESET TAMAMLANDI");
     }
 
 
@@ -430,6 +439,7 @@ public class RouletteGameManager : MonoBehaviour
 
     void StartNextRound()
     {
+        StopAllCoroutines();
         if (gameOver) return;
 
         playerGun?.PutDown();
@@ -441,6 +451,8 @@ public class RouletteGameManager : MonoBehaviour
 
         if (playerShield != null)
             playerShield.ClearDecision();
+
+        enemyShotThisRound = false;
 
         phase = Phase.NeedDiceRoll;
         Debug.Log("Round start: Click PLAYER DICE to roll.");
