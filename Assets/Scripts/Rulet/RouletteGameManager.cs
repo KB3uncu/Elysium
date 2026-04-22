@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.VFX;
 
 public class RouletteGameManager : MonoBehaviour
 {
@@ -73,7 +74,7 @@ public class RouletteGameManager : MonoBehaviour
     private bool gameOver;
     public bool IsGameOver => gameOver;
 
-    bool enemyIsShooting = false;
+    // bool enemyIsShooting = false;
     bool enemyShotThisRound = false;
 
     public int LastPlayerRoll { get; private set; }
