@@ -62,6 +62,12 @@ public class RouletteGameManager : MonoBehaviour
     [Header("ENDGAME - Timing")]
     public float endDelay = 0.2f;
 
+    [Header("Enemy Dissolve")]
+    public Renderer enemyRenderer;
+
+    private Material[] enemyMats;
+    private int enemyHitCount = 0;
+
 
     // "Bu round'da kim ate� edecek?"
     private enum Shooter { Player, Enemy }
@@ -108,6 +114,9 @@ public class RouletteGameManager : MonoBehaviour
         phase = Phase.NeedDiceRoll;
 
         chest.SetActive(false);
+
+        if (enemyRenderer != null)
+            enemyMats = enemyRenderer.materials;
 
         Debug.Log($"START | P:{playerLives} E:{enemyLives} | bullets:{config.bulletCount}/{config.chamberCount}");
         Debug.Log("Round start: Click PLAYER DICE to roll.");
@@ -344,6 +353,8 @@ public class RouletteGameManager : MonoBehaviour
                 playerMuzzle?.PlayOnce();
                 enemyLives--;
                 enemyHit?.PlayFallAndStandUp();
+
+                UpdateEnemyDissolve();
             }
             else
             {
@@ -379,6 +390,31 @@ public class RouletteGameManager : MonoBehaviour
             Debug.Log("=== CYCLE COMPLETED. Revolver shuffled. ===");
     }
 
+    void SetEnemyDissolve(float value)
+    {
+        if (enemyMats == null || enemyMats.Length == 0) return;
+
+        for (int i = 0; i < enemyMats.Length; i++)
+        {
+            if (enemyMats[i] != null && enemyMats[i].HasProperty("_DissolveAmount"))
+            {
+                enemyMats[i].SetFloat("_DissolveAmount", value);
+            }
+        }
+    }
+
+    void UpdateEnemyDissolve()
+    {
+        enemyHitCount++;
+
+        if (enemyHitCount == 1)
+            SetEnemyDissolve(0.2f);
+        else if (enemyHitCount == 2)
+            SetEnemyDissolve(0.3f);
+        else if (enemyHitCount >= 3)
+            SetEnemyDissolve(0.4f);
+    }
+
 
     void ResetRoomAndGame()
     {
@@ -404,6 +440,9 @@ public class RouletteGameManager : MonoBehaviour
 
         playerDiceDisplay?.SetCount(0);
         enemyDiceDisplay?.SetCount(0);
+
+enemyHitCount = 0;
+SetEnemyDissolve(0f);
 
         if (playerShield != null)
         {

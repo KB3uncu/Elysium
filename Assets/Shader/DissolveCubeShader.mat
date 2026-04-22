@@ -54,20 +54,20 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _DissolveAmount: 0.44
+    - _DissolveAmount: 0
     - _DissolveScale: 45
     - _EdgeEmissionStrength: 1
-    - _EdgeWidth: 0.045
+    - _EdgeWidth: 0.03
     - _Edge_Width: 0.08
     - _HeightEnd: 0.5
     - _HeightInfluence: 0
     - _HeightStart: -0.5
-    - _Methalic: 0
+    - _Methalic: 1
     - _NoiseScale: 30
     - _NormalStrength: 0.5
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _Smoothness: 0.5
+    - _Smoothness: 0.38
     - _Speed: 1
     m_Colors:
     - _BaseColor: {r: 5.3403134, g: 4.750018, b: 2.670156, a: 1}
