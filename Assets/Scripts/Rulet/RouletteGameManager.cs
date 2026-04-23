@@ -67,6 +67,9 @@ public class RouletteGameManager : MonoBehaviour
 
     private Material[] enemyMats;
     private int enemyHitCount = 0;
+    private float currentDissolve = 0f;
+    private float targetDissolve = 0f;
+    public float dissolveSpeed = 0.2f;
 
 
     // "Bu round'da kim ate� edecek?"
@@ -117,9 +120,21 @@ public class RouletteGameManager : MonoBehaviour
 
         if (enemyRenderer != null)
             enemyMats = enemyRenderer.materials;
+        currentDissolve = 0f;
+        targetDissolve = 0f;
+        SetEnemyDissolve(0f);
 
         Debug.Log($"START | P:{playerLives} E:{enemyLives} | bullets:{config.bulletCount}/{config.chamberCount}");
         Debug.Log("Round start: Click PLAYER DICE to roll.");
+    }
+
+    void Update()
+    {
+        if (currentDissolve != targetDissolve)
+        {
+            currentDissolve = Mathf.MoveTowards(currentDissolve, targetDissolve, dissolveSpeed * Time.deltaTime);
+            SetEnemyDissolve(currentDissolve);
+        }
     }
 
     // =========================
@@ -408,11 +423,11 @@ public class RouletteGameManager : MonoBehaviour
         enemyHitCount++;
 
         if (enemyHitCount == 1)
-            SetEnemyDissolve(0.2f);
+            targetDissolve = 0.2f;
         else if (enemyHitCount == 2)
-            SetEnemyDissolve(0.3f);
+            targetDissolve = 0.3f;
         else if (enemyHitCount >= 3)
-            SetEnemyDissolve(0.4f);
+            targetDissolve = 0.4f;
     }
 
 
@@ -441,8 +456,10 @@ public class RouletteGameManager : MonoBehaviour
         playerDiceDisplay?.SetCount(0);
         enemyDiceDisplay?.SetCount(0);
 
-enemyHitCount = 0;
-SetEnemyDissolve(0f);
+        enemyHitCount = 0;
+        currentDissolve = 0f;
+        targetDissolve = 0f;
+        SetEnemyDissolve(0f);
 
         if (playerShield != null)
         {

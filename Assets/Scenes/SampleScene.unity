@@ -37070,63 +37070,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2.3641858, y: 2.2938306, z: 2.2495618}
   m_Center: {x: -0.013869647, y: 0.012277066, z: 0.0017476087}
---- !u!1001 &280189188
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 2239290855958060033, guid: 7c4d9497c4b0d764cb47f713b705dcfb, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0.11634308
-      objectReference: {fileID: 0}
-    - target: {fileID: 2239290855958060033, guid: 7c4d9497c4b0d764cb47f713b705dcfb, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.39568973
-      objectReference: {fileID: 0}
-    - target: {fileID: 2239290855958060033, guid: 7c4d9497c4b0d764cb47f713b705dcfb, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -16.11357
-      objectReference: {fileID: 0}
-    - target: {fileID: 2239290855958060033, guid: 7c4d9497c4b0d764cb47f713b705dcfb, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 2239290855958060033, guid: 7c4d9497c4b0d764cb47f713b705dcfb, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2239290855958060033, guid: 7c4d9497c4b0d764cb47f713b705dcfb, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 2239290855958060033, guid: 7c4d9497c4b0d764cb47f713b705dcfb, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2239290855958060033, guid: 7c4d9497c4b0d764cb47f713b705dcfb, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2239290855958060033, guid: 7c4d9497c4b0d764cb47f713b705dcfb, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 90
-      objectReference: {fileID: 0}
-    - target: {fileID: 2239290855958060033, guid: 7c4d9497c4b0d764cb47f713b705dcfb, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7969709745593012038, guid: 7c4d9497c4b0d764cb47f713b705dcfb, type: 3}
-      propertyPath: m_Name
-      value: MONSTER_GHOST
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 7c4d9497c4b0d764cb47f713b705dcfb, type: 3}
 --- !u!1 &284832458
 GameObject:
   m_ObjectHideFlags: 0
@@ -44914,6 +44857,7 @@ MonoBehaviour:
   - {fileID: 0}
   endDelay: 0.2
   enemyRenderer: {fileID: 451637607}
+  dissolveSpeed: 0.2
 --- !u!4 &353040270
 Transform:
   m_ObjectHideFlags: 0
@@ -256933,4 +256877,3 @@ SceneRoots:
   - {fileID: 1666690794}
   - {fileID: 29924949}
   - {fileID: 1023171622}
-  - {fileID: 280189188}
