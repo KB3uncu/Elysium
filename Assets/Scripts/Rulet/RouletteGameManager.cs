@@ -149,6 +149,7 @@ public class RouletteGameManager : MonoBehaviour
 
         phase = Phase.NeedGunPickup;
 
+        AudioManager.Instance.PlayDice();
         playerDiceAnim?.PlayRoll();
         StartCoroutine(PlayerRollAfterAnim());
     }
@@ -351,7 +352,6 @@ public class RouletteGameManager : MonoBehaviour
 
         bool shieldBlockedBullet = false;
 
-        // Enemy oyuncuya ateş ediyorsa ve oyuncu shield kullanmayı seçtiyse
         if (who == Shooter.Enemy && playerShield != null)
         {
             shieldBlockedBullet = playerShield.ConsumeShieldAgainstShot(bullet);
@@ -359,7 +359,9 @@ public class RouletteGameManager : MonoBehaviour
 
         if (bullet)
         {
-            // HIT
+            // 🔊 GERÇEK MERMİ
+            AudioManager.Instance.PlayGun();
+
             hitMissPopup?.Show(true);
             cameraShake?.Play();
 
@@ -368,8 +370,6 @@ public class RouletteGameManager : MonoBehaviour
                 playerMuzzle?.PlayOnce();
                 enemyLives--;
                 enemyHit?.PlayFallAndStandUp();
-
-                UpdateEnemyDissolve();
             }
             else
             {
@@ -378,24 +378,25 @@ public class RouletteGameManager : MonoBehaviour
                 if (!shieldBlockedBullet)
                 {
                     playerLives--;
+                    AudioManager.Instance.PlayHit();
                 }
                 else
                 {
+                    AudioManager.Instance.PlayShield();
+
                     Debug.Log("Shield blocked the bullet!");
                 }
             }
 
             playerLivesDisplay?.SetLives(playerLives);
             enemyLivesDisplay?.SetLives(enemyLives);
-
-            Debug.Log($"[{who}] HIT!  P:{playerLives} E:{enemyLives}  (shot {revolver.ShotsThisCycle}/{revolver.ChamberCount})");
         }
         else
         {
-            // MISS
-            hitMissPopup?.Show(false);
+            // 🔊 BOŞ MERMİ
+            AudioManager.Instance.PlayEmpty();
 
-            Debug.Log($"[{who}] MISS. P:{playerLives} E:{enemyLives}  (shot {revolver.ShotsThisCycle}/{revolver.ChamberCount})");
+            hitMissPopup?.Show(false);
         }
 
         if (playerLives <= 0) { EndGame("PLAYER DEAD"); return; }
