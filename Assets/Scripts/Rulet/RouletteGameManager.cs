@@ -278,6 +278,12 @@ public class RouletteGameManager : MonoBehaviour
 
         ResolveShot(Shooter.Player);
 
+        StartCoroutine(PlayerShootDelayRoutine()); 
+    }
+    IEnumerator PlayerShootDelayRoutine()
+    {
+        yield return new WaitForSeconds(0.8f); // 🔥 süreyi buradan ayarla
+
         playerGun?.PutDown();
 
         StartNextRound();
@@ -316,11 +322,17 @@ public class RouletteGameManager : MonoBehaviour
 
         if (playerShield != null && usedShield && playerShield.hasShield)
         {
-            playerShield.PutShieldBackToTable();
+           yield return StartCoroutine(ShieldReturnDelay());
         }
 
         if (!gameOver)
             StartNextRound();
+    }
+    IEnumerator ShieldReturnDelay()
+    {
+        yield return new WaitForSeconds(0.8f); // 🔥 süreyi buradan ayarla
+
+        playerShield.PutShieldBackToTable();
     }
 
     // =========================

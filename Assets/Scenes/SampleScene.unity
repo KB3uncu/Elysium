@@ -44835,7 +44835,7 @@ MonoBehaviour:
   enemyLivesDisplay: {fileID: 1289636930}
   enemyDiceHold: 0.4
   enemyPickupHold: 0.6
-  enemyAfterShotHold: 0.25
+  enemyAfterShotHold: 1
   enemyHit: {fileID: 0}
   cameraShake: {fileID: 3200972549202161796}
   playerDiceAnim: {fileID: 1057506395}
