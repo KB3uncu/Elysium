@@ -8,16 +8,25 @@ public class MonsterEscapeSequence : MonoBehaviour
     public MonoBehaviour playerMovementScript;
     public Transform playerCamera;
 
-    [Header("Monster")]
+    [Header("Monster Spawn")]
     public GameObject monsterPrefab;
     public Transform monsterSpawnPoint;
-    public float monsterMoveSpeed = 8f;
-    public float stopDistanceToPlayer = 1.8f;
-    public float rotationSpeed = 10f;
 
-    [Header("Monster Animation")]
+    [Header("Movement")]
+    public float moveSpeed = 7f;
+    public float stopDistanceToPlayer = 1.8f;
+    public float rotationSpeed = 6f;
+
+    [Header("Ghost Obstacle Movement")]
+    public float normalHeightOffset = 0f;
+    public float ghostRiseHeight = 1.6f;
+    public float heightChangeSpeed = 3f;
+    public float obstacleCheckDistance = 2f;
+    public LayerMask obstacleMask = ~0;
+
+    [Header("Animation")]
     public Animator monsterAnimator;
-    public string runTrigger = "Run";
+    public string walkBoolName = "Walk";
 
     [Header("Cinematic")]
     public float spawnDelay = 0.15f;
@@ -27,10 +36,8 @@ public class MonsterEscapeSequence : MonoBehaviour
 
     [Header("Monster Breakable Walls")]
     public BreakableWall[] monsterBreakWalls;
-    public float breakDistance = 2.0f;
+    public float breakDistance = 2.5f;
     public float monsterBreakForceMultiplier = 1.5f;
-
-    private int currentWallIndex = 0;
 
     [Header("Camera Shake")]
     public float shakeDuration = 0.2f;
@@ -45,8 +52,12 @@ public class MonsterEscapeSequence : MonoBehaviour
     private GameObject spawnedMonster;
     private Transform monsterTransform;
     private Vector3 cameraOriginalLocalPos;
+
     private bool sequenceStarted = false;
     private bool controlReturned = false;
+    private int currentWallIndex = 0;
+
+    private float currentHeightOffset = 0f;
     private Coroutine shakeRoutine;
 
     void Awake()
@@ -69,7 +80,6 @@ public class MonsterEscapeSequence : MonoBehaviour
         if (player == null) return;
 
         MoveMonster();
-
         CheckMonsterWallBreak();
 
         if (!controlReturned && rotatePlayerToMonsterAtStart)
@@ -87,6 +97,7 @@ public class MonsterEscapeSequence : MonoBehaviour
         sequenceStarted = true;
         controlReturned = false;
         currentWallIndex = 0;
+        currentHeightOffset = normalHeightOffset;
 
         SetPlayerControl(false);
 
@@ -100,12 +111,11 @@ public class MonsterEscapeSequence : MonoBehaviour
 
         SpawnMonster();
 
-        if (monsterAnimator != null && !string.IsNullOrEmpty(runTrigger))
-            monsterAnimator.SetTrigger(runTrigger);
-
+        SetWalkAnimation(true);
         TriggerShake(shakeDuration, shakeMagnitude);
 
         float timer = 0f;
+
         while (timer < cinematicLockDuration)
         {
             timer += Time.deltaTime;
@@ -148,34 +158,72 @@ public class MonsterEscapeSequence : MonoBehaviour
 
     void MoveMonster()
     {
+        Vector3 flatTarget = player.position;
+        Vector3 flatMonster = monsterTransform.position;
+
+        flatTarget.y = 0f;
+        flatMonster.y = 0f;
+
+        Vector3 flatDir = flatTarget - flatMonster;
+        float flatDistance = flatDir.magnitude;
+
+        bool hasObstacle = CheckObstacleInFront(flatDir);
+
+        float targetHeightOffset = hasObstacle ? ghostRiseHeight : normalHeightOffset;
+
+        currentHeightOffset = Mathf.MoveTowards(
+            currentHeightOffset,
+            targetHeightOffset,
+            heightChangeSpeed * Time.deltaTime
+        );
+
         Vector3 targetPos = player.position;
-        targetPos.y = monsterTransform.position.y;
+        targetPos.y = player.position.y + currentHeightOffset;
 
-        Vector3 dir = targetPos - monsterTransform.position;
-        float distance = dir.magnitude;
-
-        if (distance > stopDistanceToPlayer)
+        if (flatDistance > stopDistanceToPlayer)
         {
-            Vector3 moveDir = dir.normalized;
-            monsterTransform.position += moveDir * monsterMoveSpeed * Time.deltaTime;
+            monsterTransform.position = Vector3.MoveTowards(
+                monsterTransform.position,
+                targetPos,
+                moveSpeed * Time.deltaTime
+            );
+        }
 
-            if (moveDir.sqrMagnitude > 0.001f)
-            {
-                Quaternion targetRot = Quaternion.LookRotation(moveDir, Vector3.up);
-                monsterTransform.rotation = Quaternion.Slerp(
-                    monsterTransform.rotation,
-                    targetRot,
-                    rotationSpeed * Time.deltaTime
-                );
-            }
+        if (flatDir.sqrMagnitude > 0.001f)
+        {
+            Quaternion targetRot = Quaternion.LookRotation(flatDir.normalized, Vector3.up);
+
+            monsterTransform.rotation = Quaternion.Slerp(
+                monsterTransform.rotation,
+                targetRot,
+                rotationSpeed * Time.deltaTime
+            );
         }
 
         if (rumbleAudio != null)
         {
-            float targetVolume = distance < 10f ? 1f : 0.6f;
+            float targetVolume = flatDistance < 10f ? 1f : 0.6f;
             float fadeSpeed = controlReturned ? rumbleFadeOutSpeed : rumbleFadeInSpeed;
-            rumbleAudio.volume = Mathf.MoveTowards(rumbleAudio.volume, targetVolume, fadeSpeed * Time.deltaTime);
+
+            rumbleAudio.volume = Mathf.MoveTowards(
+                rumbleAudio.volume,
+                targetVolume,
+                fadeSpeed * Time.deltaTime
+            );
         }
+    }
+
+    bool CheckObstacleInFront(Vector3 flatDir)
+    {
+        if (flatDir.sqrMagnitude < 0.001f) return false;
+
+        Vector3 origin = monsterTransform.position + Vector3.up * 0.8f;
+        Vector3 direction = flatDir.normalized;
+
+        if (Physics.Raycast(origin, direction, obstacleCheckDistance, obstacleMask, QueryTriggerInteraction.Ignore))
+            return true;
+
+        return false;
     }
 
     void CheckMonsterWallBreak()
@@ -196,7 +244,6 @@ public class MonsterEscapeSequence : MonoBehaviour
             Vector3 monsterPos = monsterTransform.position;
             Vector3 wallPos = targetWall.transform.position;
 
-            // sadece yatay mesafe kontrolü
             monsterPos.y = 0f;
             wallPos.y = 0f;
 
@@ -206,7 +253,7 @@ public class MonsterEscapeSequence : MonoBehaviour
                 break;
 
             Vector3 forceDir = (targetWall.transform.position - monsterTransform.position).normalized;
-            forceDir += new Vector3(0f, 0.2f, 0f);
+            forceDir += new Vector3(0f, 0.25f, 0f);
             forceDir.Normalize();
 
             targetWall.BreakFromWorld(forceDir, monsterBreakForceMultiplier);
@@ -218,21 +265,32 @@ public class MonsterEscapeSequence : MonoBehaviour
 
     void RotatePlayerTowardMonster()
     {
-        if (player == null || monsterTransform == null) return;
-
         Vector3 dir = monsterTransform.position - player.position;
         dir.y = 0f;
 
         if (dir.sqrMagnitude < 0.001f) return;
 
         Quaternion targetRot = Quaternion.LookRotation(dir.normalized, Vector3.up);
-        player.rotation = Quaternion.Slerp(player.rotation, targetRot, playerRotateSpeed * Time.deltaTime);
+
+        player.rotation = Quaternion.Slerp(
+            player.rotation,
+            targetRot,
+            playerRotateSpeed * Time.deltaTime
+        );
     }
 
     void SetPlayerControl(bool enabled)
     {
         if (playerMovementScript != null)
             playerMovementScript.enabled = enabled;
+    }
+
+    void SetWalkAnimation(bool walking)
+    {
+        if (monsterAnimator == null) return;
+        if (string.IsNullOrEmpty(walkBoolName)) return;
+
+        monsterAnimator.SetBool(walkBoolName, walking);
     }
 
     void TriggerShake(float duration, float magnitude)

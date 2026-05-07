@@ -11396,7 +11396,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &29924947
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13324,7 +13324,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &92316115
 Transform:
   m_ObjectHideFlags: 0
@@ -13691,11 +13691,18 @@ MonoBehaviour:
   playerCamera: {fileID: 6706276232271298237}
   monsterPrefab: {fileID: 3810727523984438262, guid: 42f35f74d921a0b44b2793a5265b4c0a, type: 3}
   monsterSpawnPoint: {fileID: 7556999240887580574}
-  monsterMoveSpeed: 8
+  moveSpeed: 7
   stopDistanceToPlayer: 4
   rotationSpeed: 10
+  normalHeightOffset: 1.5
+  ghostRiseHeight: 0
+  heightChangeSpeed: 3
+  obstacleCheckDistance: 2
+  obstacleMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
   monsterAnimator: {fileID: 0}
-  runTrigger: Run
+  walkBoolName: Walk
   spawnDelay: 0.2
   cinematicLockDuration: 2.5
   rotatePlayerToMonsterAtStart: 1
@@ -69794,7 +69801,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &581722456
 Transform:
   m_ObjectHideFlags: 0
@@ -248640,7 +248647,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5962145248407064258
 Transform:
   m_ObjectHideFlags: 0

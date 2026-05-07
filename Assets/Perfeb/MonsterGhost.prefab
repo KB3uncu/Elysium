@@ -843,9 +843,10 @@ GameObject:
   - component: {fileID: 9035119449164437827}
   - component: {fileID: 8182299952071764336}
   - component: {fileID: 928616975013129638}
-  - component: {fileID: 1975863270398059097}
   - component: {fileID: 1173113107423547540}
   - component: {fileID: 8924310368559333192}
+  - component: {fileID: 1617405561794177236}
+  - component: {fileID: -7047193815123875785}
   m_Layer: 0
   m_Name: MonsterGhost
   m_TagString: Untagged
@@ -904,27 +905,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RouletteEnemyTarget
   gameManager: {fileID: 0}
---- !u!65 &1975863270398059097
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3810727523984438262}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1.0472944, y: 2.0351596, z: 0.4902369}
-  m_Center: {x: -0.00035530337, y: 1.0133138, z: 0.012283224}
 --- !u!114 &1173113107423547540
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1047,6 +1027,56 @@ SkinnedMeshRenderer:
     m_Center: {x: 0.0080785155, y: -0.01626414, z: 0.14463544}
     m_Extent: {x: 0.61435074, y: 1.0350795, z: 0.38609815}
   m_DirtyAABB: 0
+--- !u!136 &1617405561794177236
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3810727523984438262}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.74624854
+  m_Height: 2.2650497
+  m_Direction: 1
+  m_Center: {x: -0.031871483, y: 0.9422862, z: 0.13258135}
+--- !u!54 &-7047193815123875785
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3810727523984438262}
+  serializedVersion: 5
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &3848824592206914243
 GameObject:
   m_ObjectHideFlags: 0
