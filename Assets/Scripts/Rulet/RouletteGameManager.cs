@@ -68,11 +68,18 @@ public class RouletteGameManager : MonoBehaviour
     [Header("Enemy Dissolve")]
     public Renderer enemyRenderer;
 
+    [Header("Enemy Dissolve VFX")]
+    public VisualEffect enemyDissolveVfx;
+
     private Material[] enemyMats;
     private int enemyHitCount = 0;
     private float currentDissolve = 0f;
     private float targetDissolve = 0f;
     public float dissolveSpeed = 0.2f;
+
+    private bool dissolveVfxActive = false;
+    private float dissolveVfxTimer = 0f;
+    private float dissolveVfxDuration = 0f;
 
     private enum Shooter { Player, Enemy }
     private Shooter shooter;
@@ -133,6 +140,12 @@ public class RouletteGameManager : MonoBehaviour
         targetDissolve = 0f;
         SetEnemyDissolve(0f);
 
+        if (enemyDissolveVfx != null)
+        {
+            enemyDissolveVfx.Stop();
+            enemyDissolveVfx.Reinit();
+        }
+
         Debug.Log($"START | P:{playerLives} E:{enemyLives} | bullets:{config.bulletCount}/{config.chamberCount}");
         Debug.Log("Round start: Click PLAYER DICE to roll.");
     }
@@ -144,6 +157,8 @@ public class RouletteGameManager : MonoBehaviour
             currentDissolve = Mathf.MoveTowards(currentDissolve, targetDissolve, dissolveSpeed * Time.deltaTime);
             SetEnemyDissolve(currentDissolve);
         }
+
+        UpdateEnemyDissolveVfx();
     }
 
     // =========================
@@ -472,6 +487,41 @@ public class RouletteGameManager : MonoBehaviour
         }
     }
 
+    void PlayEnemyDissolveVfxForCurrentStep()
+    {
+        if (enemyDissolveVfx == null) return;
+
+        float safeSpeed = Mathf.Max(0.0001f, dissolveSpeed);
+
+        dissolveVfxDuration = Mathf.Abs(targetDissolve - currentDissolve) / safeSpeed;
+
+        if (dissolveVfxDuration <= 0.01f)
+            return;
+
+        dissolveVfxTimer = 0f;
+        dissolveVfxActive = true;
+
+        enemyDissolveVfx.gameObject.SetActive(true);
+        enemyDissolveVfx.Reinit();
+        enemyDissolveVfx.Play();
+    }
+
+    void UpdateEnemyDissolveVfx()
+    {
+        if (!dissolveVfxActive) return;
+
+        dissolveVfxTimer += Time.deltaTime;
+
+        if (dissolveVfxTimer >= dissolveVfxDuration)
+        {
+            dissolveVfxActive = false;
+            dissolveVfxTimer = 0f;
+
+            if (enemyDissolveVfx != null)
+                enemyDissolveVfx.Stop();
+        }
+    }
+
     void UpdateEnemyDissolve()
     {
         enemyHitCount++;
@@ -482,6 +532,8 @@ public class RouletteGameManager : MonoBehaviour
             targetDissolve = 0.3f;
         else if (enemyHitCount >= 3)
             targetDissolve = 0.4f;
+
+        PlayEnemyDissolveVfxForCurrentStep();
     }
 
     void ResetRoomAndGame()
@@ -513,6 +565,16 @@ public class RouletteGameManager : MonoBehaviour
         currentDissolve = 0f;
         targetDissolve = 0f;
         SetEnemyDissolve(0f);
+
+        dissolveVfxActive = false;
+        dissolveVfxTimer = 0f;
+        dissolveVfxDuration = 0f;
+
+        if (enemyDissolveVfx != null)
+        {
+            enemyDissolveVfx.Stop();
+            enemyDissolveVfx.Reinit();
+        }
 
         if (playerShield != null)
         {
