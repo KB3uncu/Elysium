@@ -46,6 +46,9 @@ public class RouletteGameManager : MonoBehaviour
     public DiceRollAnim playerDiceAnim;
     public DiceRollAnim enemyDiceAnim;
 
+    [Tooltip("Zar animasyonu başladıktan kaç saniye sonra sonuç yazı/display olarak gösterilsin?")]
+    public float diceResultRevealDelay = 0.9f;
+
     [Header("Hit/Miss Display")]
     public HitMissPopup hitMissPopup;
 
@@ -53,11 +56,11 @@ public class RouletteGameManager : MonoBehaviour
     public GameObject chest;
 
     [Header("ENDGAME - Lose Respawn")]
-    public Transform player;          
-    public Transform respawnPoint;      
+    public Transform player;
+    public Transform respawnPoint;
 
     [Header("ENDGAME - Reset Room Scripts")]
-    public MonoBehaviour[] scriptsToReset; 
+    public MonoBehaviour[] scriptsToReset;
 
     [Header("ENDGAME - Timing")]
     public float endDelay = 0.2f;
@@ -71,19 +74,23 @@ public class RouletteGameManager : MonoBehaviour
     private float targetDissolve = 0f;
     public float dissolveSpeed = 0.2f;
 
-
-    // "Bu round'da kim ate� edecek?"
     private enum Shooter { Player, Enemy }
     private Shooter shooter;
 
-    // Player ak���: Zar -> Silah al -> Ate� et
-    private enum Phase { NeedDiceRoll, NeedGunPickup, NeedShootTarget, NeedShieldDecision }
+    private enum Phase
+    {
+        NeedDiceRoll,
+        RollingDice,
+        NeedGunPickup,
+        NeedShootTarget,
+        NeedShieldDecision
+    }
+
     private Phase phase;
 
     private bool gameOver;
     public bool IsGameOver => gameOver;
 
-    // bool enemyIsShooting = false;
     bool enemyShotThisRound = false;
 
     public int LastPlayerRoll { get; private set; }
@@ -112,14 +119,16 @@ public class RouletteGameManager : MonoBehaviour
         playerDiceDisplay?.SetCount(0);
         enemyDiceDisplay?.SetCount(0);
 
-        playerShield?.GiveShield(); //kalkan pickupımsı
+        playerShield?.GiveShield();
 
         phase = Phase.NeedDiceRoll;
 
-        chest.SetActive(false);
+        if (chest != null)
+            chest.SetActive(false);
 
         if (enemyRenderer != null)
             enemyMats = enemyRenderer.materials;
+
         currentDissolve = 0f;
         targetDissolve = 0f;
         SetEnemyDissolve(0f);
@@ -147,18 +156,25 @@ public class RouletteGameManager : MonoBehaviour
 
         StopAllCoroutines();
 
-        phase = Phase.NeedGunPickup;
+        phase = Phase.RollingDice;
 
         AudioManager.Instance.PlayDice();
-        playerDiceAnim?.PlayRoll();
+
+        LastPlayerRoll = Random.Range(1, 7);
+        Debug.Log($"PLAYER DICE RESULT SELECTED: {LastPlayerRoll}");
+
+        if (playerDiceAnim != null)
+            playerDiceAnim.PlayRoll(LastPlayerRoll);
+        else
+            Debug.LogWarning("Player Dice Anim referansı eksik!");
+
         StartCoroutine(PlayerRollAfterAnim());
     }
 
     IEnumerator PlayerRollAfterAnim()
     {
-        yield return new WaitForSeconds(0.6f); 
+        yield return new WaitForSeconds(diceResultRevealDelay);
 
-        LastPlayerRoll = Random.Range(1, 7);
         Debug.Log($"PLAYER DICE: {LastPlayerRoll}");
         playerDiceDisplay?.SetCount(LastPlayerRoll);
 
@@ -167,10 +183,18 @@ public class RouletteGameManager : MonoBehaviour
 
     IEnumerator EnemyRollAndDecideRoutine()
     {
-        enemyDiceAnim?.PlayRoll();
-        yield return new WaitForSeconds(0.6f);
+        AudioManager.Instance.PlayDice();
 
         LastEnemyRoll = Random.Range(1, 7);
+        Debug.Log($"ENEMY DICE RESULT SELECTED: {LastEnemyRoll}");
+
+        if (enemyDiceAnim != null)
+            enemyDiceAnim.PlayRoll(LastEnemyRoll);
+        else
+            Debug.LogWarning("Enemy Dice Anim referansı eksik!");
+
+        yield return new WaitForSeconds(diceResultRevealDelay);
+
         Debug.Log($"ENEMY DICE: {LastEnemyRoll}");
         enemyDiceDisplay?.SetCount(LastEnemyRoll);
 
@@ -197,7 +221,7 @@ public class RouletteGameManager : MonoBehaviour
             if (playerShield != null && playerShield.CanOfferShield())
             {
                 StartCoroutine(ShieldDecisionRoutine());
-                Debug.Log("Player has shield. Ask player: Use shield?  q = use / r = dont use");
+                Debug.Log("Player has shield. Ask player: Use shield? E = use");
             }
             else
             {
@@ -207,6 +231,7 @@ public class RouletteGameManager : MonoBehaviour
             }
         }
     }
+
     IEnumerator ShieldDecisionRoutine()
     {
         waitingForShieldInput = true;
@@ -225,7 +250,6 @@ public class RouletteGameManager : MonoBehaviour
             yield return null;
         }
 
-        // süre doldu → shield kullanılmadı
         waitingForShieldInput = false;
 
         if (playerShield != null)
@@ -238,6 +262,7 @@ public class RouletteGameManager : MonoBehaviour
         if (!gameOver)
             StartNextRound();
     }
+
     public void PlayerPressedShield()
     {
         if (gameOver) return;
@@ -255,7 +280,6 @@ public class RouletteGameManager : MonoBehaviour
         StartCoroutine(EnemyShootAfterShieldDecision());
     }
 
-
     // =========================
     // PLAYER INPUT ACTIONS
     // =========================
@@ -266,7 +290,9 @@ public class RouletteGameManager : MonoBehaviour
         if (phase != Phase.NeedGunPickup) return;
 
         playerGun?.Pickup();
+
         phase = Phase.NeedShootTarget;
+
         Debug.Log("Gun picked. Now click ENEMY to shoot.");
     }
 
@@ -278,16 +304,18 @@ public class RouletteGameManager : MonoBehaviour
 
         ResolveShot(Shooter.Player);
 
-        StartCoroutine(PlayerShootDelayRoutine()); 
+        StartCoroutine(PlayerShootDelayRoutine());
     }
+
     IEnumerator PlayerShootDelayRoutine()
     {
-        yield return new WaitForSeconds(0.8f); // 🔥 süreyi buradan ayarla
+        yield return new WaitForSeconds(0.8f);
 
         playerGun?.PutDown();
 
         StartNextRound();
     }
+
     public void PlayerChooseShieldYes()
     {
         if (gameOver) return;
@@ -309,6 +337,7 @@ public class RouletteGameManager : MonoBehaviour
         if (playerShield == null) return;
 
         playerShield.ChooseToUseShield(false);
+
         StartCoroutine(EnemyShootAfterShieldDecision());
     }
 
@@ -322,21 +351,22 @@ public class RouletteGameManager : MonoBehaviour
 
         if (playerShield != null && usedShield && playerShield.hasShield)
         {
-           yield return StartCoroutine(ShieldReturnDelay());
+            yield return StartCoroutine(ShieldReturnDelay());
         }
 
         if (!gameOver)
             StartNextRound();
     }
+
     IEnumerator ShieldReturnDelay()
     {
-        yield return new WaitForSeconds(0.8f); // 🔥 süreyi buradan ayarla
+        yield return new WaitForSeconds(0.8f);
 
         playerShield.PutShieldBackToTable();
     }
 
     // =========================
-    // ENEMY SHOOT (AUTO)
+    // ENEMY SHOOT AUTO
     // =========================
     IEnumerator EnemyShootRoutine()
     {
@@ -345,6 +375,7 @@ public class RouletteGameManager : MonoBehaviour
         enemyShotThisRound = true;
 
         enemyGun?.Pickup();
+
         yield return new WaitForSeconds(enemyPickupHold);
 
         ResolveShot(Shooter.Enemy);
@@ -371,7 +402,6 @@ public class RouletteGameManager : MonoBehaviour
 
         if (bullet)
         {
-            // 🔊 GERÇEK MERMİ
             AudioManager.Instance.PlayGun();
 
             hitMissPopup?.Show(true);
@@ -380,8 +410,12 @@ public class RouletteGameManager : MonoBehaviour
             if (who == Shooter.Player)
             {
                 playerMuzzle?.PlayOnce();
+
                 enemyLives--;
+
                 enemyHit?.PlayFallAndStandUp();
+
+                UpdateEnemyDissolve();
             }
             else
             {
@@ -395,7 +429,6 @@ public class RouletteGameManager : MonoBehaviour
                 else
                 {
                     AudioManager.Instance.PlayShield();
-
                     Debug.Log("Shield blocked the bullet!");
                 }
             }
@@ -405,14 +438,22 @@ public class RouletteGameManager : MonoBehaviour
         }
         else
         {
-            // 🔊 BOŞ MERMİ
             AudioManager.Instance.PlayEmpty();
 
             hitMissPopup?.Show(false);
         }
 
-        if (playerLives <= 0) { EndGame("PLAYER DEAD"); return; }
-        if (enemyLives <= 0) { EndGame("ENEMY DEAD"); return; }
+        if (playerLives <= 0)
+        {
+            EndGame("PLAYER DEAD");
+            return;
+        }
+
+        if (enemyLives <= 0)
+        {
+            EndGame("ENEMY DEAD");
+            return;
+        }
 
         if (cycleCompleted)
             Debug.Log("=== CYCLE COMPLETED. Revolver shuffled. ===");
@@ -442,7 +483,6 @@ public class RouletteGameManager : MonoBehaviour
         else if (enemyHitCount >= 3)
             targetDissolve = 0.4f;
     }
-
 
     void ResetRoomAndGame()
     {
@@ -476,15 +516,17 @@ public class RouletteGameManager : MonoBehaviour
 
         if (playerShield != null)
         {
-            playerShield.GiveShield(); 
+            playerShield.GiveShield();
         }
+
+        enemyShotThisRound = false;
+        waitingForShieldInput = false;
 
         phase = Phase.NeedDiceRoll;
         gameOver = false;
 
         Debug.Log("RESET TAMAMLANDI");
     }
-
 
     void RespawnPlayer()
     {
@@ -506,16 +548,15 @@ public class RouletteGameManager : MonoBehaviour
         if (cc != null) cc.enabled = true;
     }
 
-
     void StartNextRound()
     {
         StopAllCoroutines();
+
         if (gameOver) return;
 
         playerGun?.PutDown();
         enemyGun?.PutDown();
 
-        // �stersen round ba��nda s�f�rla
         playerDiceDisplay?.SetCount(0);
         enemyDiceDisplay?.SetCount(0);
 
@@ -523,16 +564,19 @@ public class RouletteGameManager : MonoBehaviour
             playerShield.ClearDecision();
 
         enemyShotThisRound = false;
+        waitingForShieldInput = false;
 
         phase = Phase.NeedDiceRoll;
-        Debug.Log("Round start: Click PLAYER DICE to roll.");
 
+        Debug.Log("Round start: Click PLAYER DICE to roll.");
     }
 
     void EndGame(string reason)
     {
         gameOver = true;
+
         StopAllCoroutines();
+
         Debug.Log("GAME OVER: " + reason);
 
         bool playerWon = enemyLives <= 0;
@@ -540,7 +584,9 @@ public class RouletteGameManager : MonoBehaviour
 
         if (playerWon)
         {
-            chest.SetActive(true);
+            if (chest != null)
+                chest.SetActive(true);
+
             return;
         }
 
@@ -556,6 +602,7 @@ public class RouletteGameManager : MonoBehaviour
         yield return new WaitForSeconds(endDelay);
 
         RespawnPlayer();
+
         ResetRoomAndGame();
     }
 }
