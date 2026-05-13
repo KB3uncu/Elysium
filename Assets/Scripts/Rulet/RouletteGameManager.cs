@@ -138,7 +138,7 @@ public class RouletteGameManager : MonoBehaviour
 
         currentDissolve = 0f;
         targetDissolve = 0f;
-        SetEnemyDissolve(0f);
+        SetEnemyDissolve(0.05f);
 
         if (enemyDissolveVfx != null)
         {
