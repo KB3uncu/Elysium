@@ -11,6 +11,10 @@ public class RouletteGameManager : MonoBehaviour
     public GunVisual playerGun;
     public GunVisual enemyGun;
 
+    [Header("Player Timing Shot")]
+    public RouletteTimingBar playerTimingBar;
+    public bool usePlayerTimingShot = true;
+
     [Header("Shield System")]
     public PlayerShield playerShield;
     float shieldDecisionTime = 3f;
@@ -306,6 +310,9 @@ public class RouletteGameManager : MonoBehaviour
 
         playerGun?.Pickup();
 
+        if (usePlayerTimingShot && playerTimingBar != null)
+            playerTimingBar.ShowAndRandomizeTarget(enemyHitCount);
+
         phase = Phase.NeedShootTarget;
 
         Debug.Log("Gun picked. Now click ENEMY to shoot.");
@@ -317,7 +324,12 @@ public class RouletteGameManager : MonoBehaviour
         if (shooter != Shooter.Player) return;
         if (phase != Phase.NeedShootTarget) return;
 
-        ResolveShot(Shooter.Player);
+        bool timingSuccess = true;
+
+        if (usePlayerTimingShot && playerTimingBar != null)
+            timingSuccess = playerTimingBar.StopAndCheck();
+
+        ResolveShot(Shooter.Player, timingSuccess);
 
         StartCoroutine(PlayerShootDelayRoutine());
     }
@@ -325,6 +337,9 @@ public class RouletteGameManager : MonoBehaviour
     IEnumerator PlayerShootDelayRoutine()
     {
         yield return new WaitForSeconds(0.8f);
+
+        if (playerTimingBar != null)
+            playerTimingBar.Hide();
 
         playerGun?.PutDown();
 
@@ -403,10 +418,19 @@ public class RouletteGameManager : MonoBehaviour
     // =========================
     // CORE RESOLVE
     // =========================
-    void ResolveShot(Shooter who)
+    void ResolveShot(Shooter who, bool? forcedBulletResult = null)
     {
-        bool cycleCompleted;
-        bool bullet = revolver.Fire(out cycleCompleted);
+        bool cycleCompleted = false;
+        bool bullet;
+
+        if (forcedBulletResult.HasValue)
+        {
+            bullet = forcedBulletResult.Value;
+        }
+        else
+        {
+            bullet = revolver.Fire(out cycleCompleted);
+        }
 
         bool shieldBlockedBullet = false;
 
@@ -558,6 +582,9 @@ public class RouletteGameManager : MonoBehaviour
         playerGun?.PutDown();
         enemyGun?.PutDown();
 
+        if (playerTimingBar != null)
+            playerTimingBar.Hide();
+
         playerDiceDisplay?.SetCount(0);
         enemyDiceDisplay?.SetCount(0);
 
@@ -615,6 +642,9 @@ public class RouletteGameManager : MonoBehaviour
         StopAllCoroutines();
 
         if (gameOver) return;
+
+        if (playerTimingBar != null)
+            playerTimingBar.Hide();
 
         playerGun?.PutDown();
         enemyGun?.PutDown();
