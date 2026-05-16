@@ -1,13 +1,17 @@
 using UnityEngine;
 
-public class WorldInteractPrompt : MonoBehaviour
+public class WorldInteractUI : MonoBehaviour
 {
     [Header("References")]
     public CanvasGroup canvasGroup;
     public Transform visualRoot;
+    public Transform floatingIcon;
+
+    [Header("Position")]
+    public float heightOffset = 0.25f;
 
     [Header("Floating")]
-    public float floatAmount = 0.08f;
+    public float floatAmount = 0.06f;
     public float floatSpeed = 3f;
 
     [Header("Rotation")]
@@ -20,7 +24,9 @@ public class WorldInteractPrompt : MonoBehaviour
 
     Camera cam;
 
-    Vector3 basePosition;
+    Transform currentAnchor;
+    Vector3 floatingIconStartLocalPos;
+
     float alpha;
     float hideTimer;
 
@@ -36,6 +42,9 @@ public class WorldInteractPrompt : MonoBehaviour
 
         if (canvasGroup == null)
             canvasGroup = GetComponentInChildren<CanvasGroup>(true);
+
+        if (floatingIcon != null)
+            floatingIconStartLocalPos = floatingIcon.localPosition;
 
         HideInstant();
     }
@@ -70,8 +79,14 @@ public class WorldInteractPrompt : MonoBehaviour
             return;
         }
 
-        float yOffset = Mathf.Sin(Time.time * floatSpeed) * floatAmount;
-        transform.position = basePosition + Vector3.up * yOffset;
+        if (currentAnchor != null)
+            transform.position = currentAnchor.position + Vector3.up * heightOffset;
+
+        if (floatingIcon != null)
+        {
+            float floatY = Mathf.Sin(Time.time * floatSpeed) * floatAmount;
+            floatingIcon.localPosition = floatingIconStartLocalPos + Vector3.up * floatY;
+        }
 
         if (faceCamera && cam != null)
         {
@@ -82,9 +97,12 @@ public class WorldInteractPrompt : MonoBehaviour
         }
     }
 
-    public void ShowAt(Vector3 position)
+    public void ShowAtAnchor(Transform anchor)
     {
-        basePosition = position;
+        if (anchor == null)
+            return;
+
+        currentAnchor = anchor;
 
         if (visualRoot != null && !visualRoot.gameObject.activeSelf)
             visualRoot.gameObject.SetActive(true);
@@ -102,11 +120,15 @@ public class WorldInteractPrompt : MonoBehaviour
     {
         isActive = false;
         wantsVisible = false;
+        currentAnchor = null;
         alpha = 0f;
         hideTimer = 0f;
 
         if (canvasGroup != null)
             canvasGroup.alpha = 0f;
+
+        if (floatingIcon != null)
+            floatingIcon.localPosition = floatingIconStartLocalPos;
 
         if (visualRoot != null)
             visualRoot.gameObject.SetActive(false);

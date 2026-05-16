@@ -13,10 +13,8 @@ public class PlayerInteractor : MonoBehaviour
     public Color highlightColor = Color.green;
     public bool useCrosshairHighlight = false;
 
-    [Header("World E Prompt")]
-    public WorldInteractPrompt interactPrompt;
-    public float promptForwardOffset = 0.35f;
-    public float promptUpOffset = 0.4f;
+    [Header("World Interact UI")]
+    public WorldInteractUI worldInteractUI;
 
     Camera cam;
     IInteractable currentTarget;
@@ -33,8 +31,8 @@ public class PlayerInteractor : MonoBehaviour
         if (crosshairImage != null)
             crosshairImage.color = normalColor;
 
-        if (interactPrompt != null)
-            interactPrompt.HideInstant();
+        if (worldInteractUI != null)
+            worldInteractUI.HideInstant();
     }
 
     void Update()
@@ -78,7 +76,7 @@ public class PlayerInteractor : MonoBehaviour
                 if (crosshairImage != null)
                     crosshairImage.color = useCrosshairHighlight ? highlightColor : normalColor;
 
-                ShowPromptOnObject(hit);
+                ShowWorldUI(hit);
                 return;
             }
         }
@@ -86,35 +84,30 @@ public class PlayerInteractor : MonoBehaviour
         if (crosshairImage != null)
             crosshairImage.color = normalColor;
 
-        if (interactPrompt != null)
-            interactPrompt.Hide();
+        if (worldInteractUI != null)
+            worldInteractUI.Hide();
     }
 
-    void ShowPromptOnObject(RaycastHit hit)
+    void ShowWorldUI(RaycastHit hit)
     {
-        if (interactPrompt == null || cam == null)
+        if (worldInteractUI == null)
             return;
 
-        Collider col = hit.collider;
+        InteractAnchor anchor = hit.collider.GetComponentInParent<InteractAnchor>();
 
-        if (col == null)
+        if (anchor == null)
+            anchor = hit.collider.GetComponentInChildren<InteractAnchor>();
+
+        if (anchor == null && hit.collider.transform.parent != null)
+            anchor = hit.collider.transform.parent.GetComponentInChildren<InteractAnchor>();
+
+        if (anchor == null)
+        {
+            worldInteractUI.Hide();
             return;
+        }
 
-        Vector3 objectCenter = col.bounds.center;
-
-        Vector3 cameraDirection = cam.transform.position - objectCenter;
-        cameraDirection.y = 0f;
-
-        if (cameraDirection.sqrMagnitude < 0.001f)
-            cameraDirection = -cam.transform.forward;
-
-        cameraDirection.Normalize();
-
-        Vector3 promptPosition = objectCenter;
-        promptPosition += cameraDirection * promptForwardOffset;
-        promptPosition += Vector3.up * promptUpOffset;
-
-        interactPrompt.ShowAt(promptPosition);
+        worldInteractUI.ShowAtAnchor(anchor.transform);
     }
 
     void OnDrawGizmosSelected()

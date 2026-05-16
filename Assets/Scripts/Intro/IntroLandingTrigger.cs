@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Events;
 
 [RequireComponent(typeof(Collider))]
 public class IntroLandingTrigger : MonoBehaviour
@@ -33,6 +34,9 @@ public class IntroLandingTrigger : MonoBehaviour
     [Range(0f, 1f)] public float impactBlackAlpha = 0.95f;
     [Range(0f, 1f)] public float darkFadeStartAlpha = 0.5f;
     [Range(0f, 1f)] public float blinkAlpha = 0.75f;
+
+    [Header("Boost UI")]
+    public UnityEvent onIntroFinished;
 
     public float firstBlinkTime = 0.55f;
     public float secondBlinkTime = 1.25f;
@@ -224,6 +228,8 @@ public class IntroLandingTrigger : MonoBehaviour
 
         if (blackOverlay != null)
             blackOverlay.gameObject.SetActive(false);
+
+        onIntroFinished?.Invoke();
 
         routine = null;
     }
