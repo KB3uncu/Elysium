@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -25,11 +26,7 @@ public class CollectibleRelic : MonoBehaviour
     public Color emissionColor = Color.white;
     public float maxEmissionPower = 2.5f;
 
-    [Header("Placement")]
-    public float placeDuration = 0.55f;
-    public AnimationCurve placeCurve = AnimationCurve.EaseInOut(0f, 0f, 1f, 1f);
-
-    [Header("Tablet Pose")]
+    [Header("Tablet Fly Preview")]
     public Vector3 tabletRotationOffsetEuler = Vector3.zero;
 
     public bool IsCollected { get; private set; }
@@ -42,7 +39,7 @@ public class CollectibleRelic : MonoBehaviour
     private Renderer[] renderers;
 
     private Coroutine collectRoutine;
-    private Coroutine placeRoutine;
+    private Coroutine tabletFlyRoutine;
 
     void Awake()
     {
@@ -121,7 +118,7 @@ public class CollectibleRelic : MonoBehaviour
         {
             t += Time.deltaTime;
 
-            Vector3 randomOffset = Random.insideUnitSphere * shakeStrength;
+            Vector3 randomOffset = UnityEngine.Random.insideUnitSphere * shakeStrength;
             randomOffset.y *= 0.4f;
 
             transform.position = basePos + randomOffset;
@@ -221,18 +218,17 @@ public class CollectibleRelic : MonoBehaviour
         transform.localScale = Vector3.Lerp(transform.localScale, targetScale, Time.deltaTime * 8f);
     }
 
-    public void PlaceOnTablet(Transform placementPoint)
+    public void FlyToTabletAndHide(Transform placementPoint, float duration, AnimationCurve curve, Action onArrived)
     {
         if (placementPoint == null) return;
-        if (IsPlaced) return;
 
-        if (placeRoutine != null)
-            StopCoroutine(placeRoutine);
+        if (tabletFlyRoutine != null)
+            StopCoroutine(tabletFlyRoutine);
 
-        placeRoutine = StartCoroutine(PlaceSequence(placementPoint));
+        tabletFlyRoutine = StartCoroutine(FlyToTabletAndHideRoutine(placementPoint, duration, curve, onArrived));
     }
 
-    IEnumerator PlaceSequence(Transform placementPoint)
+    IEnumerator FlyToTabletAndHideRoutine(Transform placementPoint, float duration, AnimationCurve curve, Action onArrived)
     {
         IsPlaced = true;
         IsCollected = false;
@@ -240,36 +236,40 @@ public class CollectibleRelic : MonoBehaviour
 
         SetPhysicsEnabled(false);
 
+        transform.SetParent(null, true);
+
         Vector3 startPos = transform.position;
         Quaternion startRot = transform.rotation;
         Vector3 startScale = transform.localScale;
 
+        Vector3 targetPos = placementPoint.position;
+        Quaternion targetRot = placementPoint.rotation * Quaternion.Euler(tabletRotationOffsetEuler);
         Vector3 targetScale = originalLocalScale * tabletScaleMultiplier;
-        Quaternion targetRotation = placementPoint.rotation * Quaternion.Euler(tabletRotationOffsetEuler);
-
-        transform.SetParent(null, true);
 
         float t = 0f;
 
-        while (t < placeDuration)
+        while (t < duration)
         {
             t += Time.deltaTime;
-            float normalized = Mathf.Clamp01(t / placeDuration);
-            float k = placeCurve.Evaluate(normalized);
+            float normalized = Mathf.Clamp01(t / duration);
+            float k = curve != null ? curve.Evaluate(normalized) : normalized;
 
-            transform.position = Vector3.Lerp(startPos, placementPoint.position, k);
-            transform.rotation = Quaternion.Slerp(startRot, targetRotation, k);
+            transform.position = Vector3.Lerp(startPos, targetPos, k);
+            transform.rotation = Quaternion.Slerp(startRot, targetRot, k);
             transform.localScale = Vector3.Lerp(startScale, targetScale, k);
 
             yield return null;
         }
 
-        transform.SetParent(placementPoint, true);
-        transform.localPosition = Vector3.zero;
-        transform.localRotation = Quaternion.Euler(tabletRotationOffsetEuler);
+        transform.position = targetPos;
+        transform.rotation = targetRot;
         transform.localScale = targetScale;
 
-        placeRoutine = null;
+        gameObject.SetActive(false);
+
+        onArrived?.Invoke();
+
+        tabletFlyRoutine = null;
     }
 
     void SetPhysicsEnabled(bool enabled)
