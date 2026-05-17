@@ -60,21 +60,30 @@ public class BreakableWall : MonoBehaviour, IInteractable
         hasLastHit = true;
     }
 
-    public void OnInteract()
+    public bool OnInteract()
     {
-        if (broken || breaking) return;
-        if (playerGlove == null) return;
-        if (!playerGlove.hasGlove) return;
-        if (VFXManager.Instance == null) return;
+        if (broken || breaking)
+            return false;
 
+        if (playerGlove == null)
+            return false;
+
+        if (!playerGlove.hasGlove)
+            return false;
+
+        if (VFXManager.Instance == null)
+            return false;
+
+        breaking = true;
         VFXManager.Instance.PunchWall(this, playerGlove);
+
+        return true;
     }
 
     public void FinishBreak(PlayerGlove glove)
     {
-        if (broken || breaking) return;
-
-        breaking = true;
+        if (broken)
+            return;
 
         if (glove != null && glove.hasGlove)
             glove.ConsumeGlove();
@@ -105,7 +114,8 @@ public class BreakableWall : MonoBehaviour, IInteractable
 
     public void BreakFromWorld(Vector3 forceDirection, float forceMultiplier = 1f)
     {
-        if (broken) return;
+        if (broken)
+            return;
 
         Vector3 dir = forceDirection.sqrMagnitude > 0.001f
             ? forceDirection.normalized
@@ -153,7 +163,8 @@ public class BreakableWall : MonoBehaviour, IInteractable
         }
 
         Collider col = GetComponent<Collider>();
-        if (col != null) col.enabled = false;
+        if (col != null)
+            col.enabled = false;
 
         onBroken?.Invoke();
         StartCoroutine(FadeOut());

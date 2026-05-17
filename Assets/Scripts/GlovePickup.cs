@@ -31,23 +31,25 @@ public class GlovePickup : MonoBehaviour, IInteractable
         rends = pickupVisual.GetComponentsInChildren<Renderer>(true);
     }
 
-    public void OnInteract()
+    public bool OnInteract()
     {
-        if (isPickingUp) return;
-        if (isTaken) return;
+        if (isPickingUp) return false;
+        if (isTaken) return false;
 
         if (playerGlove == null)
         {
             Debug.LogWarning("GlovePickup: PlayerGlove referansý bulunamadý.");
-            return;
+            return false;
         }
 
         if (playerGlove.hasGlove)
-            return;
+            return false;
 
         isPickingUp = true;
         SetPickupEnabled(false);
         StartCoroutine(PickupRoutine());
+
+        return true;
     }
 
     IEnumerator PickupRoutine()

@@ -4,10 +4,22 @@ public class RouletteGun : MonoBehaviour, IInteractable
 {
     public RouletteGameManager gameManager;
 
-    public void OnInteract()
-    {
-        if (gameManager == null) return;
+    bool isPicked = false;
 
-        gameManager.PlayerPickGun();
+    public bool OnInteract()
+    {
+        if (isPicked)
+            return true;
+
+        if (gameManager == null)
+            return false;
+
+        bool success = gameManager.PlayerPickGun();
+
+        if (!success)
+            return false;
+
+        isPicked = true;
+        return true;
     }
 }

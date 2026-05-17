@@ -9,7 +9,6 @@ public class StoneTabletSocket : MonoBehaviour, IInteractable
     [Header("Placement")]
     public Transform placementPoint;
 
-    [Tooltip("Tablette önceden düzgün oturtulmuþ, baþta kapalý duracak nesne.")]
     public GameObject placedVisual;
 
     [Header("References")]
@@ -63,10 +62,10 @@ public class StoneTabletSocket : MonoBehaviour, IInteractable
         }
     }
 
-    public void OnInteract()
+    public bool OnInteract()
     {
-        if (isFilled) return;
-        if (isPlacing) return;
+        if (isFilled) return false;
+        if (isPlacing) return false;
 
         if (inventory == null)
             inventory = RelicInventoryManager.Instance;
@@ -74,21 +73,23 @@ public class StoneTabletSocket : MonoBehaviour, IInteractable
         if (inventory == null)
         {
             Debug.LogWarning("StoneTabletSocket: RelicInventoryManager bulunamadý.");
-            return;
+            return false;
         }
 
         if (!inventory.HasRelic(requiredRelic))
         {
             Debug.Log("Bu tablete uygun relic oyuncuda yok: " + requiredRelic);
-            return;
+            return false;
         }
 
         CollectibleRelic relic = inventory.TakeRelic(requiredRelic);
 
         if (relic == null)
-            return;
+            return false;
 
         StartCoroutine(PlaceRelicSequence(relic));
+
+        return true;
     }
 
     IEnumerator PlaceRelicSequence(CollectibleRelic relic)

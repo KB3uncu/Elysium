@@ -1,12 +1,13 @@
 using UnityEngine;
 
-public class RouletteEnemyTarget : MonoBehaviour, IInteractable
+public class RouletteEnemyTarget : MonoBehaviour
 {
     public RouletteGameManager gameManager;
 
-    public void OnInteract()
+    public void Shoot()
     {
-        if (gameManager == null) return;
+        if (gameManager == null)
+            return;
 
         gameManager.PlayerShoot();
     }

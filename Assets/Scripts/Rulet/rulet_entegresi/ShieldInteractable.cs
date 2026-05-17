@@ -4,12 +4,15 @@ public class ShieldInteractable : MonoBehaviour, IInteractable
 {
     public RouletteGameManager gameManager;
 
-    public void OnInteract()
+    public bool OnInteract()
     {
         Debug.Log("SHIELD INTERACT ÇALIÞTI");
 
-        if (gameManager == null) return;
+        if (gameManager == null)
+            return false;
 
         gameManager.PlayerPressedShield();
+
+        return true;
     }
 }

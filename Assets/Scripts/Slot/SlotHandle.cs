@@ -15,10 +15,14 @@ public class SlotHandle : MonoBehaviour, IInteractable
     public GameObject WinPanel;
 
 
-    public void OnInteract()
+    public bool OnInteract()
     {
-        if (!isPulled)
-            StartCoroutine(PullHandle());
+        if (isPulled)
+            return false;
+
+        StartCoroutine(PullHandle());
+
+        return true;
     }
 
     private IEnumerator PullHandle()

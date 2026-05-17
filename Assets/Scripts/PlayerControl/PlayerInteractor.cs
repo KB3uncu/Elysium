@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -17,10 +18,14 @@ public class PlayerInteractor : MonoBehaviour
     public WorldInteractUI worldInteractUI;
 
     Camera cam;
+
     IInteractable currentTarget;
+    Component currentTargetComponent;
 
     RaycastHit currentHit;
     bool hasHit;
+
+    HashSet<Component> usedInteractables = new HashSet<Component>();
 
     void Awake()
     {
@@ -49,7 +54,20 @@ public class PlayerInteractor : MonoBehaviour
                     wall.SetLastHit(currentHit.point, currentHit.normal);
             }
 
-            currentTarget.OnInteract();
+            bool success = currentTarget.OnInteract();
+
+            if (success)
+            {
+                if (currentTargetComponent != null)
+                    usedInteractables.Add(currentTargetComponent);
+
+                if (worldInteractUI != null)
+                    worldInteractUI.HideInstant();
+
+                currentTarget = null;
+                currentTargetComponent = null;
+                hasHit = false;
+            }
         }
     }
 
@@ -57,6 +75,7 @@ public class PlayerInteractor : MonoBehaviour
     {
         hasHit = false;
         currentTarget = null;
+        currentTargetComponent = null;
 
         if (cam == null)
             return;
@@ -66,10 +85,25 @@ public class PlayerInteractor : MonoBehaviour
         if (Physics.Raycast(ray, out RaycastHit hit, interactDistance, interactLayer, QueryTriggerInteraction.Collide))
         {
             IInteractable interactable = hit.collider.GetComponentInParent<IInteractable>();
+            Component interactableComponent = interactable as Component;
 
-            if (interactable != null)
+            if (interactable != null && interactableComponent != null)
             {
+                if (usedInteractables.Contains(interactableComponent))
+                {
+                    Debug.Log("Bu obje daha önce kullanýlmýþ: " + interactableComponent.name);
+
+                    if (crosshairImage != null)
+                        crosshairImage.color = normalColor;
+
+                    if (worldInteractUI != null)
+                        worldInteractUI.Hide();
+
+                    return;
+                }
+
                 currentTarget = interactable;
+                currentTargetComponent = interactableComponent;
                 currentHit = hit;
                 hasHit = true;
 

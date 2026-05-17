@@ -5,11 +5,16 @@ public class RouletteDice : MonoBehaviour, IInteractable
     public RouletteGameManager gameManager;
     public bool isPlayerDice = true;
 
-    public void OnInteract()
+    public bool OnInteract()
     {
-        if (gameManager == null) return;
-        if (!isPlayerDice) return;
+        if (gameManager == null)
+            return false;
+
+        if (!isPlayerDice)
+            return false;
 
         gameManager.PlayerRollDice();
+
+        return true;
     }
 }

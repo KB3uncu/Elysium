@@ -11,6 +11,9 @@ public class RouletteGameManager : MonoBehaviour
     public GunVisual playerGun;
     public GunVisual enemyGun;
 
+    [Header("Gun Interaction Collider")]
+    public Collider[] playerGunInteractColliders;
+
     [Header("Player Timing Shot")]
     public RouletteTimingBar playerTimingBar;
     public bool usePlayerTimingShot = true;
@@ -127,6 +130,8 @@ public class RouletteGameManager : MonoBehaviour
         playerGun?.PutDown();
         enemyGun?.PutDown();
 
+        SetPlayerGunInteraction(false);
+
         playerDiceDisplay?.SetCount(0);
         enemyDiceDisplay?.SetCount(0);
 
@@ -230,6 +235,9 @@ public class RouletteGameManager : MonoBehaviour
         {
             shooter = Shooter.Player;
             phase = Phase.NeedGunPickup;
+
+            SetPlayerGunInteraction(true);
+
             Debug.Log("Player wins dice. Click TABLE GUN to pick up.");
         }
         else
@@ -302,13 +310,15 @@ public class RouletteGameManager : MonoBehaviour
     // =========================
     // PLAYER INPUT ACTIONS
     // =========================
-    public void PlayerPickGun()
+    public bool PlayerPickGun()
     {
-        if (gameOver) return;
-        if (shooter != Shooter.Player) return;
-        if (phase != Phase.NeedGunPickup) return;
+        if (gameOver) return false;
+        if (shooter != Shooter.Player) return false;
+        if (phase != Phase.NeedGunPickup) return false;
 
         playerGun?.Pickup();
+
+        SetPlayerGunInteraction(false);
 
         if (usePlayerTimingShot && playerTimingBar != null)
             playerTimingBar.ShowAndRandomizeTarget(enemyHitCount);
@@ -316,6 +326,8 @@ public class RouletteGameManager : MonoBehaviour
         phase = Phase.NeedShootTarget;
 
         Debug.Log("Gun picked. Now click ENEMY to shoot.");
+
+        return true;
     }
 
     public void PlayerShoot()
@@ -582,6 +594,8 @@ public class RouletteGameManager : MonoBehaviour
         playerGun?.PutDown();
         enemyGun?.PutDown();
 
+        SetPlayerGunInteraction(false);
+
         if (playerTimingBar != null)
             playerTimingBar.Hide();
 
@@ -649,6 +663,8 @@ public class RouletteGameManager : MonoBehaviour
         playerGun?.PutDown();
         enemyGun?.PutDown();
 
+        SetPlayerGunInteraction(false);
+
         playerDiceDisplay?.SetCount(0);
         enemyDiceDisplay?.SetCount(0);
 
@@ -663,9 +679,22 @@ public class RouletteGameManager : MonoBehaviour
         Debug.Log("Round start: Click PLAYER DICE to roll.");
     }
 
+    void SetPlayerGunInteraction(bool enabled)
+    {
+        if (playerGunInteractColliders == null) return;
+
+        for (int i = 0; i < playerGunInteractColliders.Length; i++)
+        {
+            if (playerGunInteractColliders[i] != null)
+                playerGunInteractColliders[i].enabled = enabled;
+        }
+    }
+
     void EndGame(string reason)
     {
         gameOver = true;
+
+        SetPlayerGunInteraction(false);
 
         StopAllCoroutines();
 
