@@ -151368,6 +151368,41 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1286685079}
   m_CullTransparentMesh: 1
+--- !u!1 &1288417284
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1288417285}
+  m_Layer: 0
+  m_Name: Parkour
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1288417285
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1288417284}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -7.8, y: 13.18725, z: -208.4}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1551094214656516233}
+  - {fileID: 1843650090}
+  - {fileID: 1362739067}
+  - {fileID: 1565430457}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1288527855
 GameObject:
   m_ObjectHideFlags: 0
@@ -159485,6 +159520,99 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1356419063}
   m_Mesh: {fileID: -9162264694036188266, guid: 2a137c26408e5d54a8c40e2dcc032a50, type: 3}
+--- !u!1 &1362739065
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1362739067}
+  - component: {fileID: 1362739066}
+  m_Layer: 0
+  m_Name: GlassParkourGenerator
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1362739066
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1362739065}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a5cb84b849bdb24b97cc2c274bc7a12, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GlassParkourGenerator
+  glassPrefab: {fileID: 6059176842529360063, guid: d261565bdfea1f14684eda8cd7c378fd, type: 3}
+  startPoint: {fileID: 1551094214656516233}
+  finalPoint: {fileID: 1843650090}
+  generatedParent: {fileID: 1565430457}
+  generateOnStart: 1
+  clearBeforeGenerate: 1
+  platformCount: 45
+  autoAdjustPlatformCount: 1
+  minHorizontalStep: 6
+  maxHorizontalStep: 8
+  minVerticalRise: 0
+  maxVerticalRise: 4
+  useRandomFinalPoint: 1
+  finalDistanceMin: 30
+  finalDistanceMax: 40
+  finalHeightMin: 100
+  finalHeightMax: 100
+  randomFinalInFullCircle: 1
+  finalAngleRange: 70
+  useStartForwardAsMainDirection: 1
+  moveFinalPointTransform: 1
+  finalDirectionBias: 0
+  randomCandidateTryCount: 80
+  limitAroundStart: 1
+  maxDistanceFromStart: 50
+  minDistanceFromOlderPlatforms: 2
+  fragileGlassPrefab: {fileID: 3333423270711361395, guid: bc71d7e9d9e65b349841eafcd9a227ea, type: 3}
+  fragileGlassChance: 0.202
+  safePlatformsAtStart: 5
+  safePlatformsAtEnd: 2
+  autoAddStepBreakScript: 1
+  fragileMinBreakDelay: 3
+  fragileMaxBreakDelay: 5
+  fragileOutwardForce: 1.5
+  fragileUpwardForce: 0.4
+  fragileRandomForce: 1.2
+  fragileTorqueForce: 4
+  fragileDestroyPiecesAfter: 5
+  faceNextGlass: 1
+  rotationRandomness: 16
+  randomizeScale: 0
+  minScale: {x: 1, y: 1, z: 1}
+  maxScale: {x: 1, y: 1, z: 1}
+  useRandomSeed: 0
+  seed: 12345
+  drawGizmos: 1
+  gizmoLineColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  gizmoStartColor: {r: 0, g: 1, b: 1, a: 1}
+  gizmoFinalColor: {r: 1, g: 0, b: 1, a: 1}
+--- !u!4 &1362739067
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1362739065}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.0440197, y: -0.10109043, z: 13.261917}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1288417285}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1363432514
 GameObject:
   m_ObjectHideFlags: 0
@@ -184362,6 +184490,37 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1564246964}
   m_Mesh: {fileID: -3198769094232670007, guid: 8144f361128e0eb42afeb449b520c9d4, type: 3}
+--- !u!1 &1565430456
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1565430457}
+  m_Layer: 0
+  m_Name: GlassParkourParent
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1565430457
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1565430456}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -9.266509, y: 0.021289825, z: -12.724091}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1288417285}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1571165654
 GameObject:
   m_ObjectHideFlags: 0
@@ -205411,6 +205570,37 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1843270677}
   m_Mesh: {fileID: -7877427323203527385, guid: 8144f361128e0eb42afeb449b520c9d4, type: 3}
+--- !u!1 &1843650089
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1843650090}
+  m_Layer: 3
+  m_Name: FinalCamBitis
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1843650090
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1843650089}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.00000038941437, y: -0, z: -0, w: -1}
+  m_LocalPosition: {x: -3.3981876, y: 86.81275, z: -10.997116}
+  m_LocalScale: {x: 0.93413997, y: 0.93413997, z: 0.93413997}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1288417285}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1844908876
 GameObject:
   m_ObjectHideFlags: 0
@@ -236336,6 +236526,21 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!4 &1551094214656516233
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8965661360096564018}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.00000038941437, y: -0, z: -0, w: -1}
+  m_LocalPosition: {x: -0.11818886, y: 1.1727495, z: -4.9871063}
+  m_LocalScale: {x: 0.93413997, y: 0.93413997, z: 0.93413997}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1288417285}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1560756444416996793
 Transform:
   m_ObjectHideFlags: 0
@@ -237592,6 +237797,63 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1001 &2081977887596365446
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4948627084650745563, guid: 831d53018d153d84faf761a677cf8105, type: 3}
+      propertyPath: m_Name
+      value: StepBreakGlass
+      objectReference: {fileID: 0}
+    - target: {fileID: 8750243136136668021, guid: 831d53018d153d84faf761a677cf8105, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -4.4455905
+      objectReference: {fileID: 0}
+    - target: {fileID: 8750243136136668021, guid: 831d53018d153d84faf761a677cf8105, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 12.804304
+      objectReference: {fileID: 0}
+    - target: {fileID: 8750243136136668021, guid: 831d53018d153d84faf761a677cf8105, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -208.16515
+      objectReference: {fileID: 0}
+    - target: {fileID: 8750243136136668021, guid: 831d53018d153d84faf761a677cf8105, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8750243136136668021, guid: 831d53018d153d84faf761a677cf8105, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8750243136136668021, guid: 831d53018d153d84faf761a677cf8105, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8750243136136668021, guid: 831d53018d153d84faf761a677cf8105, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8750243136136668021, guid: 831d53018d153d84faf761a677cf8105, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8750243136136668021, guid: 831d53018d153d84faf761a677cf8105, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8750243136136668021, guid: 831d53018d153d84faf761a677cf8105, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 831d53018d153d84faf761a677cf8105, type: 3}
 --- !u!33 &2096455217053070762
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -254595,6 +254857,22 @@ MonoBehaviour:
   swaySpeed: 2.2
   swayAmount: 0.018
   rotationSwayAmount: 5
+--- !u!1 &8965661360096564018
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1551094214656516233}
+  m_Layer: 3
+  m_Name: "FinalCamBa\u015Flang\u0131c"
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!23 &8977810127027097828
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -255523,3 +255801,5 @@ SceneRoots:
   - {fileID: 308995545}
   - {fileID: 3989108076862192462}
   - {fileID: 1507289831}
+  - {fileID: 1288417285}
+  - {fileID: 2081977887596365446}
