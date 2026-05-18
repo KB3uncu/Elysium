@@ -7,10 +7,8 @@ public class StepBreakGlass : MonoBehaviour
     [Header("Player Detection")]
     public string playerTag = "Player";
 
-    [Tooltip("Oyuncunun camýn üstünde olup olmadýðýný kontrol eden kutu.")]
     public Vector3 detectionBoxSize = new Vector3(3f, 1f, 3f);
 
-    [Tooltip("Kontrol kutusu camýn ne kadar üstünde dursun.")]
     public float detectionHeightOffset = 0.6f;
 
     public LayerMask detectionMask = ~0;
@@ -47,8 +45,12 @@ public class StepBreakGlass : MonoBehaviour
     public GameObject breakVfxPrefab;
     public AudioSource breakAudio;
 
-    [Header("Destroy")]
+    [Header("Respawn")]
+    [Tooltip("Cam kýrýldýktan kaç saniye sonra ayný konumda tekrar toparlansýn.")]
     public float destroyPiecesAfter = 5f;
+
+    [Tooltip("Respawn olduktan sonra hemen tekrar tetiklenmesin diye kýsa güvenlik süresi.")]
+    public float respawnProtectionTime = 0.4f;
 
     [Header("Debug")]
     public bool drawDetectionGizmo = true;
@@ -56,8 +58,17 @@ public class StepBreakGlass : MonoBehaviour
     bool triggered = false;
     bool broken = false;
     float checkTimer;
+    float lastRespawnTime = -999f;
 
     Collider[] pieceColliders;
+
+    Transform[] originalParents;
+    Vector3[] originalLocalPositions;
+    Quaternion[] originalLocalRotations;
+    Vector3[] originalLocalScales;
+
+    Coroutine breakRoutine;
+    Coroutine respawnRoutine;
 
     void Awake()
     {
@@ -67,13 +78,20 @@ public class StepBreakGlass : MonoBehaviour
         if (pieces == null || pieces.Length == 0)
             pieces = GetComponentsInChildren<Rigidbody>(true);
 
+        CacheOriginalPieceTransforms();
         CollectPieceColliders();
         PreparePieces();
+
+        if (supportCollider != null)
+            supportCollider.enabled = true;
     }
 
     void Update()
     {
         if (triggered || broken)
+            return;
+
+        if (Time.time < lastRespawnTime + respawnProtectionTime)
             return;
 
         checkTimer -= Time.deltaTime;
@@ -86,7 +104,37 @@ public class StepBreakGlass : MonoBehaviour
         if (IsPlayerOnGlass())
         {
             triggered = true;
-            StartCoroutine(BreakRoutine());
+
+            if (breakRoutine != null)
+                StopCoroutine(breakRoutine);
+
+            breakRoutine = StartCoroutine(BreakRoutine());
+        }
+    }
+
+    void CacheOriginalPieceTransforms()
+    {
+        if (pieces == null)
+            return;
+
+        originalParents = new Transform[pieces.Length];
+        originalLocalPositions = new Vector3[pieces.Length];
+        originalLocalRotations = new Quaternion[pieces.Length];
+        originalLocalScales = new Vector3[pieces.Length];
+
+        for (int i = 0; i < pieces.Length; i++)
+        {
+            Rigidbody rb = pieces[i];
+
+            if (rb == null)
+                continue;
+
+            Transform tr = rb.transform;
+
+            originalParents[i] = tr.parent;
+            originalLocalPositions[i] = tr.localPosition;
+            originalLocalRotations[i] = tr.localRotation;
+            originalLocalScales[i] = tr.localScale;
         }
     }
 
@@ -134,13 +182,18 @@ public class StepBreakGlass : MonoBehaviour
             }
         }
 
-        if (disablePieceCollidersUntilBreak && pieceColliders != null)
+        SetPieceCollidersEnabled(!disablePieceCollidersUntilBreak);
+    }
+
+    void SetPieceCollidersEnabled(bool enabled)
+    {
+        if (pieceColliders == null)
+            return;
+
+        for (int i = 0; i < pieceColliders.Length; i++)
         {
-            for (int i = 0; i < pieceColliders.Length; i++)
-            {
-                if (pieceColliders[i] != null)
-                    pieceColliders[i].enabled = false;
-            }
+            if (pieceColliders[i] != null)
+                pieceColliders[i].enabled = enabled;
         }
     }
 
@@ -200,14 +253,7 @@ public class StepBreakGlass : MonoBehaviour
         if (disableSupportColliderOnBreak && supportCollider != null)
             supportCollider.enabled = false;
 
-        if (pieceColliders != null)
-        {
-            for (int i = 0; i < pieceColliders.Length; i++)
-            {
-                if (pieceColliders[i] != null)
-                    pieceColliders[i].enabled = true;
-            }
-        }
+        SetPieceCollidersEnabled(true);
 
         if (pieces != null)
         {
@@ -227,7 +273,6 @@ public class StepBreakGlass : MonoBehaviour
 
                 rb.linearVelocity = Vector3.zero;
                 rb.angularVelocity = Vector3.zero;
-
                 rb.collisionDetectionMode = CollisionDetectionMode.ContinuousDynamic;
 
                 Vector3 outwardDirection = rb.transform.position - transform.position;
@@ -246,12 +291,87 @@ public class StepBreakGlass : MonoBehaviour
 
                 rb.AddForce(force, ForceMode.Impulse);
                 rb.AddTorque(Random.insideUnitSphere * torqueForce, ForceMode.Impulse);
-
-                Destroy(rb.gameObject, destroyPiecesAfter);
             }
         }
 
-        Destroy(gameObject, destroyPiecesAfter + 0.1f);
+        if (respawnRoutine != null)
+            StopCoroutine(respawnRoutine);
+
+        respawnRoutine = StartCoroutine(RespawnAfterDelay());
+    }
+
+    IEnumerator RespawnAfterDelay()
+    {
+        yield return new WaitForSeconds(destroyPiecesAfter);
+
+        RespawnGlass();
+    }
+
+    void RespawnGlass()
+    {
+        if (pieces != null)
+        {
+            for (int i = 0; i < pieces.Length; i++)
+            {
+                Rigidbody rb = pieces[i];
+
+                if (rb == null)
+                    continue;
+
+                Transform tr = rb.transform;
+
+                if (originalParents != null && i < originalParents.Length)
+                    tr.SetParent(originalParents[i], false);
+
+                if (originalLocalPositions != null && i < originalLocalPositions.Length)
+                    tr.localPosition = originalLocalPositions[i];
+
+                if (originalLocalRotations != null && i < originalLocalRotations.Length)
+                    tr.localRotation = originalLocalRotations[i];
+
+                if (originalLocalScales != null && i < originalLocalScales.Length)
+                    tr.localScale = originalLocalScales[i];
+
+                rb.linearVelocity = Vector3.zero;
+                rb.angularVelocity = Vector3.zero;
+
+                rb.useGravity = false;
+                rb.isKinematic = true;
+                rb.Sleep();
+            }
+        }
+
+        SetPieceCollidersEnabled(!disablePieceCollidersUntilBreak);
+
+        if (supportCollider != null)
+            supportCollider.enabled = true;
+
+        triggered = false;
+        broken = false;
+        lastRespawnTime = Time.time;
+
+        breakRoutine = null;
+        respawnRoutine = null;
+    }
+
+    void OnDestroy()
+    {
+        if (!Application.isPlaying)
+            return;
+
+        if (pieces == null)
+            return;
+
+        for (int i = 0; i < pieces.Length; i++)
+        {
+            Rigidbody rb = pieces[i];
+
+            if (rb == null)
+                continue;
+
+            if (rb.transform.parent == null)
+                Destroy(rb.gameObject);
+        }
     }
 
     void OnDrawGizmosSelected()

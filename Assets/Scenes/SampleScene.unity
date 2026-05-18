@@ -159575,9 +159575,9 @@ MonoBehaviour:
   limitAroundStart: 1
   maxDistanceFromStart: 50
   minDistanceFromOlderPlatforms: 2
-  fragileGlassPrefab: {fileID: 3333423270711361395, guid: bc71d7e9d9e65b349841eafcd9a227ea, type: 3}
+  fragileGlassPrefab: {fileID: 2059288209099051929, guid: bc71d7e9d9e65b349841eafcd9a227ea, type: 3}
   fragileGlassChance: 0.202
-  safePlatformsAtStart: 5
+  safePlatformsAtStart: 20
   safePlatformsAtEnd: 2
   autoAddStepBreakScript: 1
   fragileMinBreakDelay: 3
@@ -237797,63 +237797,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1001 &2081977887596365446
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4948627084650745563, guid: 831d53018d153d84faf761a677cf8105, type: 3}
-      propertyPath: m_Name
-      value: StepBreakGlass
-      objectReference: {fileID: 0}
-    - target: {fileID: 8750243136136668021, guid: 831d53018d153d84faf761a677cf8105, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -4.4455905
-      objectReference: {fileID: 0}
-    - target: {fileID: 8750243136136668021, guid: 831d53018d153d84faf761a677cf8105, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 12.804304
-      objectReference: {fileID: 0}
-    - target: {fileID: 8750243136136668021, guid: 831d53018d153d84faf761a677cf8105, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -208.16515
-      objectReference: {fileID: 0}
-    - target: {fileID: 8750243136136668021, guid: 831d53018d153d84faf761a677cf8105, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8750243136136668021, guid: 831d53018d153d84faf761a677cf8105, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8750243136136668021, guid: 831d53018d153d84faf761a677cf8105, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8750243136136668021, guid: 831d53018d153d84faf761a677cf8105, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8750243136136668021, guid: 831d53018d153d84faf761a677cf8105, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8750243136136668021, guid: 831d53018d153d84faf761a677cf8105, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8750243136136668021, guid: 831d53018d153d84faf761a677cf8105, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 831d53018d153d84faf761a677cf8105, type: 3}
 --- !u!33 &2096455217053070762
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -253629,6 +253572,7 @@ GameObject:
   - component: {fileID: 3046337412024789253}
   - component: {fileID: 8130181314767338020}
   - component: {fileID: 8958086309226964626}
+  - component: {fileID: 8958086309226964627}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -254857,6 +254801,41 @@ MonoBehaviour:
   swaySpeed: 2.2
   swayAmount: 0.018
   rotationSwayAmount: 5
+--- !u!114 &8958086309226964627
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8619861290467517297}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a72bfca16a13bc48bb83329ba28db32, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HighFallParkourImpact
+  minFallDistance: 20
+  cooldown: 1.5
+  playerCamera: {fileID: 6706276232271298237}
+  blackOverlay: {fileID: 1210327405}
+  parkourGenerator: {fileID: 1362739066}
+  regenerateParkourOnImpact: 1
+  regenerateImmediately: 0
+  cameraDownAmount: 3
+  fallLookDownAngle: 45
+  fallRollAngle: 45
+  impactInDuration: 0.12
+  impactHoldDuration: 0.25
+  getUpDuration: 3.2
+  wobblePositionAmount: 0.035
+  wobbleRotationAmount: 4.5
+  wobbleFrequency: 10
+  impactBlackAlpha: 0.98
+  darkFadeStartAlpha: 0.45
+  blinkAlpha: 0.75
+  firstBlinkTime: 0.55
+  secondBlinkTime: 1.25
+  blinkDuration: 0.28
+  impactAudio: {fileID: 0}
 --- !u!1 &8965661360096564018
 GameObject:
   m_ObjectHideFlags: 0
@@ -255802,4 +255781,3 @@ SceneRoots:
   - {fileID: 3989108076862192462}
   - {fileID: 1507289831}
   - {fileID: 1288417285}
-  - {fileID: 2081977887596365446}
