@@ -49,7 +49,7 @@ public class GlovePickup : MonoBehaviour, IInteractable
         SetPickupEnabled(false);
         StartCoroutine(PickupRoutine());
 
-        return true;
+        return false;
     }
 
     IEnumerator PickupRoutine()

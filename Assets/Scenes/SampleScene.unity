@@ -67444,7 +67444,7 @@ MonoBehaviour:
   respawnPoint: {fileID: 1126331751}
   playerGlove: {fileID: 8130181314767338020}
   glovePickup: {fileID: 227252257}
-  flashDuration: 0.4
+  flashDuration: 1
   flashDelayBetween: 0.15
 --- !u!4 &528810390
 Transform:
