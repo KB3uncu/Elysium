@@ -78,12 +78,26 @@ public class RouletteTimingBar : MonoBehaviour
     public Color successColor = Color.green;
     public Color failColor = Color.red;
 
+    [Header("URP Materials")]
+    public Material arcMaterial;
+    public Material needleMaterial;
+    public Material targetMaterial;
+    public Material failMaterial;
+
+    [Header("Material Fallback")]
+    public bool createRuntimeMaterialsIfMissing = true;
+
     Transform visualRoot;
     Transform needlePivot;
     Transform needle;
     Transform targetDot;
 
     readonly List<GameObject> spawnedObjects = new List<GameObject>();
+
+    Material runtimeArcMaterial;
+    Material runtimeNeedleMaterial;
+    Material runtimeTargetMaterial;
+    Material runtimeFailMaterial;
 
     float currentAngle;
     float targetAngle;
@@ -102,6 +116,8 @@ public class RouletteTimingBar : MonoBehaviour
         currentSuccessAngleTolerance = defaultSuccessAngleTolerance;
         currentTargetDotSize = defaultTargetDotSize;
         currentTargetSpawnRange = defaultTargetSpawnRange;
+
+        PrepareRuntimeMaterials();
 
         if (buildVisualOnAwake)
             BuildVisual();
@@ -158,14 +174,13 @@ public class RouletteTimingBar : MonoBehaviour
         {
             targetDot.localPosition = AngleToLocalPosition(targetAngle);
             targetDot.localScale = Vector3.one * currentTargetDotSize;
-            SetRendererColor(targetDot, successColor);
+            ApplyRendererMaterial(targetDot, GetTargetMaterial(), successColor);
         }
 
-        SetRendererColor(needle, needleColor);
+        ApplyRendererMaterial(needle, GetNeedleMaterial(), needleColor);
 
         timer = Random.Range(0f, 10f);
         isRunning = true;
-
     }
 
     public bool StopAndCheck()
@@ -178,7 +193,11 @@ public class RouletteTimingBar : MonoBehaviour
         float difference = Mathf.Abs(Mathf.DeltaAngle(currentAngle, targetAngle));
         bool success = difference <= currentSuccessAngleTolerance;
 
-        SetRendererColor(needle, success ? successColor : failColor);
+        ApplyRendererMaterial(
+            needle,
+            success ? GetTargetMaterial() : GetFailMaterial(),
+            success ? successColor : failColor
+        );
 
         return success;
     }
@@ -254,7 +273,8 @@ public class RouletteTimingBar : MonoBehaviour
             segment.transform.localRotation = Quaternion.Euler(0f, 0f, -angle);
             segment.transform.localScale = new Vector3(arcSegmentLength, arcSegmentThickness, arcSegmentThickness);
 
-            SetRendererColor(segment.transform, arcColor);
+            ApplyRendererMaterial(segment.transform, GetArcMaterial(), arcColor);
+
             spawnedObjects.Add(segment);
         }
     }
@@ -272,7 +292,7 @@ public class RouletteTimingBar : MonoBehaviour
         dot.transform.localRotation = Quaternion.identity;
         dot.transform.localScale = Vector3.one * defaultTargetDotSize;
 
-        SetRendererColor(dot.transform, successColor);
+        ApplyRendererMaterial(dot.transform, GetTargetMaterial(), successColor);
 
         targetDot = dot.transform;
         spawnedObjects.Add(dot);
@@ -302,7 +322,7 @@ public class RouletteTimingBar : MonoBehaviour
         needleObj.transform.localRotation = Quaternion.identity;
         needleObj.transform.localScale = new Vector3(needleThickness, radius, needleThickness);
 
-        SetRendererColor(needleObj.transform, needleColor);
+        ApplyRendererMaterial(needleObj.transform, GetNeedleMaterial(), needleColor);
 
         needle = needleObj.transform;
         spawnedObjects.Add(needleObj);
@@ -324,18 +344,6 @@ public class RouletteTimingBar : MonoBehaviour
             return;
 
         needlePivot.localRotation = Quaternion.Euler(0f, 0f, -angle);
-    }
-
-    void SetRendererColor(Transform target, Color color)
-    {
-        if (target == null)
-            return;
-
-        Renderer r = target.GetComponent<Renderer>();
-        if (r == null)
-            return;
-
-        r.material.color = color;
     }
 
     void DestroyCollider(GameObject obj)
@@ -363,5 +371,108 @@ public class RouletteTimingBar : MonoBehaviour
         needle = null;
         targetDot = null;
         isBuilt = false;
+    }
+
+    void PrepareRuntimeMaterials()
+    {
+        if (!createRuntimeMaterialsIfMissing)
+            return;
+
+        if (arcMaterial == null)
+            runtimeArcMaterial = CreateURPMaterial("TimingBar_Arc_Runtime", arcColor);
+
+        if (needleMaterial == null)
+            runtimeNeedleMaterial = CreateURPMaterial("TimingBar_Needle_Runtime", needleColor);
+
+        if (targetMaterial == null)
+            runtimeTargetMaterial = CreateURPMaterial("TimingBar_Target_Runtime", successColor);
+
+        if (failMaterial == null)
+            runtimeFailMaterial = CreateURPMaterial("TimingBar_Fail_Runtime", failColor);
+    }
+
+    Material CreateURPMaterial(string materialName, Color color)
+    {
+        Shader shader = Shader.Find("Universal Render Pipeline/Unlit");
+
+        if (shader == null)
+            shader = Shader.Find("Universal Render Pipeline/Lit");
+
+        if (shader == null)
+            shader = Shader.Find("Standard");
+
+        if (shader == null)
+        {
+            return null;
+        }
+
+        Material mat = new Material(shader);
+        mat.name = materialName;
+
+        SetMaterialColor(mat, color);
+
+        return mat;
+    }
+
+    Material GetArcMaterial()
+    {
+        return arcMaterial != null ? arcMaterial : runtimeArcMaterial;
+    }
+
+    Material GetNeedleMaterial()
+    {
+        return needleMaterial != null ? needleMaterial : runtimeNeedleMaterial;
+    }
+
+    Material GetTargetMaterial()
+    {
+        return targetMaterial != null ? targetMaterial : runtimeTargetMaterial;
+    }
+
+    Material GetFailMaterial()
+    {
+        return failMaterial != null ? failMaterial : runtimeFailMaterial;
+    }
+
+    void ApplyRendererMaterial(Transform target, Material material, Color color)
+    {
+        if (target == null)
+            return;
+
+        Renderer r = target.GetComponent<Renderer>();
+        if (r == null)
+            return;
+
+        if (material != null)
+        {
+            r.sharedMaterial = material;
+
+            MaterialPropertyBlock block = new MaterialPropertyBlock();
+            r.GetPropertyBlock(block);
+
+            if (material.HasProperty("_BaseColor"))
+                block.SetColor("_BaseColor", color);
+            else if (material.HasProperty("_Color"))
+                block.SetColor("_Color", color);
+
+            r.SetPropertyBlock(block);
+        }
+        else
+        {
+            r.material.color = color;
+        }
+    }
+
+    void SetMaterialColor(Material mat, Color color)
+    {
+        if (mat == null)
+            return;
+
+        if (mat.HasProperty("_BaseColor"))
+            mat.SetColor("_BaseColor", color);
+        else if (mat.HasProperty("_Color"))
+            mat.SetColor("_Color", color);
+        else
+            mat.color = color;
     }
 }
