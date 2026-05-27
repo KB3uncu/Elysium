@@ -93,7 +93,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000000, guid: 96ef6f51235855b49b75587b4f1c687c, type: 2}
   m_LightingSettings: {fileID: 4890085278179872738, guid: 106d1ca7c14e2a9448b78b58645c5c21, type: 2}
 --- !u!196 &4
 NavMeshSettings:
@@ -208288,7 +208288,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1925502982
 Transform:
   m_ObjectHideFlags: 0
@@ -228525,7 +228525,7 @@ Transform:
   m_GameObject: {fileID: 919132147734455933}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 36.29, y: 16.92411, z: -207.47}
+  m_LocalPosition: {x: 11.6, y: 16.92411, z: -207.1}
   m_LocalScale: {x: 3, y: 3, z: 3}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -228581,6 +228581,7 @@ Transform:
   m_Children:
   - {fileID: 5992310680658057902}
   - {fileID: 7013971740777652167}
+  - {fileID: 543450653233242143}
   m_Father: {fileID: 1843650090}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &543450653079447205
@@ -228614,16 +228615,16 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 919132149496134309}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 29.5, y: 17.12376, z: -209.18}
+  m_LocalRotation: {x: 0.000000026692533, y: 0.7071068, z: 0.000000026692533, w: 0.7071068}
+  m_LocalPosition: {x: 10, y: 5, z: 0}
   m_LocalScale: {x: 3, y: 3, z: 3}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3745622628276566906}
   - {fileID: 7684112575176761430}
   - {fileID: 4718749926050981140}
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Father: {fileID: 543450653055850789}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!4 &543450653252224225
 Transform:
   m_ObjectHideFlags: 0
@@ -238972,7 +238973,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  carryScaleMultiplier: 0.08
+  carryScaleMultiplier: 0.06
   tabletScaleMultiplier: 0.13
   useEmissionGlow: 1
   emissionColor: {r: 1, g: 1, b: 1, a: 1}
@@ -244125,8 +244126,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4153579684914685563}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: 0.7071068, z: 0.000000053385065, w: 0.7071068}
-  m_LocalPosition: {x: 1.208359, y: 0.9241793, z: 0.701233}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: -0, w: -0.7071068}
+  m_LocalPosition: {x: -7.92, y: 0.92, z: -0.28}
   m_LocalScale: {x: 0.19999999, y: 0.19999999, z: 0.19999999}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -244135,7 +244136,7 @@ Transform:
   - {fileID: 193115817}
   - {fileID: 1821035642}
   m_Father: {fileID: 543450653055850789}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 270, z: 0}
 --- !u!1 &7036213050350907025
 GameObject:
   m_ObjectHideFlags: 0
@@ -250677,8 +250678,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::RelicInventoryManager
   carryAnchor: {fileID: 1448623225}
   createAnchorIfMissing: 1
-  firstRelicLocalPosition: {x: 0, y: 0, z: 0}
-  relicSpacing: {x: -0.06, y: 0.055, z: -0.025}
+  firstRelicLocalPosition: {x: 0.5, y: -0.4, z: 0}
+  relicSpacing: {x: -0.3, y: 0.03, z: 0}
   baseRotationEuler: {x: 8, y: -18, z: -8}
   enableCarryMotion: 1
   swaySpeed: 2.2
@@ -251682,4 +251683,3 @@ SceneRoots:
   - {fileID: 1507289831}
   - {fileID: 1288417285}
   - {fileID: 543450651941338311}
-  - {fileID: 543450653233242143}
