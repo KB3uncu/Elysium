@@ -50,7 +50,7 @@ public class GlassParkourGenerator : MonoBehaviour
     public float finalDirectionBias = 0.08f;
 
     [Tooltip("Her cam için kaç farklý rastgele nokta denensin.")]
-    public int randomCandidateTryCount = 80;
+    public int randomCandidateTryCount = 150;
 
     [Tooltip("Camlarýn start noktasýndan aþýrý uzaða kaçmasýný engeller.")]
     public bool limitAroundStart = true;
@@ -60,6 +60,38 @@ public class GlassParkourGenerator : MonoBehaviour
 
     [Tooltip("Eski camlarýn üst üste binmesini azaltýr. 0 yaparsan kapalý olur.")]
     public float minDistanceFromOlderPlatforms = 4f;
+
+    [Header("Map Safety Bounds")]
+    [Tooltip("Açýlýrsa final ve camlar belirlediðin X/Z sýnýrlarýnýn dýþýna çýkmaz.")]
+    public bool useMapBounds = false;
+
+    public Vector2 mapLimitX = new Vector2(-40f, 40f);
+    public Vector2 mapLimitZ = new Vector2(-40f, 40f);
+
+    public bool clampFinalInsideBounds = true;
+    public bool clampGeneratedGlassesInsideBounds = true;
+
+    [Header("Obstacle Avoidance")]
+    [Tooltip("Açýlýrsa camlar ve iki cam arasýndaki yol obstacleMask içindeki colliderlara çarpmamaya çalýþýr.")]
+    public bool avoidObstacles = true;
+
+    [Tooltip("Camlarýn içinden geçmemesi gereken objelerin layerý. Örn: ParkourObstacle.")]
+    public LayerMask obstacleMask;
+
+    [Tooltip("Camýn yerleþeceði noktada bu kutu kadar alan boþ mu diye kontrol edilir.")]
+    public Vector3 glassCheckHalfExtents = new Vector3(1.2f, 0.6f, 1.2f);
+
+    [Tooltip("Ýki cam arasýndaki çizgide engel var mý kontrol eder.")]
+    public bool checkPathBetweenGlasses = true;
+
+    [Tooltip("Ýki cam arasýndaki yol kontrolünün kalýnlýðý.")]
+    public float pathCheckRadius = 0.6f;
+
+    [Tooltip("SphereCast baþlangýcýný biraz ileri alýr. Kendi camýna çarpmasýný azaltýr.")]
+    public float pathCheckStartPadding = 0.2f;
+
+    [Tooltip("SphereCast bitiþini biraz erken keser. Final noktasýnýn kendi colliderýna takýlmasýný azaltýr.")]
+    public float pathCheckEndPadding = 0.8f;
 
     [Header("Fragile / Breaking Glass")]
     [Tooltip("Oyuncu üstüne basýnca 3-5 saniye içinde kýrýlacak kýrýk cam prefabý.")]
@@ -103,9 +135,11 @@ public class GlassParkourGenerator : MonoBehaviour
 
     [Header("Debug")]
     public bool drawGizmos = true;
+    public bool drawMapBoundsGizmo = false;
     public Color gizmoLineColor = Color.yellow;
     public Color gizmoStartColor = Color.cyan;
     public Color gizmoFinalColor = Color.magenta;
+    public Color gizmoBoundsColor = Color.green;
 
     private readonly List<GameObject> spawnedGlasses = new List<GameObject>();
     private readonly List<Vector3> generatedPositions = new List<Vector3>();
@@ -149,12 +183,18 @@ public class GlassParkourGenerator : MonoBehaviour
         Vector3 startPos = startPoint.position;
         Vector3 finalPos = GetFinalPosition(random, startPos);
 
+        if (useMapBounds && clampFinalInsideBounds)
+            finalPos = ClampToMapBounds(finalPos);
+
         int count = Mathf.Max(2, platformCount);
 
         if (autoAdjustPlatformCount)
             count = GetAdjustedPlatformCount(startPos, finalPos, count);
 
         ClampFinalHeightToStepRules(ref finalPos, startPos, count);
+
+        if (useMapBounds && clampFinalInsideBounds)
+            finalPos = ClampToMapBounds(finalPos);
 
         if (finalPoint != null && moveFinalPointTransform)
             finalPoint.position = finalPos;
@@ -270,20 +310,23 @@ public class GlassParkourGenerator : MonoBehaviour
                 Vector3 candidate = previousPos + direction * horizontalStep;
                 candidate.y = previousPos.y + verticalRise;
 
+                if (useMapBounds && clampGeneratedGlassesInsideBounds)
+                    candidate = ClampToMapBounds(candidate);
+
+                if (IsCandidateBlocked(previousPos, candidate, finalPos, remainingStepsAfterThis))
+                    continue;
+
                 float score = GetCandidateScore(candidate, startPos, finalPos, remainingStepsAfterThis);
 
                 if (score < bestScore)
                 {
                     bestScore = score;
                     bestCandidate = candidate;
+                    foundValidCandidate = true;
                 }
 
                 if (score <= 0.001f)
-                {
-                    foundValidCandidate = true;
-                    bestCandidate = candidate;
                     break;
-                }
             }
 
             if (!foundValidCandidate)
@@ -304,10 +347,66 @@ public class GlassParkourGenerator : MonoBehaviour
                     Vector3 safeCandidate = previousPos + directionToFinal * safeStep;
                     safeCandidate.y = previousPos.y + verticalRise;
 
-                    float safeScore = GetCandidateScore(safeCandidate, startPos, finalPos, remainingStepsAfterThis);
+                    if (useMapBounds && clampGeneratedGlassesInsideBounds)
+                        safeCandidate = ClampToMapBounds(safeCandidate);
 
-                    if (safeScore < bestScore)
-                        bestCandidate = safeCandidate;
+                    if (!IsCandidateBlocked(previousPos, safeCandidate, finalPos, remainingStepsAfterThis))
+                    {
+                        float safeScore = GetCandidateScore(safeCandidate, startPos, finalPos, remainingStepsAfterThis);
+
+                        if (safeScore < bestScore)
+                        {
+                            bestCandidate = safeCandidate;
+                            bestScore = safeScore;
+                            foundValidCandidate = true;
+                        }
+                    }
+                }
+            }
+
+            if (!foundValidCandidate)
+            {
+                Vector3 emergencyCandidate;
+
+                if (TryFindEmergencyCandidate(
+                    random,
+                    previousPos,
+                    startPos,
+                    finalPos,
+                    verticalRise,
+                    remainingStepsAfterThis,
+                    out emergencyCandidate))
+                {
+                    bestCandidate = emergencyCandidate;
+                    foundValidCandidate = true;
+                }
+            }
+
+            if (!foundValidCandidate)
+            {
+                Debug.LogWarning(
+                    "GlassParkourGenerator: " + (i + 1) +
+                    ". cam için engelsiz nokta bulunamadý. " +
+                    "Obstacle collider çok büyük olabilir veya final noktasý engelin arkasýnda kalýyor olabilir."
+                );
+
+                Vector3 toFinal = finalPos - previousPos;
+                toFinal.y = 0f;
+
+                if (toFinal.sqrMagnitude > 0.01f)
+                {
+                    Vector3 directionToFinal = toFinal.normalized;
+                    float fallbackStep = Mathf.Clamp(
+                        toFinal.magnitude / Mathf.Max(1, remainingStepsAfterThis + 1),
+                        minHorizontalStep,
+                        maxHorizontalStep
+                    );
+
+                    bestCandidate = previousPos + directionToFinal * fallbackStep;
+                    bestCandidate.y = previousPos.y + verticalRise;
+
+                    if (useMapBounds && clampGeneratedGlassesInsideBounds)
+                        bestCandidate = ClampToMapBounds(bestCandidate);
                 }
             }
 
@@ -316,6 +415,135 @@ public class GlassParkourGenerator : MonoBehaviour
         }
 
         generatedPositions.Add(finalPos);
+    }
+
+    bool TryFindEmergencyCandidate(
+        System.Random random,
+        Vector3 previousPos,
+        Vector3 startPos,
+        Vector3 finalPos,
+        float verticalRise,
+        int remainingStepsAfterThis,
+        out Vector3 result)
+    {
+        result = previousPos;
+
+        Vector3 toFinal = finalPos - previousPos;
+        toFinal.y = 0f;
+
+        Vector3 baseDirection;
+
+        if (toFinal.sqrMagnitude > 0.01f)
+            baseDirection = toFinal.normalized;
+        else
+            baseDirection = Vector3.forward;
+
+        float bestScore = float.MaxValue;
+        bool found = false;
+
+        int emergencyTryCount = Mathf.Max(80, randomCandidateTryCount);
+
+        for (int i = 0; i < emergencyTryCount; i++)
+        {
+            float sideAngle = RandomRange(random, -120f, 120f);
+            Vector3 direction = Quaternion.Euler(0f, sideAngle, 0f) * baseDirection;
+
+            float step = RandomRange(random, minHorizontalStep, maxHorizontalStep);
+
+            Vector3 candidate = previousPos + direction.normalized * step;
+            candidate.y = previousPos.y + verticalRise;
+
+            if (useMapBounds && clampGeneratedGlassesInsideBounds)
+                candidate = ClampToMapBounds(candidate);
+
+            if (IsCandidateBlocked(previousPos, candidate, finalPos, remainingStepsAfterThis))
+                continue;
+
+            float score = GetCandidateScore(candidate, startPos, finalPos, remainingStepsAfterThis);
+
+            if (score < bestScore)
+            {
+                bestScore = score;
+                result = candidate;
+                found = true;
+            }
+        }
+
+        return found;
+    }
+
+    bool IsCandidateBlocked(Vector3 previousPos, Vector3 candidate, Vector3 finalPos, int remainingStepsAfterThis)
+    {
+        if (!avoidObstacles)
+            return false;
+
+        if (obstacleMask.value == 0)
+            return false;
+
+        if (IsPositionBlocked(candidate))
+            return true;
+
+        if (checkPathBetweenGlasses && IsPathBlocked(previousPos, candidate))
+            return true;
+
+        if (remainingStepsAfterThis == 1 && checkPathBetweenGlasses && IsPathBlocked(candidate, finalPos))
+            return true;
+
+        return false;
+    }
+
+    bool IsPositionBlocked(Vector3 position)
+    {
+        if (!avoidObstacles)
+            return false;
+
+        if (obstacleMask.value == 0)
+            return false;
+
+        return Physics.CheckBox(
+            position,
+            glassCheckHalfExtents,
+            Quaternion.identity,
+            obstacleMask,
+            QueryTriggerInteraction.Collide
+        );
+    }
+
+    bool IsPathBlocked(Vector3 from, Vector3 to)
+    {
+        if (!avoidObstacles)
+            return false;
+
+        if (obstacleMask.value == 0)
+            return false;
+
+        Vector3 direction = to - from;
+        float distance = direction.magnitude;
+
+        if (distance <= 0.01f)
+            return false;
+
+        direction.Normalize();
+
+        float startPadding = Mathf.Clamp(pathCheckStartPadding, 0f, distance * 0.45f);
+        float endPadding = Mathf.Clamp(pathCheckEndPadding, 0f, distance * 0.45f);
+
+        float castDistance = distance - startPadding - endPadding;
+
+        if (castDistance <= 0.01f)
+            return false;
+
+        Vector3 castStart = from + direction * startPadding;
+
+        return Physics.SphereCast(
+            castStart,
+            pathCheckRadius,
+            direction,
+            out RaycastHit hit,
+            castDistance,
+            obstacleMask,
+            QueryTriggerInteraction.Collide
+        );
     }
 
     Vector3 GetRandomDirectionWithSmallFinalBias(System.Random random, Vector3 currentPos, Vector3 finalPos)
@@ -485,6 +713,13 @@ public class GlassParkourGenerator : MonoBehaviour
         return Vector3.Distance(flatA, flatB);
     }
 
+    Vector3 ClampToMapBounds(Vector3 pos)
+    {
+        pos.x = Mathf.Clamp(pos.x, mapLimitX.x, mapLimitX.y);
+        pos.z = Mathf.Clamp(pos.z, mapLimitZ.x, mapLimitZ.y);
+        return pos;
+    }
+
     float RandomRange(System.Random random, float min, float max)
     {
         if (max < min)
@@ -564,6 +799,28 @@ public class GlassParkourGenerator : MonoBehaviour
         fragileMaxBreakDelay = Mathf.Max(fragileMinBreakDelay, fragileMaxBreakDelay);
 
         fragileDestroyPiecesAfter = Mathf.Max(0.1f, fragileDestroyPiecesAfter);
+
+        if (mapLimitX.y < mapLimitX.x)
+        {
+            float temp = mapLimitX.x;
+            mapLimitX.x = mapLimitX.y;
+            mapLimitX.y = temp;
+        }
+
+        if (mapLimitZ.y < mapLimitZ.x)
+        {
+            float temp = mapLimitZ.x;
+            mapLimitZ.x = mapLimitZ.y;
+            mapLimitZ.y = temp;
+        }
+
+        glassCheckHalfExtents.x = Mathf.Max(0.05f, glassCheckHalfExtents.x);
+        glassCheckHalfExtents.y = Mathf.Max(0.05f, glassCheckHalfExtents.y);
+        glassCheckHalfExtents.z = Mathf.Max(0.05f, glassCheckHalfExtents.z);
+
+        pathCheckRadius = Mathf.Max(0.05f, pathCheckRadius);
+        pathCheckStartPadding = Mathf.Max(0f, pathCheckStartPadding);
+        pathCheckEndPadding = Mathf.Max(0f, pathCheckEndPadding);
     }
 
     void OnDrawGizmos()
@@ -581,6 +838,24 @@ public class GlassParkourGenerator : MonoBehaviour
         {
             Gizmos.color = gizmoFinalColor;
             Gizmos.DrawSphere(finalPoint.position, 0.35f);
+        }
+
+        if (drawMapBoundsGizmo)
+        {
+            Gizmos.color = gizmoBoundsColor;
+
+            float centerX = (mapLimitX.x + mapLimitX.y) * 0.5f;
+            float centerZ = (mapLimitZ.x + mapLimitZ.y) * 0.5f;
+
+            float sizeX = Mathf.Abs(mapLimitX.y - mapLimitX.x);
+            float sizeZ = Mathf.Abs(mapLimitZ.y - mapLimitZ.x);
+
+            float y = startPoint != null ? startPoint.position.y : transform.position.y;
+
+            Gizmos.DrawWireCube(
+                new Vector3(centerX, y, centerZ),
+                new Vector3(sizeX, 1f, sizeZ)
+            );
         }
 
         if (generatedPositions == null || generatedPositions.Count < 2)
