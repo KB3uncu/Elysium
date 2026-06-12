@@ -40,4 +40,11 @@ public class RelicPuzzleManager : MonoBehaviour
 
         return true;
     }
+
+    public void ResetToEscapeCheckpoint()
+    {
+        completed = false;
+
+        Debug.Log("RelicPuzzleManager: Checkpoint resetlendi.");
+    }
 }

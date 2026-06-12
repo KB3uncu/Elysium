@@ -24,6 +24,9 @@ public class RelicInventoryManager : MonoBehaviour
 
     private readonly List<CollectibleRelic> carriedRelics = new List<CollectibleRelic>();
 
+    private readonly List<CollectibleRelic> checkpointCarriedRelics = new List<CollectibleRelic>();
+    private bool hasEscapeCheckpoint = false;
+
     void Awake()
     {
         if (Instance != null && Instance != this)
@@ -99,6 +102,7 @@ public class RelicInventoryManager : MonoBehaviour
 
         carriedRelics.Add(relic);
 
+        relic.gameObject.SetActive(true);
         relic.EnterCarryMode(carryAnchor);
 
         RearrangeCarriedRelics();
@@ -167,5 +171,54 @@ public class RelicInventoryManager : MonoBehaviour
         }
 
         relic.SetCarryPose(finalPos, Quaternion.Euler(finalRot), instant);
+    }
+
+    public void SaveEscapeCheckpoint()
+    {
+        checkpointCarriedRelics.Clear();
+
+        for (int i = 0; i < carriedRelics.Count; i++)
+        {
+            if (carriedRelics[i] != null)
+                checkpointCarriedRelics.Add(carriedRelics[i]);
+        }
+
+        hasEscapeCheckpoint = true;
+
+        Debug.Log("RelicInventoryManager: Checkpoint relic sayýsý kaydedildi: " + checkpointCarriedRelics.Count);
+    }
+
+    public void ResetToEscapeCheckpoint()
+    {
+        if (!hasEscapeCheckpoint)
+        {
+            Debug.LogWarning("RelicInventoryManager: Kayýtlý checkpoint yok.");
+            return;
+        }
+
+        if (carryAnchor == null && createAnchorIfMissing)
+            CreateDefaultAnchor();
+
+        carriedRelics.Clear();
+
+        for (int i = 0; i < checkpointCarriedRelics.Count; i++)
+        {
+            CollectibleRelic relic = checkpointCarriedRelics[i];
+            if (relic == null) continue;
+
+            relic.StopAllCoroutines();
+
+            relic.gameObject.SetActive(true);
+            relic.transform.SetParent(carryAnchor);
+
+            relic.EnterCarryMode(carryAnchor);
+
+            if (!carriedRelics.Contains(relic))
+                carriedRelics.Add(relic);
+        }
+
+        RearrangeCarriedRelics();
+
+        Debug.Log("RelicInventoryManager: Checkpoint'e geri dönüldü. Elde relic sayýsý: " + carriedRelics.Count);
     }
 }

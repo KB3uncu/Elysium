@@ -41,6 +41,8 @@ public class StoneTabletSocket : MonoBehaviour, IInteractable
     private bool isPlacing = false;
     private Renderer[] placedVisualRenderers;
 
+    private Vector3 shakeTargetStartLocalPos;
+
     void Awake()
     {
         if (placementPoint == null)
@@ -48,6 +50,8 @@ public class StoneTabletSocket : MonoBehaviour, IInteractable
 
         if (shakeTarget == null)
             shakeTarget = transform;
+
+        shakeTargetStartLocalPos = shakeTarget.localPosition;
 
         if (inventory == null)
             inventory = RelicInventoryManager.Instance;
@@ -216,5 +220,23 @@ public class StoneTabletSocket : MonoBehaviour, IInteractable
                 }
             }
         }
+    }
+
+    public void ResetToEscapeCheckpoint()
+    {
+        StopAllCoroutines();
+
+        isFilled = false;
+        isPlacing = false;
+
+        if (placedVisual != null)
+            placedVisual.SetActive(false);
+
+        if (shakeTarget != null)
+            shakeTarget.localPosition = shakeTargetStartLocalPos;
+
+        SetPlacedVisualEmission(0f);
+
+        Debug.Log("StoneTabletSocket resetlendi: " + requiredRelic);
     }
 }
