@@ -5164,7 +5164,7 @@ GameObject:
   - component: {fileID: 4038891}
   - component: {fileID: 4038890}
   - component: {fileID: 4038889}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "humant\u0131ty (3)"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5278,7 +5278,7 @@ GameObject:
   - component: {fileID: 4132432}
   - component: {fileID: 4132435}
   - component: {fileID: 4132434}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "ta\u015F duvar.122 (2)"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5588,7 +5588,7 @@ GameObject:
   - component: {fileID: 17757389}
   - component: {fileID: 17757392}
   - component: {fileID: 17757391}
-  m_Layer: 3
+  m_Layer: 9
   m_Name: "ta\u015F duvar.124 (4)"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5727,7 +5727,7 @@ GameObject:
   - component: {fileID: 22779685}
   - component: {fileID: 22779688}
   - component: {fileID: 22779687}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "ta\u015F duvar.095"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11590,7 +11590,7 @@ GameObject:
   - component: {fileID: 50372911}
   - component: {fileID: 50372914}
   - component: {fileID: 50372913}
-  m_Layer: 3
+  m_Layer: 9
   m_Name: "ta\u015F duvar.125 (1)"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11817,7 +11817,7 @@ GameObject:
   - component: {fileID: 51605558}
   - component: {fileID: 51605557}
   - component: {fileID: 51605556}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "k\xF6k (3)"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11928,7 +11928,7 @@ GameObject:
   - component: {fileID: 59211820}
   - component: {fileID: 59211819}
   - component: {fileID: 59211818}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: tree_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12175,7 +12175,7 @@ GameObject:
   - component: {fileID: 66388905}
   - component: {fileID: 66388908}
   - component: {fileID: 66388907}
-  m_Layer: 3
+  m_Layer: 9
   m_Name: "ta\u015F duvar.001 (2)"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12447,7 +12447,7 @@ GameObject:
   - component: {fileID: 66852318}
   - component: {fileID: 66852321}
   - component: {fileID: 66852320}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "ta\u015F duvar.123 (1)"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12620,7 +12620,7 @@ GameObject:
   - component: {fileID: 68342460}
   - component: {fileID: 68342463}
   - component: {fileID: 68342462}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "ta\u015F duvar.125 (1)"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13126,7 +13126,7 @@ GameObject:
   - component: {fileID: 87191490}
   - component: {fileID: 87191493}
   - component: {fileID: 87191492}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "ta\u015F duvar.122 (3)"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13406,7 +13406,7 @@ GameObject:
   - component: {fileID: 90197472}
   - component: {fileID: 90197475}
   - component: {fileID: 90197474}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "ta\u015F duvar.123 (4)"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13995,7 +13995,7 @@ GameObject:
   - component: {fileID: 107345429}
   - component: {fileID: 107345432}
   - component: {fileID: 107345431}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "ta\u015F duvar.089"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15013,7 +15013,7 @@ GameObject:
   - component: {fileID: 127219385}
   - component: {fileID: 127219384}
   - component: {fileID: 127219383}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: agac_2 (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -20089,7 +20089,7 @@ GameObject:
   - component: {fileID: 129416669}
   - component: {fileID: 129416672}
   - component: {fileID: 129416671}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "ta\u015F duvar.123 (3)"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -20540,7 +20540,7 @@ GameObject:
   - component: {fileID: 132314067}
   - component: {fileID: 132314070}
   - component: {fileID: 132314069}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "ta\u015F duvar.089 (2)"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -20722,7 +20722,7 @@ GameObject:
   - component: {fileID: 134971966}
   - component: {fileID: 134971968}
   - component: {fileID: 134971967}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "Canavar\u0131n k\u0131rd\u0131\u011F\u0131 duvar"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -20999,7 +20999,7 @@ GameObject:
   - component: {fileID: 138790675}
   - component: {fileID: 138790678}
   - component: {fileID: 138790677}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "ta\u015F duvar.020"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -21138,7 +21138,7 @@ GameObject:
   - component: {fileID: 139110321}
   - component: {fileID: 139110324}
   - component: {fileID: 139110323}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "ta\u015F duvar.024"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -21690,7 +21690,7 @@ GameObject:
   - component: {fileID: 145895839}
   - component: {fileID: 145895842}
   - component: {fileID: 145895841}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "ta\u015F duvar.028"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27584,6 +27584,8 @@ Transform:
   - {fileID: 2022836142}
   - {fileID: 6288847453979932163}
   - {fileID: 7210276099425551776}
+  - {fileID: 909425532}
+  - {fileID: 511595753}
   m_Father: {fileID: 1289814103}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &174732697
@@ -28986,7 +28988,7 @@ GameObject:
   - component: {fileID: 201147708}
   - component: {fileID: 201147707}
   - component: {fileID: 201147706}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: agac_2 (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29100,7 +29102,7 @@ GameObject:
   - component: {fileID: 208809598}
   - component: {fileID: 208809601}
   - component: {fileID: 208809600}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "ta\u015F duvar.123 (1)"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -34405,7 +34407,7 @@ GameObject:
   - component: {fileID: 220972627}
   - component: {fileID: 220972630}
   - component: {fileID: 220972629}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "ta\u015F duvar.101"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -34543,7 +34545,7 @@ GameObject:
   - component: {fileID: 221397438}
   - component: {fileID: 221397437}
   - component: {fileID: 221397436}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "humant\u0131ty (4)"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -34657,7 +34659,7 @@ GameObject:
   - component: {fileID: 223994539}
   - component: {fileID: 223994542}
   - component: {fileID: 223994541}
-  m_Layer: 3
+  m_Layer: 9
   m_Name: "ta\u015F duvar.123 (1)"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -35249,7 +35251,7 @@ GameObject:
   - component: {fileID: 242063349}
   - component: {fileID: 242063352}
   - component: {fileID: 242063351}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "ta\u015F duvar.067"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -35967,7 +35969,7 @@ GameObject:
   - component: {fileID: 273604021}
   - component: {fileID: 273604024}
   - component: {fileID: 273604023}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "ta\u015F duvar.067"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -36106,7 +36108,7 @@ GameObject:
   - component: {fileID: 274852800}
   - component: {fileID: 274852803}
   - component: {fileID: 274852802}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "ta\u015F duvar.017 (2)"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -36384,7 +36386,7 @@ GameObject:
   - component: {fileID: 279424041}
   - component: {fileID: 279424044}
   - component: {fileID: 279424043}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "ta\u015F duvar.013 (1)"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -36912,7 +36914,7 @@ GameObject:
   - component: {fileID: 292325763}
   - component: {fileID: 292325766}
   - component: {fileID: 292325765}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "ta\u015F duvar.020"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -37051,7 +37053,7 @@ GameObject:
   - component: {fileID: 301164113}
   - component: {fileID: 301164116}
   - component: {fileID: 301164115}
-  m_Layer: 3
+  m_Layer: 9
   m_Name: "ta\u015F duvar.124 (2)"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -37432,8 +37434,8 @@ MonoBehaviour:
   fadeDuration: 0.45
   firstInputDelay: 0.5
   inputCooldown: 0.2
-  acceptAnyKey: 0
-  allowEscapeToSkipAll: 1
+  acceptAnyKey: 1
+  allowEscapeToSkipAll: 0
   playOnStart: 1
   pauseGameTime: 1
   scriptsToDisableDuringCutscene:
@@ -37714,7 +37716,7 @@ GameObject:
   - component: {fileID: 312268166}
   - component: {fileID: 312268169}
   - component: {fileID: 312268168}
-  m_Layer: 3
+  m_Layer: 9
   m_Name: "ta\u015F duvar.112 (2)"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -37852,7 +37854,7 @@ GameObject:
   - component: {fileID: 318211175}
   - component: {fileID: 318211174}
   - component: {fileID: 318211173}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: kolon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -38165,7 +38167,7 @@ GameObject:
   - component: {fileID: 325064581}
   - component: {fileID: 325064580}
   - component: {fileID: 325064579}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: tree_1.003
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -38386,7 +38388,7 @@ GameObject:
   - component: {fileID: 325582572}
   - component: {fileID: 325582574}
   - component: {fileID: 325582573}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "Canavar\u0131n k\u0131rd\u0131\u011F\u0131 duvar 2"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -38527,7 +38529,7 @@ GameObject:
   - component: {fileID: 327164911}
   - component: {fileID: 327164914}
   - component: {fileID: 327164913}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "ta\u015F duvar.061"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -38699,7 +38701,7 @@ GameObject:
   - component: {fileID: 330875949}
   - component: {fileID: 330875952}
   - component: {fileID: 330875951}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "ta\u015F duvar.099"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -38909,7 +38911,7 @@ GameObject:
   - component: {fileID: 332364260}
   - component: {fileID: 332364259}
   - component: {fileID: 332364258}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "\u0131srael (3)"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -39021,7 +39023,7 @@ GameObject:
   - component: {fileID: 334049543}
   - component: {fileID: 334049546}
   - component: {fileID: 334049545}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "ta\u015F duvar.131 (1)"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -39160,7 +39162,7 @@ GameObject:
   - component: {fileID: 335709142}
   - component: {fileID: 335709145}
   - component: {fileID: 335709144}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "ta\u015F duvar.067"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -39822,7 +39824,7 @@ GameObject:
   - component: {fileID: 349052450}
   - component: {fileID: 349052453}
   - component: {fileID: 349052452}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "ta\u015F duvar.122 (1)"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -45270,7 +45272,7 @@ GameObject:
   - component: {fileID: 362006347}
   - component: {fileID: 362006346}
   - component: {fileID: 362006345}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "\u0131srael (1)"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -45382,7 +45384,7 @@ GameObject:
   - component: {fileID: 367852664}
   - component: {fileID: 367852667}
   - component: {fileID: 367852666}
-  m_Layer: 3
+  m_Layer: 9
   m_Name: "ta\u015F duvar.089 (2)"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -46171,7 +46173,7 @@ GameObject:
   - component: {fileID: 379534080}
   - component: {fileID: 379534083}
   - component: {fileID: 379534082}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "ta\u015F duvar.123 (4)"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -46720,7 +46722,7 @@ GameObject:
   - component: {fileID: 382388569}
   - component: {fileID: 382388572}
   - component: {fileID: 382388571}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "ta\u015F duvar.130 (1)"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -46858,7 +46860,7 @@ GameObject:
   - component: {fileID: 383247769}
   - component: {fileID: 383247768}
   - component: {fileID: 383247767}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "humant\u0131ty (1)"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -47171,7 +47173,7 @@ GameObject:
   - component: {fileID: 388243365}
   - component: {fileID: 388243364}
   - component: {fileID: 388243363}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "humant\u0131ty (6)"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -47285,7 +47287,7 @@ GameObject:
   - component: {fileID: 388424522}
   - component: {fileID: 388424525}
   - component: {fileID: 388424524}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "ta\u015F duvar.095"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -47710,7 +47712,7 @@ GameObject:
   - component: {fileID: 406087230}
   - component: {fileID: 406087233}
   - component: {fileID: 406087232}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "ta\u015F duvar.060"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -47988,7 +47990,7 @@ GameObject:
   - component: {fileID: 408361423}
   - component: {fileID: 408361426}
   - component: {fileID: 408361425}
-  m_Layer: 3
+  m_Layer: 9
   m_Name: "ta\u015F duvar.118 (2)"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -48125,7 +48127,7 @@ GameObject:
   - component: {fileID: 411491237}
   - component: {fileID: 411491239}
   - component: {fileID: 411491238}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "Canavar\u0131n k\u0131rd\u0131\u011F\u0131 duvar 1"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -48266,7 +48268,7 @@ GameObject:
   - component: {fileID: 415155462}
   - component: {fileID: 415155465}
   - component: {fileID: 415155464}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "ta\u015F duvar.131 (1)"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -48392,133 +48394,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2.3417954, y: 2.4681766, z: 2.5122688}
   m_Center: {x: -0.03412021, y: -0.025513647, z: -0.011348906}
---- !u!1 &420167723
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 420167724}
-  - component: {fileID: 420167726}
-  - component: {fileID: 420167725}
-  m_Layer: 0
-  m_Name: Point Light (8)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &420167724
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 420167723}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0.000001847744, y: 0.68376523, z: 0.0000017881393, w: 0.7297021}
-  m_LocalPosition: {x: 16.71, y: 3.1, z: 3.91}
-  m_LocalScale: {x: 1.8505495, y: 1.8505495, z: 1.8505497}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1636353899}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &420167725
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 420167723}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_UsePipelineSettings: 1
-  m_AdditionalLightsShadowResolutionTier: 2
-  m_CustomShadowLayers: 0
-  m_LightCookieSize: {x: 1, y: 1}
-  m_LightCookieOffset: {x: 0, y: 0}
-  m_SoftShadowQuality: 0
-  m_RenderingLayersMask:
-    serializedVersion: 0
-    m_Bits: 1
-  m_ShadowRenderingLayersMask:
-    serializedVersion: 0
-    m_Bits: 1
-  m_Version: 4
-  m_LightLayerMask: 1
-  m_ShadowLayerMask: 1
-  m_RenderingLayers: 1
-  m_ShadowRenderingLayers: 1
---- !u!108 &420167726
-Light:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 420167723}
-  m_Enabled: 1
-  serializedVersion: 11
-  m_Type: 2
-  m_Color: {r: 0.899371, g: 0.64200383, b: 0.86530775, a: 1}
-  m_Intensity: 5
-  m_Range: 14.12
-  m_SpotAngle: 30
-  m_InnerSpotAngle: 21.80208
-  m_CookieSize: 10
-  m_Shadows:
-    m_Type: 1
-    m_Resolution: -1
-    m_CustomResolution: -1
-    m_Strength: 1
-    m_Bias: 0.05
-    m_NormalBias: 0.4
-    m_NearPlane: 0.2
-    m_CullingMatrixOverride:
-      e00: 1
-      e01: 0
-      e02: 0
-      e03: 0
-      e10: 0
-      e11: 1
-      e12: 0
-      e13: 0
-      e20: 0
-      e21: 0
-      e22: 1
-      e23: 0
-      e30: 0
-      e31: 0
-      e32: 0
-      e33: 1
-    m_UseCullingMatrixOverride: 0
-  m_Cookie: {fileID: 0}
-  m_DrawHalo: 0
-  m_Flare: {fileID: 0}
-  m_RenderMode: 0
-  m_CullingMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_RenderingLayerMask: 1
-  m_Lightmapping: 2
-  m_LightShadowCasterMode: 0
-  m_AreaSize: {x: 1, y: 1}
-  m_BounceIntensity: 1
-  m_ColorTemperature: 6570
-  m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
-  m_UseBoundingSphereOverride: 0
-  m_UseViewFrustumForShadowCasterCull: 1
-  m_ForceVisible: 0
-  m_ShadowRadius: 0
-  m_ShadowAngle: 0
-  m_LightUnit: 1
-  m_LuxAtDistance: 1
-  m_EnableSpotReflector: 1
 --- !u!1 &423324893
 GameObject:
   m_ObjectHideFlags: 0
@@ -48532,7 +48407,7 @@ GameObject:
   - component: {fileID: 423324897}
   - component: {fileID: 423324900}
   - component: {fileID: 423324899}
-  m_Layer: 3
+  m_Layer: 9
   m_Name: "ta\u015F duvar.117 (1)"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -48901,7 +48776,7 @@ GameObject:
   - component: {fileID: 428743704}
   - component: {fileID: 428743707}
   - component: {fileID: 428743706}
-  m_Layer: 3
+  m_Layer: 9
   m_Name: "ta\u015F duvar.124 (3)"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -54246,7 +54121,7 @@ GameObject:
   - component: {fileID: 438886378}
   - component: {fileID: 438886381}
   - component: {fileID: 438886380}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "ta\u015F duvar.089 (2)"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -54385,7 +54260,7 @@ GameObject:
   - component: {fileID: 443504339}
   - component: {fileID: 443504342}
   - component: {fileID: 443504341}
-  m_Layer: 3
+  m_Layer: 9
   m_Name: "ta\u015F duvar.110 (1)"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -54524,7 +54399,7 @@ GameObject:
   - component: {fileID: 446052702}
   - component: {fileID: 446052705}
   - component: {fileID: 446052704}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "ta\u015F duvar.006 (1)"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -55133,7 +55008,7 @@ GameObject:
   - component: {fileID: 464560320}
   - component: {fileID: 464560323}
   - component: {fileID: 464560322}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "ta\u015F duvar.016 (1)"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -60932,7 +60807,7 @@ GameObject:
   - component: {fileID: 484993328}
   - component: {fileID: 484993331}
   - component: {fileID: 484993330}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "ta\u015F duvar.027"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -61071,7 +60946,7 @@ GameObject:
   - component: {fileID: 486150832}
   - component: {fileID: 486150835}
   - component: {fileID: 486150834}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "ta\u015F duvar.119 (2)"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -61210,7 +61085,7 @@ GameObject:
   - component: {fileID: 490283550}
   - component: {fileID: 490283553}
   - component: {fileID: 490283552}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "ta\u015F duvar.106"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -61659,7 +61534,7 @@ GameObject:
   - component: {fileID: 506839897}
   - component: {fileID: 506839900}
   - component: {fileID: 506839899}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "ta\u015F duvar.095"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -66812,6 +66687,95 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
+--- !u!1 &511595752
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 511595753}
+  - component: {fileID: 511595755}
+  - component: {fileID: 511595754}
+  m_Layer: 0
+  m_Name: little_rock (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &511595753
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 511595752}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.00000003774895, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -11.54, y: -0.25, z: 13.284}
+  m_LocalScale: {x: 1.01006, y: 0.042085834, z: 0.101005994}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 174732696}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!23 &511595754
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 511595752}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 1130845142284429193, guid: a6404b437b81afd4083a51e19c861ffc, type: 3}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &511595755
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 511595752}
+  m_Mesh: {fileID: 4112269518693084883, guid: a6404b437b81afd4083a51e19c861ffc, type: 3}
 --- !u!1 &515055389
 GameObject:
   m_ObjectHideFlags: 0
@@ -67193,7 +67157,7 @@ GameObject:
   - component: {fileID: 529433611}
   - component: {fileID: 529433614}
   - component: {fileID: 529433613}
-  m_Layer: 3
+  m_Layer: 9
   m_Name: "ta\u015F duvar.122 (2)"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -67449,7 +67413,7 @@ GameObject:
   - component: {fileID: 531079285}
   - component: {fileID: 531079288}
   - component: {fileID: 531079287}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "ta\u015F duvar.130 (1)"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -67854,7 +67818,7 @@ GameObject:
   - component: {fileID: 537524472}
   - component: {fileID: 537524475}
   - component: {fileID: 537524474}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "ta\u015F duvar.100"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -68360,7 +68324,7 @@ GameObject:
   - component: {fileID: 541500693}
   - component: {fileID: 541500692}
   - component: {fileID: 541500691}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: tree_1.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -68788,6 +68752,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2056765783}
+  - {fileID: 1496327956}
   m_Father: {fileID: 478342814}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &554337568
@@ -68880,7 +68845,7 @@ GameObject:
   - component: {fileID: 556533543}
   - component: {fileID: 556533546}
   - component: {fileID: 556533545}
-  m_Layer: 3
+  m_Layer: 9
   m_Name: "ta\u015F duvar (2)"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -69130,7 +69095,7 @@ GameObject:
   - component: {fileID: 558294188}
   - component: {fileID: 558294191}
   - component: {fileID: 558294190}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "ta\u015F duvar.122 (3)"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -70357,7 +70322,7 @@ GameObject:
   - component: {fileID: 585134127}
   - component: {fileID: 585134130}
   - component: {fileID: 585134129}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "ta\u015F duvar.060"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -70554,7 +70519,7 @@ GameObject:
   - component: {fileID: 588920187}
   - component: {fileID: 588920190}
   - component: {fileID: 588920189}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "ta\u015F duvar.008 (2)"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -71376,7 +71341,7 @@ GameObject:
   - component: {fileID: 601636426}
   - component: {fileID: 601636429}
   - component: {fileID: 601636428}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "ta\u015F duvar.026"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -71698,7 +71663,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Ana Menu
+  m_text: Main Menu
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -71900,7 +71865,7 @@ GameObject:
   - component: {fileID: 606885300}
   - component: {fileID: 606885303}
   - component: {fileID: 606885302}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "ta\u015F duvar.112 (2)"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -72788,7 +72753,7 @@ GameObject:
   - component: {fileID: 618991409}
   - component: {fileID: 618991412}
   - component: {fileID: 618991411}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "ta\u015F duvar.089 (2)"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -72927,7 +72892,7 @@ GameObject:
   - component: {fileID: 620482613}
   - component: {fileID: 620482616}
   - component: {fileID: 620482615}
-  m_Layer: 3
+  m_Layer: 9
   m_Name: "ta\u015F duvar.119 (2)"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -73386,7 +73351,7 @@ GameObject:
   - component: {fileID: 628353648}
   - component: {fileID: 628353647}
   - component: {fileID: 628353646}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: agac_2 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -73500,7 +73465,7 @@ GameObject:
   - component: {fileID: 636007211}
   - component: {fileID: 636007214}
   - component: {fileID: 636007213}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "ta\u015F duvar.131"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -74399,7 +74364,7 @@ GameObject:
   - component: {fileID: 652514564}
   - component: {fileID: 652514567}
   - component: {fileID: 652514566}
-  m_Layer: 3
+  m_Layer: 9
   m_Name: "ta\u015F duvar.004 (2)"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -74628,7 +74593,7 @@ GameObject:
   - component: {fileID: 657297271}
   - component: {fileID: 657297274}
   - component: {fileID: 657297273}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "ta\u015F duvar.100"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -75045,7 +75010,7 @@ GameObject:
   - component: {fileID: 659593147}
   - component: {fileID: 659593150}
   - component: {fileID: 659593149}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "ta\u015F duvar.124 (2)"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -75446,7 +75411,7 @@ GameObject:
   - component: {fileID: 677863236}
   - component: {fileID: 677863239}
   - component: {fileID: 677863238}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "ta\u015F duvar.123 (1)"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -75585,7 +75550,7 @@ GameObject:
   - component: {fileID: 678865018}
   - component: {fileID: 678865021}
   - component: {fileID: 678865020}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "ta\u015F duvar.021"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -81032,7 +80997,7 @@ GameObject:
   - component: {fileID: 687395385}
   - component: {fileID: 687395388}
   - component: {fileID: 687395387}
-  m_Layer: 3
+  m_Layer: 9
   m_Name: "ta\u015F duvar.013 (1)"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -81171,7 +81136,7 @@ GameObject:
   - component: {fileID: 688655911}
   - component: {fileID: 688655914}
   - component: {fileID: 688655913}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "ta\u015F duvar.089 (1)"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -82273,7 +82238,7 @@ GameObject:
   - component: {fileID: 720396420}
   - component: {fileID: 720396423}
   - component: {fileID: 720396422}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "ta\u015F duvar.008 (2)"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -82412,7 +82377,7 @@ GameObject:
   - component: {fileID: 723367166}
   - component: {fileID: 723367169}
   - component: {fileID: 723367168}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "ta\u015F duvar.131 (2)"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -82550,7 +82515,7 @@ GameObject:
   - component: {fileID: 723599521}
   - component: {fileID: 723599520}
   - component: {fileID: 723599519}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "humant\u0131ty (5)"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -82942,7 +82907,7 @@ GameObject:
   - component: {fileID: 730539235}
   - component: {fileID: 730539238}
   - component: {fileID: 730539237}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "ta\u015F duvar.107"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -83081,7 +83046,7 @@ GameObject:
   - component: {fileID: 730786613}
   - component: {fileID: 730786616}
   - component: {fileID: 730786615}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "ta\u015F duvar (2)"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -83220,7 +83185,7 @@ GameObject:
   - component: {fileID: 731015605}
   - component: {fileID: 731015608}
   - component: {fileID: 731015607}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "ta\u015F duvar.011 (2)"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -83824,7 +83789,7 @@ GameObject:
   - component: {fileID: 744053995}
   - component: {fileID: 744053994}
   - component: {fileID: 744053993}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "duvarl\u0131k"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -93885,7 +93850,7 @@ GameObject:
   - component: {fileID: 757577553}
   - component: {fileID: 757577551}
   - component: {fileID: 757577552}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "Canavar\u0131n k\u0131rd\u0131\u011F\u0131 duvar 3"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -99865,7 +99830,7 @@ GameObject:
   - component: {fileID: 780003484}
   - component: {fileID: 780003487}
   - component: {fileID: 780003486}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "ta\u015F duvar.068"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -100318,7 +100283,7 @@ GameObject:
   - component: {fileID: 799397630}
   - component: {fileID: 799397633}
   - component: {fileID: 799397632}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "ta\u015F duvar.055"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -100596,7 +100561,7 @@ GameObject:
   - component: {fileID: 800812189}
   - component: {fileID: 800812192}
   - component: {fileID: 800812191}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "ta\u015F duvar.023"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -100874,7 +100839,7 @@ GameObject:
   - component: {fileID: 805769589}
   - component: {fileID: 805769592}
   - component: {fileID: 805769591}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "ta\u015F duvar.122 (1)"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -116582,7 +116547,7 @@ GameObject:
   - component: {fileID: 833669531}
   - component: {fileID: 833669534}
   - component: {fileID: 833669533}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "ta\u015F duvar.107"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -116721,7 +116686,7 @@ GameObject:
   - component: {fileID: 834564175}
   - component: {fileID: 834564178}
   - component: {fileID: 834564177}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "ta\u015F duvar.125"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -116951,7 +116916,7 @@ GameObject:
   - component: {fileID: 841318018}
   - component: {fileID: 841318021}
   - component: {fileID: 841318020}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "ta\u015F duvar.112 (2)"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -117219,7 +117184,7 @@ GameObject:
   - component: {fileID: 846966102}
   - component: {fileID: 846966105}
   - component: {fileID: 846966104}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "ta\u015F duvar.123 (3)"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -122441,7 +122406,7 @@ GameObject:
   - component: {fileID: 868266098}
   - component: {fileID: 868266101}
   - component: {fileID: 868266100}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "ta\u015F duvar.061"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -122580,7 +122545,7 @@ GameObject:
   - component: {fileID: 869496124}
   - component: {fileID: 869496127}
   - component: {fileID: 869496126}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "ta\u015F duvar.124 (3)"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -122904,7 +122869,7 @@ GameObject:
   - component: {fileID: 874851177}
   - component: {fileID: 874851180}
   - component: {fileID: 874851179}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "ta\u015F duvar.021"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -123043,7 +123008,7 @@ GameObject:
   - component: {fileID: 878697025}
   - component: {fileID: 878697028}
   - component: {fileID: 878697027}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "ta\u015F duvar.125"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -123410,7 +123375,7 @@ GameObject:
   - component: {fileID: 881320814}
   - component: {fileID: 881320817}
   - component: {fileID: 881320816}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "ta\u015F duvar.117 (1)"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -123732,7 +123697,7 @@ GameObject:
   - component: {fileID: 890843502}
   - component: {fileID: 890843505}
   - component: {fileID: 890843504}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "ta\u015F duvar.017 (2)"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -124010,7 +123975,7 @@ GameObject:
   - component: {fileID: 894472226}
   - component: {fileID: 894472229}
   - component: {fileID: 894472228}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "ta\u015F duvar.068"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -124149,7 +124114,7 @@ GameObject:
   - component: {fileID: 894653051}
   - component: {fileID: 894653054}
   - component: {fileID: 894653053}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "ta\u015F duvar.007 (2)"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -124518,7 +124483,7 @@ GameObject:
   - component: {fileID: 903165511}
   - component: {fileID: 903165514}
   - component: {fileID: 903165513}
-  m_Layer: 3
+  m_Layer: 9
   m_Name: "ta\u015F duvar.018 (2)"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -124886,7 +124851,7 @@ GameObject:
   - component: {fileID: 906400079}
   - component: {fileID: 906400082}
   - component: {fileID: 906400081}
-  m_Layer: 3
+  m_Layer: 9
   m_Name: "ta\u015F duvar.131 (1)"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -125151,6 +125116,118 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 907452353}
   m_Mesh: {fileID: 8605595439301672223, guid: 8144f361128e0eb42afeb449b520c9d4, type: 3}
+--- !u!1 &909425531
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 909425532}
+  - component: {fileID: 909425534}
+  - component: {fileID: 909425533}
+  - component: {fileID: 909425535}
+  m_Layer: 0
+  m_Name: big_rock (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &909425532
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 909425531}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.00000003774895, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -6.18, y: -0.546, z: 13.379}
+  m_LocalScale: {x: 1.01006, y: 0.042085834, z: 0.101005994}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 174732696}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!23 &909425533
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 909425531}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 1130845142284429193, guid: a6404b437b81afd4083a51e19c861ffc, type: 3}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &909425534
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 909425531}
+  m_Mesh: {fileID: -8849781091256788775, guid: a6404b437b81afd4083a51e19c861ffc, type: 3}
+--- !u!64 &909425535
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 909425531}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -8849781091256788775, guid: a6404b437b81afd4083a51e19c861ffc, type: 3}
 --- !u!1 &910183592
 GameObject:
   m_ObjectHideFlags: 0
@@ -125749,7 +125826,7 @@ GameObject:
   - component: {fileID: 919109876}
   - component: {fileID: 919109879}
   - component: {fileID: 919109878}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "ta\u015F duvar.117 (1)"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -126256,7 +126333,7 @@ GameObject:
   - component: {fileID: 936601157}
   - component: {fileID: 936601156}
   - component: {fileID: 936601155}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "humant\u0131ty (2)"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -127291,7 +127368,7 @@ GameObject:
   - component: {fileID: 967931467}
   - component: {fileID: 967931466}
   - component: {fileID: 967931465}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: kolon_2 (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -127964,7 +128041,7 @@ GameObject:
   - component: {fileID: 980099929}
   - component: {fileID: 980099932}
   - component: {fileID: 980099931}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "ta\u015F duvar.118 (2)"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -128288,7 +128365,7 @@ GameObject:
   - component: {fileID: 982955934}
   - component: {fileID: 982955937}
   - component: {fileID: 982955936}
-  m_Layer: 3
+  m_Layer: 9
   m_Name: "ta\u015F duvar.014 (2)"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -128427,7 +128504,7 @@ GameObject:
   - component: {fileID: 987773550}
   - component: {fileID: 987773553}
   - component: {fileID: 987773552}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "ta\u015F duvar.100"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -128566,7 +128643,7 @@ GameObject:
   - component: {fileID: 990104394}
   - component: {fileID: 990104397}
   - component: {fileID: 990104396}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "ta\u015F duvar.110 (1)"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -128705,7 +128782,7 @@ GameObject:
   - component: {fileID: 993207671}
   - component: {fileID: 993207674}
   - component: {fileID: 993207673}
-  m_Layer: 3
+  m_Layer: 9
   m_Name: "ta\u015F duvar.130 (1)"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -128843,7 +128920,7 @@ GameObject:
   - component: {fileID: 995547802}
   - component: {fileID: 995547801}
   - component: {fileID: 995547800}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "humant\u0131ty (7)"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -128957,7 +129034,7 @@ GameObject:
   - component: {fileID: 1000859565}
   - component: {fileID: 1000859568}
   - component: {fileID: 1000859567}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "ta\u015F duvar.105"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -129377,7 +129454,7 @@ GameObject:
   - component: {fileID: 1024934232}
   - component: {fileID: 1024934235}
   - component: {fileID: 1024934234}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "ta\u015F duvar.110 (1)"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -129627,7 +129704,7 @@ GameObject:
   - component: {fileID: 1028064985}
   - component: {fileID: 1028064988}
   - component: {fileID: 1028064987}
-  m_Layer: 3
+  m_Layer: 9
   m_Name: "ta\u015F duvar.123 (4)"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -129944,7 +130021,7 @@ GameObject:
   - component: {fileID: 1034422192}
   - component: {fileID: 1034422195}
   - component: {fileID: 1034422194}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "ta\u015F duvar.028"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -135122,7 +135199,7 @@ GameObject:
   - component: {fileID: 1040067115}
   - component: {fileID: 1040067118}
   - component: {fileID: 1040067117}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "ta\u015F duvar.062"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -135484,7 +135561,7 @@ GameObject:
   - component: {fileID: 1050154003}
   - component: {fileID: 1050154006}
   - component: {fileID: 1050154005}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "ta\u015F duvar.124 (1)"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -135744,7 +135821,7 @@ GameObject:
   - component: {fileID: 1053250823}
   - component: {fileID: 1053250826}
   - component: {fileID: 1053250825}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "ta\u015F duvar.055"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -136251,7 +136328,7 @@ GameObject:
   - component: {fileID: 1057014472}
   - component: {fileID: 1057014475}
   - component: {fileID: 1057014474}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "ta\u015F duvar.027"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -136465,7 +136542,7 @@ GameObject:
   - component: {fileID: 1063976052}
   - component: {fileID: 1063976055}
   - component: {fileID: 1063976054}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "ta\u015F duvar.013 (1)"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -136604,7 +136681,7 @@ GameObject:
   - component: {fileID: 1064792257}
   - component: {fileID: 1064792260}
   - component: {fileID: 1064792259}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "ta\u015F duvar.130"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -136898,7 +136975,7 @@ GameObject:
   - component: {fileID: 1070697064}
   - component: {fileID: 1070697067}
   - component: {fileID: 1070697066}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "ta\u015F duvar.106"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -137154,7 +137231,7 @@ GameObject:
   - component: {fileID: 1073221525}
   - component: {fileID: 1073221528}
   - component: {fileID: 1073221527}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "ta\u015F duvar.004 (2)"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -137383,7 +137460,7 @@ GameObject:
   - component: {fileID: 1081513464}
   - component: {fileID: 1081513467}
   - component: {fileID: 1081513466}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "ta\u015F duvar.130 (1)"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -137747,7 +137824,7 @@ Transform:
   m_GameObject: {fileID: 1091173373}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3.466, y: -0.47722363, z: -0.189}
+  m_LocalPosition: {x: 2.37, y: -0.47722363, z: -0.189}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -137803,7 +137880,7 @@ GameObject:
   - component: {fileID: 1091683778}
   - component: {fileID: 1091683781}
   - component: {fileID: 1091683780}
-  m_Layer: 3
+  m_Layer: 9
   m_Name: "ta\u015F duvar.017 (2)"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -143064,7 +143141,7 @@ GameObject:
   - component: {fileID: 1104357505}
   - component: {fileID: 1104357508}
   - component: {fileID: 1104357507}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "ta\u015F duvar.123 (3)"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -143395,7 +143472,7 @@ GameObject:
   - component: {fileID: 1113361781}
   - component: {fileID: 1113361784}
   - component: {fileID: 1113361783}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "ta\u015F duvar.006 (1)"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -143795,7 +143872,7 @@ GameObject:
   - component: {fileID: 1126559344}
   - component: {fileID: 1126559347}
   - component: {fileID: 1126559346}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "ta\u015F duvar.018 (2)"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -144091,6 +144168,142 @@ Transform:
   - {fileID: 1203453336}
   m_Father: {fileID: 1515623006}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1130715323
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1130715324}
+  - component: {fileID: 1130715326}
+  - component: {fileID: 1130715325}
+  m_Layer: 0
+  m_Name: Text (TMP)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1130715324
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1130715323}
+  m_LocalRotation: {x: -0.3142556, y: 0.6334378, z: 0.3142556, w: 0.6334378}
+  m_LocalPosition: {x: 0, y: 0, z: -3000}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1955901223}
+  m_LocalEulerAnglesHint: {x: -52.773, y: 90, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 5656, y: 1100}
+  m_SizeDelta: {x: 800, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1130715325
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1130715323}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: Do not trust a single glass; sometimes the path hides between two cracks.
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4278192378
+  m_fontColor: {r: 0.9811321, g: 0.031030677, b: 0, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: -1183493901
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontSize: 40.85
+  m_fontSizeBase: 36
+  m_fontWeight: 400
+  m_enableAutoSizing: 1
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
+  m_fontStyle: 1
+  m_HorizontalAlignment: 1
+  m_VerticalAlignment: 256
+  m_textAlignment: 65535
+  m_characterSpacing: 0
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_TextWrappingMode: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_linkedTextComponent: {fileID: 0}
+  parentLinkedComponent: {fileID: 0}
+  m_enableKerning: 0
+  m_ActiveFontFeatures: 6e72656b
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_EmojiFallbackSupport: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
+  m_VertexBufferAutoSizeReduction: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_hasFontAssetChanged: 0
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!222 &1130715326
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1130715323}
+  m_CullTransparentMesh: 1
 --- !u!1 &1133325027
 GameObject:
   m_ObjectHideFlags: 0
@@ -144266,7 +144479,7 @@ GameObject:
   - component: {fileID: 1133936439}
   - component: {fileID: 1133936442}
   - component: {fileID: 1133936441}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "ta\u015F duvar.089"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -144477,7 +144690,7 @@ GameObject:
   - component: {fileID: 1136533802}
   - component: {fileID: 1136533805}
   - component: {fileID: 1136533804}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "ta\u015F duvar.062"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -144755,7 +144968,7 @@ GameObject:
   - component: {fileID: 1143313033}
   - component: {fileID: 1143313036}
   - component: {fileID: 1143313035}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "ta\u015F duvar.056"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -145094,7 +145307,7 @@ GameObject:
   - component: {fileID: 1152056226}
   - component: {fileID: 1152056229}
   - component: {fileID: 1152056228}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "ta\u015F duvar.117 (1)"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -145232,7 +145445,7 @@ GameObject:
   - component: {fileID: 1154999163}
   - component: {fileID: 1154999162}
   - component: {fileID: 1154999161}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "k\xF6k"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -145574,7 +145787,7 @@ GameObject:
   - component: {fileID: 1160029217}
   - component: {fileID: 1160029220}
   - component: {fileID: 1160029219}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "ta\u015F duvar.001 (2)"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -145713,7 +145926,7 @@ GameObject:
   - component: {fileID: 1162242430}
   - component: {fileID: 1162242433}
   - component: {fileID: 1162242432}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "ta\u015F duvar.013 (1)"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -146367,7 +146580,7 @@ GameObject:
   - component: {fileID: 1171913566}
   - component: {fileID: 1171913569}
   - component: {fileID: 1171913568}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "ta\u015F duvar.018 (2)"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -147029,7 +147242,6 @@ RectTransform:
   - {fileID: 1210327407}
   - {fileID: 305055787}
   - {fileID: 1450620331}
-  - {fileID: 1247308649}
   - {fileID: 606030784}
   - {fileID: 858158842}
   - {fileID: 381243218}
@@ -147054,7 +147266,7 @@ GameObject:
   - component: {fileID: 1185232593}
   - component: {fileID: 1185232596}
   - component: {fileID: 1185232595}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "ta\u015F duvar.125 (1)"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -147332,7 +147544,7 @@ GameObject:
   - component: {fileID: 1187688621}
   - component: {fileID: 1187688624}
   - component: {fileID: 1187688623}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "ta\u015F duvar.011 (2)"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -147840,7 +148052,7 @@ GameObject:
   - component: {fileID: 1192844282}
   - component: {fileID: 1192844285}
   - component: {fileID: 1192844284}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "ta\u015F duvar.124 (1)"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -148118,7 +148330,7 @@ GameObject:
   - component: {fileID: 1199562957}
   - component: {fileID: 1199562960}
   - component: {fileID: 1199562959}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "ta\u015F duvar.028"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -148633,7 +148845,7 @@ GameObject:
   - component: {fileID: 1208054225}
   - component: {fileID: 1208054228}
   - component: {fileID: 1208054227}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "ta\u015F duvar.055"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -150197,7 +150409,7 @@ GameObject:
   - component: {fileID: 1245794675}
   - component: {fileID: 1245794678}
   - component: {fileID: 1245794677}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "ta\u015F duvar.110 (1)"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -150323,81 +150535,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2.5055244, y: 2.434313, z: 2.4171681}
   m_Center: {x: -0.007015409, y: 0.013508557, z: -0.024222976}
---- !u!1 &1247308648
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1247308649}
-  - component: {fileID: 1247308651}
-  - component: {fileID: 1247308650}
-  m_Layer: 5
-  m_Name: PanelTASLAK
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!224 &1247308649
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1247308648}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1174773232}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -120}
-  m_SizeDelta: {x: 500, y: 200}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1247308650
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1247308648}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 0.19037023, g: 0.3837493, b: 0.5849056, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
---- !u!222 &1247308651
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1247308648}
-  m_CullTransparentMesh: 1
 --- !u!1 &1256257226
 GameObject:
   m_ObjectHideFlags: 0
@@ -150961,7 +151098,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Ana Menu
+  m_text: Main Menu
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -151530,7 +151667,7 @@ GameObject:
   - component: {fileID: 1285952501}
   - component: {fileID: 1285952500}
   - component: {fileID: 1285952499}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: tree_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -157420,7 +157557,7 @@ GameObject:
   - component: {fileID: 1294010608}
   - component: {fileID: 1294010611}
   - component: {fileID: 1294010610}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "ta\u015F duvar.023"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -157698,7 +157835,7 @@ GameObject:
   - component: {fileID: 1297558076}
   - component: {fileID: 1297558079}
   - component: {fileID: 1297558078}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "ta\u015F duvar.016 (1)"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -159015,7 +159152,7 @@ GameObject:
   - component: {fileID: 1328637519}
   - component: {fileID: 1328637522}
   - component: {fileID: 1328637521}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "ta\u015F duvar.119 (2)"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -159265,7 +159402,7 @@ GameObject:
   - component: {fileID: 1332578929}
   - component: {fileID: 1332578932}
   - component: {fileID: 1332578931}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "ta\u015F duvar.020"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -159404,7 +159541,7 @@ GameObject:
   - component: {fileID: 1339423744}
   - component: {fileID: 1339423747}
   - component: {fileID: 1339423746}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "ta\u015F duvar.105"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -159539,7 +159676,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1339541212}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Esyalar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -159612,7 +159749,7 @@ GameObject:
   - component: {fileID: 1345174941}
   - component: {fileID: 1345174944}
   - component: {fileID: 1345174943}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "ta\u015F duvar.006 (1)"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -160511,7 +160648,7 @@ GameObject:
   - component: {fileID: 1369527679}
   - component: {fileID: 1369527682}
   - component: {fileID: 1369527681}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "ta\u015F duvar.106"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -160789,7 +160926,7 @@ GameObject:
   - component: {fileID: 1376899097}
   - component: {fileID: 1376899100}
   - component: {fileID: 1376899099}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "ta\u015F duvar.094"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -166397,7 +166534,7 @@ GameObject:
   - component: {fileID: 1389991531}
   - component: {fileID: 1389991534}
   - component: {fileID: 1389991533}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "ta\u015F duvar.130"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -166608,7 +166745,7 @@ GameObject:
   - component: {fileID: 1390815729}
   - component: {fileID: 1390815732}
   - component: {fileID: 1390815731}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "ta\u015F duvar.068"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -166747,7 +166884,7 @@ GameObject:
   - component: {fileID: 1393803697}
   - component: {fileID: 1393803700}
   - component: {fileID: 1393803699}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "ta\u015F duvar.089"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -167218,7 +167355,7 @@ GameObject:
   - component: {fileID: 1403150607}
   - component: {fileID: 1403150610}
   - component: {fileID: 1403150609}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "ta\u015F duvar.131 (2)"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -167357,7 +167494,7 @@ GameObject:
   - component: {fileID: 1403239972}
   - component: {fileID: 1403239975}
   - component: {fileID: 1403239974}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "ta\u015F duvar.094"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -167495,7 +167632,7 @@ GameObject:
   - component: {fileID: 1405006195}
   - component: {fileID: 1405006194}
   - component: {fileID: 1405006193}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "humant\u0131ty (8)"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -167609,7 +167746,7 @@ GameObject:
   - component: {fileID: 1425821469}
   - component: {fileID: 1425821472}
   - component: {fileID: 1425821471}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "ta\u015F duvar.131"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -167948,7 +168085,7 @@ GameObject:
   - component: {fileID: 1433605400}
   - component: {fileID: 1433605403}
   - component: {fileID: 1433605402}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "ta\u015F duvar.101"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -168087,7 +168224,7 @@ GameObject:
   - component: {fileID: 1437913815}
   - component: {fileID: 1437913818}
   - component: {fileID: 1437913817}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "ta\u015F duvar.088"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -168470,7 +168607,7 @@ GameObject:
   - component: {fileID: 1443615075}
   - component: {fileID: 1443615078}
   - component: {fileID: 1443615077}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "ta\u015F duvar.018 (2)"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -168609,7 +168746,7 @@ GameObject:
   - component: {fileID: 1445379527}
   - component: {fileID: 1445379530}
   - component: {fileID: 1445379529}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "ta\u015F duvar.014 (2)"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -168748,7 +168885,7 @@ GameObject:
   - component: {fileID: 1445768350}
   - component: {fileID: 1445768353}
   - component: {fileID: 1445768352}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "ta\u015F duvar.122 (2)"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -169302,7 +169439,7 @@ GameObject:
   - component: {fileID: 1453522933}
   - component: {fileID: 1453522936}
   - component: {fileID: 1453522935}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "ta\u015F duvar.016 (1)"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -169661,7 +169798,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1459058517
 Transform:
   m_ObjectHideFlags: 0
@@ -169711,7 +169848,7 @@ GameObject:
   - component: {fileID: 1459095941}
   - component: {fileID: 1459095944}
   - component: {fileID: 1459095943}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "ta\u015F duvar.004 (2)"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -170252,7 +170389,7 @@ GameObject:
   - component: {fileID: 1463033491}
   - component: {fileID: 1463033494}
   - component: {fileID: 1463033493}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "ta\u015F duvar.023"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -170391,7 +170528,7 @@ GameObject:
   - component: {fileID: 1465751437}
   - component: {fileID: 1465751440}
   - component: {fileID: 1465751439}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "ta\u015F duvar.089 (1)"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -170535,7 +170672,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!20 &1465769671
 Camera:
   m_ObjectHideFlags: 0
@@ -170895,7 +171032,7 @@ GameObject:
   - component: {fileID: 1478263999}
   - component: {fileID: 1478263998}
   - component: {fileID: 1478263997}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "humant\u0131ty (9)"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -171009,7 +171146,7 @@ GameObject:
   - component: {fileID: 1480011092}
   - component: {fileID: 1480011095}
   - component: {fileID: 1480011094}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "ta\u015F duvar.119 (2)"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -171148,7 +171285,7 @@ GameObject:
   - component: {fileID: 1485032804}
   - component: {fileID: 1485032807}
   - component: {fileID: 1485032806}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "ta\u015F duvar.124 (4)"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -171426,7 +171563,7 @@ GameObject:
   - component: {fileID: 1490121094}
   - component: {fileID: 1490121097}
   - component: {fileID: 1490121096}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "ta\u015F duvar.024"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -171704,7 +171841,7 @@ GameObject:
   - component: {fileID: 1492159711}
   - component: {fileID: 1492159714}
   - component: {fileID: 1492159713}
-  m_Layer: 3
+  m_Layer: 9
   m_Name: "ta\u015F duvar.089 (1)"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -171991,6 +172128,81 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1494153947}
   m_Mesh: {fileID: 1934008863808980317, guid: 59cc5bc648a5f2c409965e7a9603284b, type: 3}
+--- !u!1 &1496327955
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1496327956}
+  - component: {fileID: 1496327958}
+  - component: {fileID: 1496327957}
+  m_Layer: 0
+  m_Name: BugFixBox
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1496327956
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1496327955}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -9, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 554337567}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &1496327957
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1496327955}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 7.93679, z: 1}
+  m_Center: {x: 17, y: 3.468395, z: 0}
+--- !u!65 &1496327958
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1496327955}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 7.93679, z: 1}
+  m_Center: {x: 0, y: 3.468395, z: 0}
 --- !u!1 &1498973747
 GameObject:
   m_ObjectHideFlags: 0
@@ -172169,7 +172381,7 @@ GameObject:
   - component: {fileID: 1504554902}
   - component: {fileID: 1504554905}
   - component: {fileID: 1504554904}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "ta\u015F duvar.124 (4)"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -177202,7 +177414,7 @@ GameObject:
   - component: {fileID: 1506655376}
   - component: {fileID: 1506655379}
   - component: {fileID: 1506655378}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "ta\u015F duvar.001 (2)"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -178756,133 +178968,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1534323362}
   m_Mesh: {fileID: 6549692256996479929, guid: c4005514c70302345b3f7c4a094b51bb, type: 3}
---- !u!1 &1536898638
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1536898639}
-  - component: {fileID: 1536898641}
-  - component: {fileID: 1536898640}
-  m_Layer: 0
-  m_Name: Point Light (7)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1536898639
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1536898638}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0.000001847744, y: 0.68376523, z: 0.0000017881393, w: 0.7297021}
-  m_LocalPosition: {x: 1.41, y: 3.1, z: 2.91}
-  m_LocalScale: {x: 1.8505495, y: 1.8505495, z: 1.8505497}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1636353899}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1536898640
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1536898638}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_UsePipelineSettings: 1
-  m_AdditionalLightsShadowResolutionTier: 2
-  m_CustomShadowLayers: 0
-  m_LightCookieSize: {x: 1, y: 1}
-  m_LightCookieOffset: {x: 0, y: 0}
-  m_SoftShadowQuality: 0
-  m_RenderingLayersMask:
-    serializedVersion: 0
-    m_Bits: 1
-  m_ShadowRenderingLayersMask:
-    serializedVersion: 0
-    m_Bits: 1
-  m_Version: 4
-  m_LightLayerMask: 1
-  m_ShadowLayerMask: 1
-  m_RenderingLayers: 1
-  m_ShadowRenderingLayers: 1
---- !u!108 &1536898641
-Light:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1536898638}
-  m_Enabled: 1
-  serializedVersion: 11
-  m_Type: 2
-  m_Color: {r: 0.6558824, g: 0.6431373, b: 0.8980392, a: 1}
-  m_Intensity: 5
-  m_Range: 14.12
-  m_SpotAngle: 30
-  m_InnerSpotAngle: 21.80208
-  m_CookieSize: 10
-  m_Shadows:
-    m_Type: 1
-    m_Resolution: -1
-    m_CustomResolution: -1
-    m_Strength: 1
-    m_Bias: 0.05
-    m_NormalBias: 0.4
-    m_NearPlane: 0.2
-    m_CullingMatrixOverride:
-      e00: 1
-      e01: 0
-      e02: 0
-      e03: 0
-      e10: 0
-      e11: 1
-      e12: 0
-      e13: 0
-      e20: 0
-      e21: 0
-      e22: 1
-      e23: 0
-      e30: 0
-      e31: 0
-      e32: 0
-      e33: 1
-    m_UseCullingMatrixOverride: 0
-  m_Cookie: {fileID: 0}
-  m_DrawHalo: 0
-  m_Flare: {fileID: 0}
-  m_RenderMode: 0
-  m_CullingMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_RenderingLayerMask: 1
-  m_Lightmapping: 2
-  m_LightShadowCasterMode: 0
-  m_AreaSize: {x: 1, y: 1}
-  m_BounceIntensity: 1
-  m_ColorTemperature: 6570
-  m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
-  m_UseBoundingSphereOverride: 0
-  m_UseViewFrustumForShadowCasterCull: 1
-  m_ForceVisible: 0
-  m_ShadowRadius: 0
-  m_ShadowAngle: 0
-  m_LightUnit: 1
-  m_LuxAtDistance: 1
-  m_EnableSpotReflector: 1
 --- !u!1 &1538356145
 GameObject:
   m_ObjectHideFlags: 0
@@ -178968,7 +179053,7 @@ GameObject:
   - component: {fileID: 1538543111}
   - component: {fileID: 1538543114}
   - component: {fileID: 1538543113}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "ta\u015F duvar.124 (1)"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -179653,7 +179738,7 @@ GameObject:
   - component: {fileID: 1549631804}
   - component: {fileID: 1549631803}
   - component: {fileID: 1549631802}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: tree_1.002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -184940,7 +185025,7 @@ GameObject:
   - component: {fileID: 1571165656}
   - component: {fileID: 1571165659}
   - component: {fileID: 1571165658}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "ta\u015F duvar.105"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -185293,7 +185378,7 @@ GameObject:
   - component: {fileID: 1574713649}
   - component: {fileID: 1574713652}
   - component: {fileID: 1574713651}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "ta\u015F duvar.122 (2)"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -185938,7 +186023,7 @@ GameObject:
   - component: {fileID: 1587999199}
   - component: {fileID: 1587999202}
   - component: {fileID: 1587999201}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "ta\u015F duvar.089 (1)"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -186189,7 +186274,7 @@ GameObject:
   - component: {fileID: 1594428479}
   - component: {fileID: 1594428482}
   - component: {fileID: 1594428481}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "ta\u015F duvar.123 (4)"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -186579,7 +186664,7 @@ GameObject:
   - component: {fileID: 1601499689}
   - component: {fileID: 1601499692}
   - component: {fileID: 1601499691}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "ta\u015F duvar.007 (2)"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -186717,7 +186802,7 @@ GameObject:
   - component: {fileID: 1609159565}
   - component: {fileID: 1609159564}
   - component: {fileID: 1609159563}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: kolon_2 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -186873,7 +186958,7 @@ GameObject:
   - component: {fileID: 1611709687}
   - component: {fileID: 1611709690}
   - component: {fileID: 1611709689}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "ta\u015F duvar.025"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -187151,7 +187236,7 @@ GameObject:
   - component: {fileID: 1624336218}
   - component: {fileID: 1624336221}
   - component: {fileID: 1624336220}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "ta\u015F duvar.062"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -187289,7 +187374,7 @@ GameObject:
   - component: {fileID: 1627496065}
   - component: {fileID: 1627496064}
   - component: {fileID: 1627496063}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: agac_2 (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -187681,7 +187766,7 @@ GameObject:
   - component: {fileID: 1630636786}
   - component: {fileID: 1630636789}
   - component: {fileID: 1630636788}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "ta\u015F duvar.099"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -188056,8 +188141,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 29299805}
-  - {fileID: 1536898639}
-  - {fileID: 420167724}
   m_Father: {fileID: 705203204}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!73398921 &1636353900
@@ -188160,7 +188243,7 @@ GameObject:
   - component: {fileID: 1638571771}
   - component: {fileID: 1638571774}
   - component: {fileID: 1638571773}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "ta\u015F duvar.004 (2)"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -193804,7 +193887,7 @@ GameObject:
   - component: {fileID: 1668234605}
   - component: {fileID: 1668234608}
   - component: {fileID: 1668234607}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "ta\u015F duvar.008 (2)"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -194511,7 +194594,7 @@ GameObject:
   - component: {fileID: 1690757680}
   - component: {fileID: 1690757683}
   - component: {fileID: 1690757682}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "ta\u015F duvar.118 (2)"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -194878,7 +194961,7 @@ GameObject:
   - component: {fileID: 1702289400}
   - component: {fileID: 1702289403}
   - component: {fileID: 1702289402}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "ta\u015F duvar.014 (2)"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -195107,7 +195190,7 @@ GameObject:
   - component: {fileID: 1707840172}
   - component: {fileID: 1707840175}
   - component: {fileID: 1707840174}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "ta\u015F duvar.118 (2)"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -195496,7 +195579,7 @@ GameObject:
   - component: {fileID: 1713175779}
   - component: {fileID: 1713175782}
   - component: {fileID: 1713175781}
-  m_Layer: 3
+  m_Layer: 9
   m_Name: "ta\u015F duvar.124 (1)"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -195665,7 +195748,7 @@ GameObject:
   - component: {fileID: 1717893336}
   - component: {fileID: 1717893335}
   - component: {fileID: 1717893334}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "duvarl\u0131k (2)"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -195867,7 +195950,7 @@ GameObject:
   - component: {fileID: 1719386212}
   - component: {fileID: 1719386215}
   - component: {fileID: 1719386214}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "ta\u015F duvar.088"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -196006,7 +196089,7 @@ GameObject:
   - component: {fileID: 1723445746}
   - component: {fileID: 1723445749}
   - component: {fileID: 1723445748}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "ta\u015F duvar.124 (4)"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -196464,7 +196547,7 @@ GameObject:
   - component: {fileID: 1726139891}
   - component: {fileID: 1726139890}
   - component: {fileID: 1726139889}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: agac_2 (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -196717,7 +196800,7 @@ GameObject:
   - component: {fileID: 1736840774}
   - component: {fileID: 1736840777}
   - component: {fileID: 1736840776}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "ta\u015F duvar.001 (2)"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -197469,7 +197552,7 @@ GameObject:
   - component: {fileID: 1746699343}
   - component: {fileID: 1746699346}
   - component: {fileID: 1746699345}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "ta\u015F duvar.125 (1)"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -197607,7 +197690,7 @@ GameObject:
   - component: {fileID: 1752728774}
   - component: {fileID: 1752728773}
   - component: {fileID: 1752728772}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "\u0131srael (2)"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -197943,7 +198026,7 @@ GameObject:
   - component: {fileID: 1763287909}
   - component: {fileID: 1763287912}
   - component: {fileID: 1763287911}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "ta\u015F duvar.131 (1)"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -198082,7 +198165,7 @@ GameObject:
   - component: {fileID: 1763632359}
   - component: {fileID: 1763632362}
   - component: {fileID: 1763632361}
-  m_Layer: 3
+  m_Layer: 9
   m_Name: "ta\u015F duvar.011 (2)"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -198221,7 +198304,7 @@ GameObject:
   - component: {fileID: 1768302594}
   - component: {fileID: 1768302597}
   - component: {fileID: 1768302596}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "ta\u015F duvar.011 (2)"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -198638,7 +198721,7 @@ GameObject:
   - component: {fileID: 1774323708}
   - component: {fileID: 1774323711}
   - component: {fileID: 1774323710}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "ta\u015F duvar.026"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -199048,7 +199131,7 @@ GameObject:
   - component: {fileID: 1785480740}
   - component: {fileID: 1785480743}
   - component: {fileID: 1785480742}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "ta\u015F duvar.125"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -199422,7 +199505,7 @@ GameObject:
   - component: {fileID: 1786874637}
   - component: {fileID: 1786874640}
   - component: {fileID: 1786874639}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "ta\u015F duvar.124 (2)"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -199624,7 +199707,7 @@ GameObject:
   - component: {fileID: 1789763312}
   - component: {fileID: 1789763311}
   - component: {fileID: 1789763310}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "k\xF6k (1)"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -199736,7 +199819,7 @@ GameObject:
   - component: {fileID: 1791894249}
   - component: {fileID: 1791894252}
   - component: {fileID: 1791894251}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "ta\u015F duvar.124 (3)"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -199875,7 +199958,7 @@ GameObject:
   - component: {fileID: 1792525503}
   - component: {fileID: 1792525506}
   - component: {fileID: 1792525505}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "ta\u015F duvar.131"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -200014,7 +200097,7 @@ GameObject:
   - component: {fileID: 1802979739}
   - component: {fileID: 1802979742}
   - component: {fileID: 1802979741}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "ta\u015F duvar.107"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -200153,7 +200236,7 @@ GameObject:
   - component: {fileID: 1803000284}
   - component: {fileID: 1803000287}
   - component: {fileID: 1803000286}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "ta\u015F duvar.131 (2)"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -205301,7 +205384,7 @@ GameObject:
   - component: {fileID: 1814230160}
   - component: {fileID: 1814230163}
   - component: {fileID: 1814230162}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "ta\u015F duvar.007 (2)"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -205528,7 +205611,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Ana Menu
+  m_text: Main Menu
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -205896,7 +205979,7 @@ GameObject:
   - component: {fileID: 1828272203}
   - component: {fileID: 1828272206}
   - component: {fileID: 1828272205}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "ta\u015F duvar (2)"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -206156,7 +206239,7 @@ GameObject:
   - component: {fileID: 1831405756}
   - component: {fileID: 1831405759}
   - component: {fileID: 1831405758}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "ta\u015F duvar.025"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -206466,7 +206549,7 @@ GameObject:
   - component: {fileID: 1834432860}
   - component: {fileID: 1834432863}
   - component: {fileID: 1834432862}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "ta\u015F duvar.021"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -213272,8 +213355,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1, y: 1.3179369, z: 1.9946036}
+  m_Center: {x: -7.1798395e-10, y: 0.15896825, z: 0.053855326}
 --- !u!4 &1879303487
 Transform:
   m_ObjectHideFlags: 0
@@ -213282,13 +213365,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1879303484}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -5.70499, y: 2.41493, z: -51.570297}
+  m_LocalRotation: {x: -0, y: 0.7031679, z: -0, w: 0.71102387}
+  m_LocalPosition: {x: 0.39, y: 2.41493, z: -56.17}
   m_LocalScale: {x: 1, y: 5, z: 4}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 308995545}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 89.363, z: 0}
 --- !u!1 &1879663511
 GameObject:
   m_ObjectHideFlags: 0
@@ -213786,7 +213869,7 @@ GameObject:
   - component: {fileID: 1898625114}
   - component: {fileID: 1898625117}
   - component: {fileID: 1898625116}
-  m_Layer: 3
+  m_Layer: 9
   m_Name: "ta\u015F duvar.007 (2)"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -214064,7 +214147,7 @@ GameObject:
   - component: {fileID: 1902333124}
   - component: {fileID: 1902333127}
   - component: {fileID: 1902333126}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "ta\u015F duvar.101"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -214332,7 +214415,7 @@ GameObject:
   - component: {fileID: 1905626362}
   - component: {fileID: 1905626365}
   - component: {fileID: 1905626364}
-  m_Layer: 3
+  m_Layer: 9
   m_Name: "ta\u015F duvar.123 (3)"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -214743,7 +214826,7 @@ GameObject:
   - component: {fileID: 1914996236}
   - component: {fileID: 1914996239}
   - component: {fileID: 1914996238}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "ta\u015F duvar.056"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -215428,7 +215511,7 @@ GameObject:
   - component: {fileID: 1924708268}
   - component: {fileID: 1924708271}
   - component: {fileID: 1924708270}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "ta\u015F duvar.060"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -215781,7 +215864,7 @@ GameObject:
   - component: {fileID: 1934647376}
   - component: {fileID: 1934647379}
   - component: {fileID: 1934647378}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "ta\u015F duvar.099"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -220858,7 +220941,7 @@ GameObject:
   - component: {fileID: 1947132509}
   - component: {fileID: 1947132512}
   - component: {fileID: 1947132511}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "ta\u015F duvar.024"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -220997,7 +221080,7 @@ GameObject:
   - component: {fileID: 1949393312}
   - component: {fileID: 1949393315}
   - component: {fileID: 1949393314}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "ta\u015F duvar.026"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -221171,7 +221254,7 @@ GameObject:
   - component: {fileID: 1950813380}
   - component: {fileID: 1950813383}
   - component: {fileID: 1950813382}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "ta\u015F duvar.122 (1)"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -221436,6 +221519,121 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1953427970}
   m_Mesh: {fileID: -6978937195034814311, guid: 8144f361128e0eb42afeb449b520c9d4, type: 3}
+--- !u!1 &1955901222
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1955901223}
+  - component: {fileID: 1955901227}
+  - component: {fileID: 1955901226}
+  - component: {fileID: 1955901225}
+  - component: {fileID: 1955901224}
+  m_Layer: 0
+  m_Name: Canvas
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1955901223
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1955901222}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 74.529}
+  m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
+  m_ConstrainProportionsScale: 1
+  m_Children:
+  - {fileID: 1130715324}
+  m_Father: {fileID: 2121520489}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -13.063, y: -1.9180002}
+  m_SizeDelta: {x: 25, y: 25}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!225 &1955901224
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1955901222}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
+--- !u!114 &1955901225
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1955901222}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.GraphicRaycaster
+  m_IgnoreReversedGraphics: 1
+  m_BlockingObjects: 0
+  m_BlockingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+--- !u!114 &1955901226
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1955901222}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.CanvasScaler
+  m_UiScaleMode: 0
+  m_ReferencePixelsPerUnit: 100
+  m_ScaleFactor: 1
+  m_ReferenceResolution: {x: 800, y: 600}
+  m_ScreenMatchMode: 0
+  m_MatchWidthOrHeight: 0
+  m_PhysicalUnit: 3
+  m_FallbackScreenDPI: 96
+  m_DefaultSpriteDPI: 96
+  m_DynamicPixelsPerUnit: 1
+  m_PresetInfoIsWorld: 1
+--- !u!223 &1955901227
+Canvas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1955901222}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 2
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 0
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_VertexColorAlwaysGammaSpace: 0
+  m_AdditionalShaderChannelsFlag: 25
+  m_UpdateRectTransformForStandalone: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+  m_TargetDisplay: 0
 --- !u!1 &1957128347
 GameObject:
   m_ObjectHideFlags: 0
@@ -221588,7 +221786,7 @@ GameObject:
   - component: {fileID: 1960150643}
   - component: {fileID: 1960150646}
   - component: {fileID: 1960150645}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "ta\u015F duvar.124 (3)"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -221774,7 +221972,7 @@ GameObject:
   - component: {fileID: 1965186004}
   - component: {fileID: 1965186007}
   - component: {fileID: 1965186006}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "ta\u015F duvar.025"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -222083,7 +222281,7 @@ GameObject:
   - component: {fileID: 1977377116}
   - component: {fileID: 1977377119}
   - component: {fileID: 1977377118}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "ta\u015F duvar.124 (2)"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -222468,7 +222666,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Yeniden Ba\u015Fla"
+  m_text: Restart
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -223100,7 +223298,7 @@ GameObject:
   - component: {fileID: 1998139177}
   - component: {fileID: 1998139180}
   - component: {fileID: 1998139179}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "ta\u015F duvar.014 (2)"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -228512,7 +228710,7 @@ GameObject:
   - component: {fileID: 2018675658}
   - component: {fileID: 2018675657}
   - component: {fileID: 2018675656}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: kolon_2 (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -228624,7 +228822,7 @@ GameObject:
   - component: {fileID: 2020912792}
   - component: {fileID: 2020912795}
   - component: {fileID: 2020912794}
-  m_Layer: 3
+  m_Layer: 9
   m_Name: "ta\u015F duvar.122 (1)"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -228834,7 +229032,7 @@ GameObject:
   - component: {fileID: 2025122311}
   - component: {fileID: 2025122314}
   - component: {fileID: 2025122313}
-  m_Layer: 3
+  m_Layer: 9
   m_Name: "ta\u015F duvar.131 (2)"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -229239,7 +229437,7 @@ GameObject:
   - component: {fileID: 2028424142}
   - component: {fileID: 2028424145}
   - component: {fileID: 2028424144}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "ta\u015F duvar.122 (3)"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -229754,7 +229952,7 @@ GameObject:
   - component: {fileID: 2040456669}
   - component: {fileID: 2040456672}
   - component: {fileID: 2040456671}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "ta\u015F duvar.088"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -230130,7 +230328,7 @@ GameObject:
   - component: {fileID: 2047129800}
   - component: {fileID: 2047129803}
   - component: {fileID: 2047129802}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "ta\u015F duvar.056"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -231049,13 +231247,13 @@ MonoBehaviour:
   balanceWalkSpeed: 1.5
   allowBackwardMovement: 1
   maxBalanceStep: 5
-  swayIntervalMin: 0.3
-  swayIntervalMax: 0.8
-  minSwayStep: 2
-  maxSwayStep: 3
-  suddenSwayChance: 1
-  suddenSwayMinStep: 2
-  suddenSwayMaxStep: 3
+  swayIntervalMin: 0.7
+  swayIntervalMax: 0.14
+  minSwayStep: 1
+  maxSwayStep: 2
+  suddenSwayChance: 0.297
+  suddenSwayMinStep: 1
+  suddenSwayMaxStep: 2
   failPushForce: 100
   failUpForce: 2
   maxCameraRoll: 30
@@ -231838,7 +232036,7 @@ GameObject:
   - component: {fileID: 2071888367}
   - component: {fileID: 2071888370}
   - component: {fileID: 2071888369}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "ta\u015F duvar.061"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -231977,7 +232175,7 @@ GameObject:
   - component: {fileID: 2073116026}
   - component: {fileID: 2073116029}
   - component: {fileID: 2073116028}
-  m_Layer: 3
+  m_Layer: 9
   m_Name: "ta\u015F duvar.006 (1)"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -232541,7 +232739,7 @@ GameObject:
   - component: {fileID: 2081934004}
   - component: {fileID: 2081934007}
   - component: {fileID: 2081934006}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "ta\u015F duvar.112 (2)"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -232680,7 +232878,7 @@ GameObject:
   - component: {fileID: 2084470673}
   - component: {fileID: 2084470676}
   - component: {fileID: 2084470675}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "ta\u015F duvar.017 (2)"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -232868,7 +233066,7 @@ GameObject:
   - component: {fileID: 2085140532}
   - component: {fileID: 2085140535}
   - component: {fileID: 2085140534}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "ta\u015F duvar.094"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -233007,7 +233205,7 @@ GameObject:
   - component: {fileID: 2093050784}
   - component: {fileID: 2093050787}
   - component: {fileID: 2093050786}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "ta\u015F duvar.027"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -233146,7 +233344,7 @@ GameObject:
   - component: {fileID: 2094943777}
   - component: {fileID: 2094943780}
   - component: {fileID: 2094943779}
-  m_Layer: 3
+  m_Layer: 9
   m_Name: "ta\u015F duvar.016 (1)"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -233285,7 +233483,7 @@ GameObject:
   - component: {fileID: 2098785212}
   - component: {fileID: 2098785215}
   - component: {fileID: 2098785214}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "ta\u015F duvar (2)"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -233424,7 +233622,7 @@ GameObject:
   - component: {fileID: 2101184330}
   - component: {fileID: 2101184333}
   - component: {fileID: 2101184332}
-  m_Layer: 3
+  m_Layer: 9
   m_Name: "ta\u015F duvar.122 (3)"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -234269,7 +234467,7 @@ GameObject:
   - component: {fileID: 2114439960}
   - component: {fileID: 2114439963}
   - component: {fileID: 2114439962}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "ta\u015F duvar.130"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -234408,7 +234606,7 @@ GameObject:
   - component: {fileID: 2114976366}
   - component: {fileID: 2114976369}
   - component: {fileID: 2114976368}
-  m_Layer: 3
+  m_Layer: 9
   m_Name: "ta\u015F duvar.008 (2)"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -234799,6 +234997,7 @@ Transform:
   - {fileID: 4956668160116800268}
   - {fileID: 34817084}
   - {fileID: 1666690794}
+  - {fileID: 1955901223}
   m_Father: {fileID: 1515623006}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2123244333
@@ -235041,7 +235240,7 @@ GameObject:
   - component: {fileID: 2136398371}
   - component: {fileID: 2136398370}
   - component: {fileID: 2136398369}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "k\xF6k (2)"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -235340,21 +235539,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2138413620}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
---- !u!4 &13017635420670758
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1316101958914287068}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
-  m_LocalPosition: {x: -0, y: 0, z: 0}
-  m_LocalScale: {x: 100, y: 100, z: 100}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 543450653259125055}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &19059342109779117
 Transform:
   m_ObjectHideFlags: 0
@@ -235807,7 +235991,7 @@ GameObject:
   - component: {fileID: 6166005781712426227}
   - component: {fileID: 8797247757928736438}
   - component: {fileID: 8797247757928736437}
-  m_Layer: 3
+  m_Layer: 9
   m_Name: "ta\u015F duvar.068"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -235956,6 +236140,7 @@ GameObject:
   - component: {fileID: 6288847453979932163}
   - component: {fileID: 6866762127838133744}
   - component: {fileID: 9123812405670379816}
+  - component: {fileID: 9123812405670379817}
   m_Layer: 0
   m_Name: big_rock
   m_TagString: Untagged
@@ -236138,7 +236323,7 @@ GameObject:
   - component: {fileID: 4122326010830862123}
   - component: {fileID: 6506478052530135008}
   - component: {fileID: 6506478052530135007}
-  m_Layer: 3
+  m_Layer: 9
   m_Name: "ta\u015F duvar.021"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -236351,7 +236536,7 @@ GameObject:
   - component: {fileID: 5255643869805954056}
   - component: {fileID: 7593541064187632562}
   - component: {fileID: 7593541064187632561}
-  m_Layer: 3
+  m_Layer: 9
   m_Name: "ta\u015F duvar.106"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -236592,10 +236777,7 @@ Transform:
   m_LocalPosition: {x: -10.3211, y: -9.771223, z: 0.6648598}
   m_LocalScale: {x: 8, y: 8, z: 8}
   m_ConstrainProportionsScale: 1
-  m_Children:
-  - {fileID: 6346013062036493569}
-  - {fileID: 13017635420670758}
-  - {fileID: 8030870711817262447}
+  m_Children: []
   m_Father: {fileID: 478342814}
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!4 &543450653362251230
@@ -236835,7 +237017,7 @@ GameObject:
   - component: {fileID: 2938995746963855555}
   - component: {fileID: 8988521833880839800}
   - component: {fileID: 8988521833880839799}
-  m_Layer: 3
+  m_Layer: 9
   m_Name: "ta\u015F duvar.088"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -237105,7 +237287,7 @@ GameObject:
   - component: {fileID: 3745622626884118434}
   - component: {fileID: 5334037118975643964}
   - component: {fileID: 4539702728734461411}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -237151,7 +237333,7 @@ GameObject:
   - component: {fileID: 5482081340195443151}
   - component: {fileID: 8697740340076747338}
   - component: {fileID: 8697740340076747337}
-  m_Layer: 3
+  m_Layer: 9
   m_Name: "ta\u015F duvar.028"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -237167,7 +237349,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 543450651941338311}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: eagle_grave
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -237526,7 +237708,7 @@ GameObject:
   - component: {fileID: 5779702324438852717}
   - component: {fileID: 5779702324438852719}
   - component: {fileID: 5779702324438852718}
-  m_Layer: 3
+  m_Layer: 9
   m_Name: "ta\u015F duvar.130"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -237808,7 +237990,7 @@ GameObject:
   - component: {fileID: 3810681045996515725}
   - component: {fileID: 8238457819835264482}
   - component: {fileID: 8238457819835264481}
-  m_Layer: 3
+  m_Layer: 9
   m_Name: "ta\u015F duvar.100"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -238093,7 +238275,7 @@ GameObject:
   - component: {fileID: 2200579667905933657}
   - component: {fileID: 5115129680856172812}
   - component: {fileID: 5115129680856172811}
-  m_Layer: 3
+  m_Layer: 9
   m_Name: "ta\u015F duvar.067"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -238289,24 +238471,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!1 &1316101958914287068
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 13017635420670758}
-  - component: {fileID: 2420208227906389569}
-  - component: {fileID: 4964217379922932473}
-  m_Layer: 0
-  m_Name: b_low
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!4 &1350616995440930850
 Transform:
   m_ObjectHideFlags: 0
@@ -239565,7 +239729,7 @@ GameObject:
   - component: {fileID: 8359314155611223111}
   - component: {fileID: 8359314155611223113}
   - component: {fileID: 8359314155611223112}
-  m_Layer: 3
+  m_Layer: 9
   m_Name: "ta\u015F duvar.023"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -239910,7 +240074,7 @@ GameObject:
   - component: {fileID: 4077936686273330195}
   - component: {fileID: 9001679148389297510}
   - component: {fileID: 9001679148389297509}
-  m_Layer: 3
+  m_Layer: 9
   m_Name: "ta\u015F duvar.062"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -240010,7 +240174,7 @@ GameObject:
   - component: {fileID: 7132554536400021492}
   - component: {fileID: 3405309968512765707}
   - component: {fileID: 7132554536400021493}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: agac_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -240260,54 +240424,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 799151222}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!23 &2216945249462624712
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5534727261039015395}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
-  m_ForceMeshLod: -1
-  m_MeshLodSelectionBias: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: -6478536213147159724, guid: 9f0ad381f4bafc348aed57b4a59b7888, type: 3}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!23 &2220683312747153467
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -240560,14 +240676,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!33 &2420208227906389569
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1316101958914287068}
-  m_Mesh: {fileID: 7972293632398917153, guid: 9f0ad381f4bafc348aed57b4a59b7888, type: 3}
 --- !u!4 &2424300761435557544
 Transform:
   m_ObjectHideFlags: 0
@@ -241058,7 +241166,7 @@ GameObject:
   - component: {fileID: 293405497572033962}
   - component: {fileID: 9153258835562581491}
   - component: {fileID: 9153258835562581490}
-  m_Layer: 3
+  m_Layer: 9
   m_Name: "ta\u015F duvar.025"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -241305,7 +241413,7 @@ GameObject:
   - component: {fileID: 1711471615897283271}
   - component: {fileID: 4388233661690650776}
   - component: {fileID: 4388233661690650775}
-  m_Layer: 3
+  m_Layer: 9
   m_Name: "ta\u015F duvar.027"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -241462,7 +241570,7 @@ GameObject:
   - component: {fileID: 5071379393493869734}
   - component: {fileID: 7287607641117294518}
   - component: {fileID: 7287607641117294517}
-  m_Layer: 3
+  m_Layer: 9
   m_Name: "ta\u015F duvar.099"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -242327,7 +242435,7 @@ GameObject:
   - component: {fileID: 5293624563274148373}
   - component: {fileID: 5938332489260991487}
   - component: {fileID: 5938332489260991486}
-  m_Layer: 3
+  m_Layer: 9
   m_Name: "ta\u015F duvar.101"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -242350,54 +242458,6 @@ Transform:
   - {fileID: 2917289243858266149}
   m_Father: {fileID: 3988923663076227321}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!23 &3322959210592443176
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5368939708264755959}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
-  m_ForceMeshLod: -1
-  m_MeshLodSelectionBias: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: -6478536213147159724, guid: 9f0ad381f4bafc348aed57b4a59b7888, type: 3}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!33 &3350034625541750344
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -243018,7 +243078,7 @@ GameObject:
   - component: {fileID: 8173226667102070061}
   - component: {fileID: 8173226667102070063}
   - component: {fileID: 8173226667102070062}
-  m_Layer: 3
+  m_Layer: 9
   m_Name: "ta\u015F duvar.105"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -244738,7 +244798,7 @@ GameObject:
   - component: {fileID: 719247052725029522}
   - component: {fileID: 8742582827922735317}
   - component: {fileID: 8742582827922735316}
-  m_Layer: 3
+  m_Layer: 9
   m_Name: "ta\u015F duvar.107"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -244773,7 +244833,7 @@ GameObject:
   - component: {fileID: 7228008288353083324}
   - component: {fileID: 8689619134680119577}
   - component: {fileID: 8689619134680119576}
-  m_Layer: 3
+  m_Layer: 9
   m_Name: "ta\u015F duvar.061"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -244788,14 +244848,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2771077751896971883}
   m_Mesh: {fileID: 4882115322962003972, guid: da44059c83135094184ac84b5f3a9b21, type: 3}
---- !u!33 &4260802836351819527
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5534727261039015395}
-  m_Mesh: {fileID: -6876981295793927453, guid: 9f0ad381f4bafc348aed57b4a59b7888, type: 3}
 --- !u!23 &4261478334375126680
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -245108,7 +245160,7 @@ GameObject:
   - component: {fileID: 7201954349013322145}
   - component: {fileID: 8341096913548051116}
   - component: {fileID: 8341096913548051115}
-  m_Layer: 3
+  m_Layer: 9
   m_Name: "ta\u015F duvar.026"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -245307,7 +245359,7 @@ GameObject:
   - component: {fileID: 8098438785956275584}
   - component: {fileID: 8098438785956275586}
   - component: {fileID: 8098438785956275585}
-  m_Layer: 3
+  m_Layer: 9
   m_Name: "ta\u015F duvar.089"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -245545,7 +245597,7 @@ GameObject:
   - component: {fileID: 4299095404704692978}
   - component: {fileID: 8275632688193721811}
   - component: {fileID: 8275632688193721810}
-  m_Layer: 3
+  m_Layer: 9
   m_Name: "ta\u015F duvar.055"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -246321,54 +246373,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2121520489}
   m_LocalEulerAnglesHint: {x: -23.549, y: 90, z: 90}
---- !u!23 &4964217379922932473
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1316101958914287068}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
-  m_ForceMeshLod: -1
-  m_MeshLodSelectionBias: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: e8acca86f49540e489b1a3f3afab3334, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!33 &4996659793716020248
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -246398,7 +246402,7 @@ GameObject:
   - component: {fileID: 4890172375371299452}
   - component: {fileID: 7044177485855321750}
   - component: {fileID: 7044177485855321749}
-  m_Layer: 3
+  m_Layer: 9
   m_Name: "ta\u015F duvar.125"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -247449,24 +247453,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5322827126373886169}
   m_Mesh: {fileID: 1481836136451896326, guid: 8144f361128e0eb42afeb449b520c9d4, type: 3}
---- !u!1 &5368939708264755959
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 6346013062036493569}
-  - component: {fileID: 6149604116942313280}
-  - component: {fileID: 3322959210592443176}
-  m_Layer: 0
-  m_Name: a_low
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!33 &5380123798373049909
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -248404,24 +248390,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.014422823, y: 0.014422818, z: 0.044087104}
   m_Center: {x: 0.0000000011641533, y: 0.000000009778885, z: 0.022198875}
---- !u!1 &5534727261039015395
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 8030870711817262447}
-  - component: {fileID: 4260802836351819527}
-  - component: {fileID: 2216945249462624712}
-  m_Layer: 0
-  m_Name: c_low
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!23 &5538550868788058264
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -249352,7 +249320,7 @@ GameObject:
   - component: {fileID: 3616830305046822744}
   - component: {fileID: 8410727106429065679}
   - component: {fileID: 8410727106429065678}
-  m_Layer: 3
+  m_Layer: 9
   m_Name: "ta\u015F duvar.131"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -249752,13 +249720,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6116460535764175572}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.00000025440065, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -21.375435, y: -2.630518, z: -41.382164}
+  m_LocalRotation: {x: -0.002886188, y: -0, z: -0, w: 0.9999958}
+  m_LocalPosition: {x: -4.3, y: -15.179116, z: -68.39}
   m_LocalScale: {x: 0.63740885, y: 0.6374089, z: 0.63740885}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1866701603}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -0.331, y: 0, z: 0}
 --- !u!1 &6017129274222500469
 GameObject:
   m_ObjectHideFlags: 0
@@ -249772,7 +249740,7 @@ GameObject:
   - component: {fileID: 3270428667191718359}
   - component: {fileID: 6017129274222500471}
   - component: {fileID: 6017129274222500470}
-  m_Layer: 3
+  m_Layer: 9
   m_Name: "ta\u015F duvar.020"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -249846,7 +249814,7 @@ GameObject:
   - component: {fileID: 1979662728498386577}
   - component: {fileID: 6647252006687456746}
   - component: {fileID: 1981646669962504946}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: eagle.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -249866,7 +249834,7 @@ GameObject:
   - component: {fileID: 5495567699404000452}
   - component: {fileID: 8351967256767208701}
   - component: {fileID: 8351967256767208700}
-  m_Layer: 3
+  m_Layer: 9
   m_Name: "ta\u015F duvar.094"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -250016,14 +249984,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!33 &6149604116942313280
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5368939708264755959}
-  m_Mesh: {fileID: 6906667551674412862, guid: 9f0ad381f4bafc348aed57b4a59b7888, type: 3}
 --- !u!4 &6149674662313301978
 Transform:
   m_ObjectHideFlags: 0
@@ -250720,28 +250680,13 @@ GameObject:
   - component: {fileID: 8828023891319655850}
   - component: {fileID: 8828023891319655852}
   - component: {fileID: 8828023891319655851}
-  m_Layer: 3
+  m_Layer: 9
   m_Name: "ta\u015F duvar.024"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &6346013062036493569
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5368939708264755959}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
-  m_LocalPosition: {x: -0, y: 0, z: 0}
-  m_LocalScale: {x: 100, y: 100, z: 100}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 543450653259125055}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &6359712100520404602
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -250826,7 +250771,7 @@ GameObject:
   - component: {fileID: 311204056667597195}
   - component: {fileID: 5701658166666438745}
   - component: {fileID: 6370700437799860361}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "humant\u0131ty"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -252200,7 +252145,7 @@ GameObject:
   - component: {fileID: 7684112574992153742}
   - component: {fileID: 4104744250694375873}
   - component: {fileID: 5411001763244778345}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: kapak
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -253103,7 +253048,7 @@ GameObject:
   - component: {fileID: 6325969054330915420}
   - component: {fileID: 2582021154912693154}
   - component: {fileID: 7666062102653509154}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "\u0131srael"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -253287,7 +253232,7 @@ GameObject:
   - component: {fileID: 870101176080254413}
   - component: {fileID: 8571182763866142600}
   - component: {fileID: 8571182763866142601}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: agac_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -253485,7 +253430,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 0
-  m_AdditionalShaderChannelsFlag: 0
+  m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
@@ -255144,21 +255089,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8458062750137661540}
   m_Mesh: {fileID: 698298465450321264, guid: 8144f361128e0eb42afeb449b520c9d4, type: 3}
---- !u!4 &8030870711817262447
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5534727261039015395}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
-  m_LocalPosition: {x: -0, y: 0, z: -0.03015814}
-  m_LocalScale: {x: 100, y: 100, z: 100}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 543450653259125055}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &8042786368294184046
 Transform:
   m_ObjectHideFlags: 0
@@ -257739,7 +257669,7 @@ GameObject:
   - component: {fileID: 8408853729959783280}
   - component: {fileID: 8743792169734433601}
   - component: {fileID: 8743792169734433600}
-  m_Layer: 3
+  m_Layer: 9
   m_Name: "ta\u015F duvar.095"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -257973,7 +257903,7 @@ GameObject:
   - component: {fileID: 4423250376402216617}
   - component: {fileID: 8767345975851911681}
   - component: {fileID: 8767345975851911680}
-  m_Layer: 3
+  m_Layer: 9
   m_Name: "ta\u015F duvar.060"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -258142,7 +258072,7 @@ GameObject:
   - component: {fileID: 5295318210319372398}
   - component: {fileID: 8816218473482984955}
   - component: {fileID: 8816218473482984954}
-  m_Layer: 3
+  m_Layer: 9
   m_Name: "ta\u015F duvar.056"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -258818,7 +258748,7 @@ GameObject:
   - component: {fileID: 1987122766130588771}
   - component: {fileID: 5210376163906818500}
   - component: {fileID: 8919086903399878601}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: jesus
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -259517,6 +259447,28 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &9123812405670379817
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 263064499333940899}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -8849781091256788775, guid: a6404b437b81afd4083a51e19c861ffc, type: 3}
 --- !u!33 &9145088485475196857
 MeshFilter:
   m_ObjectHideFlags: 0
